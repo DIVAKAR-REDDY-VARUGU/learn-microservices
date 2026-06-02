@@ -384,6 +384,151 @@ docker exec -it learn-redis redis-cli                 # Redis CLI
 
 ---
 
+# Module 1 — REST Fundamentals (NestJS + Spring Boot)
+
+## Lesson 1 — app bootstrap + the request lifecycle (Nest ↔ Spring) 🧩
+
+### 🎯 Concept — building blocks
+A request flows through a **pipeline** of optional layers before reaching your handler:
+```
+ REQUEST → middleware → guards → interceptor(pre) → pipes → CONTROLLER → SERVICE
+                                                              → interceptor(post) → RESPONSE
+         (any throw → EXCEPTION FILTER)
+```
+- **Controller** = routes (`@Get/@Post`) · **Service** = logic (`@Injectable`) · **Module** = wiring (`@Module`).
+- **Decorators** (`@Controller`, `@Get`, `@Injectable`) = tags that attach metadata so the framework wires/routes. **DI** = the framework creates & injects instances (never `new Service()`).
+
+### 🏭 `NestFactory` — all options
+| Method | Listens on | Use when | Analogy |
+|---|---|---|---|
+| `create()` | HTTP (Express/Fastify) | REST/web APIs | 🏪 shop w/ front door |
+| `createMicroservice()` | TCP/Redis/Kafka/gRPC/NATS/RMQ/MQTT | message-driven, no HTTP | 📮 mail-slot only |
+| `createApplicationContext()` | nothing | CLI/cron/scripts (just DI) | 🛠️ workshop, no customers |
+- Hybrid: `create()` + `app.connectMicroservice()` → HTTP **and** messaging in one process.
+- We used `create()` because tasks-service serves HTTP REST.
+
+### ☕ Spring equivalent — `SpringApplication`
+| Option | ≈ Nest |
+|---|---|
+| `SpringApplication.run(App.class, args)` | default boot |
+| `SpringApplicationBuilder` | fluent options |
+| `WebApplicationType.SERVLET` (MVC + Tomcat) | `create()` |
+| `WebApplicationType.REACTIVE` (WebFlux + Netty) | `create()` reactive |
+| `WebApplicationType.NONE` | `createApplicationContext()` |
+- No single `createMicroservice()` → use a Boot app + starter (`spring-kafka`/`spring-amqp`/gRPC) + `@KafkaListener` etc.
+
+### 🔀 Nest → Spring layer map (same flow, different names + extras)
+```
+ Middleware            → Servlet Filter
+ Guard                 → Security filter chain + @PreAuthorize
+ Interceptor(pre/post) → HandlerInterceptor + AOP @Around
+ Pipe                  → ArgumentResolver + @Valid (Bean Validation) + Converter
+ Controller            → @RestController
+ Service               → @Service
+ Exception Filter      → @ControllerAdvice / @ExceptionHandler
+ (hidden router)       → ★ DispatcherServlet  (Spring's central front controller — the new piece)
+ (—)                   → AOP @Around (cross-cutting: @Transactional, caching)
+```
+
+### 🔑 Takeaways
+- Same pipeline stages in both; Spring renames them, adds the **DispatcherServlet** front controller + **AOP**, and **splits** guards (filter + @PreAuthorize) and pipes (binding + @Valid).
+- `NestFactory.create` ↔ `SpringApplication.run` (SERVLET); `createApplicationContext` ↔ `WebApplicationType.NONE`; `createMicroservice` ↔ Boot app + messaging starter + listeners.
+
+---
+
+## Lesson 2 — IoC & Dependency Injection 🔌
+
+### 🎯 Concept — "who is in control?"
+```
+ NORMAL control:   YOUR CODE ──creates & calls──► objects     (you are the boss)
+ INVERTED control: FRAMEWORK ──creates & calls──► YOUR CODE    (framework is the boss)
+                                                               ↑ this flip = the "Inversion"
+```
+- **IoC (Inversion of Control)** = hand control of *object creation, wiring & flow* over to a framework/container. Motto: *"Don't call us, we'll call you."* → **loose coupling is the RESULT**, not the definition.
+- **DI (Dependency Injection)** = a *form* of IoC: the container **creates each dependency and injects it** into whoever declares a need — instead of the object doing `new` itself.
+
+🍽️ **Analogy:** the IoC **container = a restaurant manager** who hires (creates) the chef & waiter and assigns (injects) them where needed. You just declare *"I need a chef."*
+
+### 🔀 Other ways to achieve IoC (DI isn't the only one)
+- **For getting dependencies:** **DI** (dependency is *pushed* into you) ✅ vs **Service Locator** (you *pull* it from a central registry — works, but hides dependencies → messier).
+- **For inverting flow:** Events/Callbacks/Observer, Template Method, Factory.
+```
+ DI:              container ──pushes dep──►  you
+ Service Locator: you ──"give me dep"──► registry ──returns──► you
+```
+
+### ☕ Nest ↔ Spring (same idea)
+| Nest | Spring |
+|---|---|
+| `@Injectable()` + `providers:[]` | `@Service` + component-scan |
+| injector (IoC container) | `ApplicationContext` |
+| "provider" instance | "bean" |
+| singleton by default | singleton by default |
+| constructor injection | constructor injection |
+
+### 🔑 Takeaways
+- **IoC** = give up control of creation/flow (→ loose coupling). **DI** = a technique to do it (inject deps).
+- The container makes **singletons**, resolves the dependency graph, and injects **by type**.
+- DI vs Service Locator = **push vs pull** — same goal, DI is cleaner.
+
+---
+
+## Lesson 3 — a full CRUD REST resource (`/tasks`) 🧱
+
+Built a complete `tasks` resource with the Nest CLI generators (`nest g module|service|controller tasks` → auto-wired into the module), then the 5 REST endpoints:
+
+```
+ GET    /tasks       → list all
+ POST   /tasks       → create        (@Body + DTO + global ValidationPipe → 400 on bad input)
+ GET    /tasks/:id   → get one       (@Param + ParseIntPipe → 400; NotFoundException → 404)
+ PATCH  /tasks/:id   → partial update
+ DELETE /tasks/:id   → delete
+```
+
+### 🧩 Pieces used (with their decorator kind)
+- **Routing (method):** `@Get @Post @Patch @Delete`
+- **Params (param):** `@Param('id', ParseIntPipe)` · `@Body()`
+- **Validation (property, in DTOs):** `@IsString @IsNotEmpty @IsOptional @IsBoolean`
+- **Pipes:** global `ValidationPipe` (in `main.ts`, checks DTOs) + param-level `ParseIntPipe` (string→number)
+- **Exceptions:** `throw new NotFoundException(...)` → Nest's exception layer returns a clean 404
+- **DTO rule:** a DTO is a **class** (survives to runtime for validation); fields use `!`/`?` for strict mode.
+- **PUT vs PATCH:** PUT replaces the whole resource; PATCH updates only sent fields.
+
+### 🐞 Mistakes → fixes (from my code review)
+1. **`@Body('body')`** extracted a *field* named `body` (→ `undefined` → PATCH crashed). Fix: **`@Body()`** = the whole body. (`@Body('x')` = just field `x`.)
+2. **Missing `return`** in controller `create`/`update`/`delete` (and `service.create`) → empty responses. Fix: `return` the service call / the created task.
+3. **`@Get('all')`** put the list at `/tasks/all`. Fix: **`@Get()`** → `/tasks` (REST convention). Also: declare **static routes before dynamic `:id`** routes.
+4. `==` → `===` for clean equality.
+
+### 🔑 Takeaways
+- A resource = **module + controller + service + DTOs**; the CLI auto-wires it.
+- `@Body()` whole vs `@Body('field')` one; always **`return`** the service result.
+- Pipes can be **global** (ValidationPipe) or **param-level** (ParseIntPipe); exceptions become HTTP responses automatically.
+
+---
+
+## 📑 Nest Decorator Reference (we go deep on each in its module)
+
+Targets: **class · method · parameter · property** (there is no "file-level"; "module-level" = `@Module` on a class).
+
+- **① Structure & DI** *(class/param)*: `@Module` `@Global` `@Injectable` `@Controller` · `@Inject(TOKEN)` `@Optional`
+- **② HTTP routing** *(method)*: `@Get @Post @Put @Patch @Delete @Options @Head @All` · `@HttpCode` `@Header` `@Redirect` `@Render` `@Version` `@Sse`
+- **③ Request data** *(param)*: `@Body` `@Param` `@Query` `@Headers` `@Req/@Res` `@Ip` `@Session` `@HostParam` `@UploadedFile`
+- **④ Bind pipeline** *(class/method)*: `@UseGuards` `@UseInterceptors` `@UsePipes` `@UseFilters`
+- **⑤ Exceptions** *(class)*: `@Catch`
+- **⑥ Metadata & custom**: `@SetMetadata` · `createParamDecorator()` → your own `@Roles`/`@Public`/`@User` are built on these
+- **⑦ Validation — class-validator** *(property)*: `@IsString @IsNotEmpty @IsOptional @IsInt @IsBoolean @IsEmail @IsEnum @Min @Max @Length @Matches @IsArray @ValidateNested @IsUUID …`
+- **⑧ Transform — class-transformer** *(property)*: `@Expose @Exclude @Transform @Type`
+- **⑨ Persistence — TypeORM** *(class/property) → M2*: `@Entity @Column @PrimaryGeneratedColumn @CreateDateColumn @OneToMany @ManyToOne @ManyToMany @JoinColumn @Index @Unique` · `@InjectRepository`
+- **⑩ Swagger — @nestjs/swagger** *(docs)*: `@ApiTags @ApiOperation @ApiProperty @ApiPropertyOptional @ApiQuery @ApiParam @ApiBody @ApiBearerAuth @ApiExcludeEndpoint @ApiExcludeController` + response family `@ApiOkResponse @ApiCreatedResponse @ApiBadRequestResponse @ApiNotFoundResponse @ApiUnauthorizedResponse @ApiForbiddenResponse @ApiConflictResponse …`
+
+**Deep-dive map:** M1 → routing/DI/validation · M2 → TypeORM · M3 → guards/metadata/filters/interceptors · add-on → Swagger.
+**☕ Spring twin** for each = a Java annotation: `@RestController @GetMapping @RequestBody @Valid @NotBlank @ResponseStatus @ControllerAdvice @PreAuthorize @Entity @Column`, Swagger `@Operation/@Schema`.
+
+> ⚠️ Note: `@ApiHideEndpoint`/`@ApiHideController` aren't real — use `@ApiExcludeEndpoint`/`@ApiExcludeController`. `@Public`/`@Roles`/`@Permissions` are **custom** (built on `@SetMetadata`), not built-in.
+
+---
+
 ## 📖 Glossary (building as we go)
 
 | Term | Plain meaning |
