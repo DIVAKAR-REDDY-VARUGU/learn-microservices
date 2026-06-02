@@ -1,0 +1,98 @@
+# ============================================================================
+#  docker-compose.yml  —  local infrastructure for the whole course
+# ============================================================================
+#  WHAT THIS FILE IS: a RECIPE (written in YAML) that declares several containers
+#  so you start them all with ONE command. Writing this file creates NOTHING by
+#  itself — images/containers only appear when you run `docker compose up`.
+#
+#  LIFECYCLE:
+#    docker compose up -d   -> pull images (if missing) + CREATE + START containers
+#    docker compose ps      -> list the containers
+#    docker compose logs -f -> follow their logs
+#    docker compose down    -> stop + remove containers & network (images+volumes STAY)
+#    docker compose down -v -> also delete named volumes (wipes DB data)
+#
+#  YAML RULES: indentation = nesting (SPACES, never tabs).
+#     "key: value"  = a setting
+#     "key:" + indented children = a block (map)
+#     "- item"      = a list item
+#
+#  TOP-LEVEL KEYS (a FIXED vocabulary you can't invent): services, volumes,
+#     networks, configs, secrets, name.  Here we use only services + volumes.
+# ============================================================================
+
+services:
+  # Each block under "services:" = ONE container.
+  # The block NAME (postgres/redis/kafka) is FREE TEXT you choose; it becomes the
+  # container's HOSTNAME on the shared network (other services reach this DB at
+  # "postgres:5432"). Don't confuse it with `image: postgres:16` (the REAL image
+  # name published on Docker Hub).
+
+  # ───── PostgreSQL — primary relational database 🐘 ─────
+  postgres:
+    image: postgres:16              # which IMAGE (blueprint) to run; pulled from Docker Hub
+    container_name: learn-postgres  # fixed name for the running container (optional)
+    restart: unless-stopped         # auto-restart on crash / machine reboot
+    ports:
+      # "HOST:CONTAINER" -> left = your laptop, right = inside the container
+      - "5432:5432"                 # reach Postgres at localhost:5432
+    volumes:
+      # (1) NAMED volume "pgdata" (declared at the bottom): a Docker-managed disk
+      #     that PERSISTS across "docker compose down" (only "down -v" deletes it).
+      - pgdata:/var/lib/postgresql/data
+      # (2) BIND mount: a file on YOUR pc -> into the container (":ro" = read-only).
+      #     Postgres runs any .sql placed here ONCE, on first initialization.
+      - ./infra/postgres/init.sql:/docker-entrypoint-initdb.d/init.sql:ro
+    environment:
+      # These KEYS (POSTGRES_*) are defined by the postgres IMAGE, not by Compose.
+      POSTGRES_USER: dev
+      POSTGRES_PASSWORD: dev
+      POSTGRES_DB: learn            # a starter database created on first boot
+
+  # ───── Redis — cache + pub/sub 🟥 (NO volume on purpose → data is disposable) ─────
+  redis:
+    image: redis:7
+    container_name: learn-redis
+    restart: unless-stopped
+    ports:
+      - "6379:6379"                 # reach Redis at localhost:6379
+    # No "volumes:" here by design — Redis is a cache; if it restarts the data is
+    # gone and that's fine (rebuild it from Postgres). This is the contrast to 🐘.
+
+  # ───── Kafka — event log (KRaft mode = no Zookeeper needed) 🟧 ─────
+  kafka:
+    image: apache/kafka:3.8.0
+    container_name: learn-kafka
+    restart: unless-stopped
+    ports:
+      - "9092:9092"                 # apps on your laptop reach Kafka at localhost:9092
+    environment:
+      # Every KAFKA_* key below is defined by the kafka IMAGE. This is the minimal
+      # single-node KRaft setup (broker + controller in one). We revisit it in M5.
+      KAFKA_NODE_ID: 1
+      KAFKA_PROCESS_ROLES: broker,controller
+      KAFKA_CONTROLLER_LISTENER_NAMES: CONTROLLER
+      KAFKA_LISTENER_SECURITY_PROTOCOL_MAP: CONTROLLER:PLAINTEXT,PLAINTEXT:PLAINTEXT
+      KAFKA_LISTENERS: PLAINTEXT://0.0.0.0:9092,CONTROLLER://0.0.0.0:9093
+      KAFKA_ADVERTISED_LISTENERS: PLAINTEXT://localhost:9092
+      KAFKA_CONTROLLER_QUORUM_VOTERS: 1@localhost:9093
+      KAFKA_OFFSETS_TOPIC_REPLICATION_FACTOR: 1
+      KAFKA_TRANSACTION_STATE_LOG_REPLICATION_FACTOR: 1
+      KAFKA_TRANSACTION_STATE_LOG_MIN_ISR: 1
+      KAFKA_GROUP_INITIAL_REBALANCE_DELAY_MS: 0
+
+  # ───── OPTIONAL extras (uncomment when a later module needs them) ─────
+  # mongo:
+  #   image: mongo:7
+  #   ports: ["27017:27017"]
+  #   volumes: ["mongodata:/data/db"]
+  # rabbitmq:
+  #   image: rabbitmq:3-management
+  #   ports: ["5672:5672", "15672:15672"]   # UI at http://localhost:15672 (guest/guest)
+
+# TOP-LEVEL "volumes:" — you must DECLARE every named volume used above.
+# Docker creates and manages the real disk. "pgdata" keeps Postgres data alive
+# across restarts / "docker compose down".
+volumes:
+  pgdata:
+  # mongodata:
