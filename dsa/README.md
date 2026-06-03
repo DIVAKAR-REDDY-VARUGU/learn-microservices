@@ -17,151 +17,187 @@ Every subpattern has: **🔍 Recognize · 📊 Visual trace · 🧠 Idea + templ
 
 ---
 
+<a id="index"></a>
+
 ## 🧭 Navigation & Practice Index
 
-> 📖 = learn the pattern (jumps in this file) · ✍️ = solve the question (opens its folder)
+**Legend** — Difficulty: 🟩 Easy · 🟨 Med · 🟥 Hard | Asked: 🔥 High · 🟧 Med · 🟦 Low | Forget-risk: 🟢 Low · 🟡 Med · 🔴 High
+
+_📖 subpattern link = learn in this file · ✍️ = open the practice folder._
 
 
-**1. [Arrays & Hashing (Array/Matrix Manipulation)](#arrays--hashing-arraymatrix-manipulation)**
+### 1. [Arrays & Hashing (Array/Matrix Manipulation)](#arrays--hashing-arraymatrix-manipulation)
 
-- [Hashing - Frequency Map / Counting](#hashing---frequency-map--counting) · [✍️ solve](01-arrays-hashing/01-hashing-frequency-map-counting/QUESTION.md)
-- [Hashing - Previously Seen / Existence Check](#hashing---previously-seen--existence-check) · [✍️ solve](01-arrays-hashing/02-hashing-previously-seen-existence-check/QUESTION.md)
-- [Prefix Sum - Subarray Sum / Range Query](#prefix-sum---subarray-sum--range-query) · [✍️ solve](01-arrays-hashing/03-prefix-sum-subarray-sum-range-query/QUESTION.md)
-- [Product Except Self (Prefix/Suffix Products)](#product-except-self-prefixsuffix-products) · [✍️ solve](01-arrays-hashing/04-product-except-self-prefix-suffix-products/QUESTION.md)
-- [Array - Cyclic Sort](#array---cyclic-sort) · [✍️ solve](01-arrays-hashing/05-array-cyclic-sort/QUESTION.md)
-- [In-place Rotation](#in-place-rotation) · [✍️ solve](01-arrays-hashing/06-in-place-rotation/QUESTION.md)
-- [Merge Sorted Array (In-place from End)](#merge-sorted-array-in-place-from-end) · [✍️ solve](01-arrays-hashing/07-merge-sorted-array-in-place-from-end/QUESTION.md)
-- [Plus One (Handling Carry)](#plus-one-handling-carry) · [✍️ solve](01-arrays-hashing/08-plus-one-handling-carry/QUESTION.md)
-- [Set Matrix Zeroes (In-place Marking)](#set-matrix-zeroes-in-place-marking) · [✍️ solve](01-arrays-hashing/09-set-matrix-zeroes-in-place-marking/QUESTION.md)
-- [Spiral Traversal](#spiral-traversal) · [✍️ solve](01-arrays-hashing/10-spiral-traversal/QUESTION.md)
-- [Multiply Strings (Manual Simulation)](#multiply-strings-manual-simulation) · [✍️ solve](01-arrays-hashing/11-multiply-strings-manual-simulation/QUESTION.md)
+| Subpattern | Difficulty | Asked | Forget-risk | Solve |
+|---|---|---|---|---|
+| [Hashing - Frequency Map / Counting](#hashing---frequency-map--counting) | 🟩 Easy | 🔥 High | 🟢 Low | [✍️](01-arrays-hashing/01-hashing-frequency-map-counting/QUESTION.md) |
+| [Hashing - Previously Seen / Existence Check](#hashing---previously-seen--existence-check) | 🟩 Easy | 🔥 High | 🟢 Low | [✍️](01-arrays-hashing/02-hashing-previously-seen-existence-check/QUESTION.md) |
+| [Prefix Sum - Subarray Sum / Range Query](#prefix-sum---subarray-sum--range-query) | 🟨 Med | 🔥 High | 🟡 Med | [✍️](01-arrays-hashing/03-prefix-sum-subarray-sum-range-query/QUESTION.md) |
+| [Product Except Self (Prefix/Suffix Products)](#product-except-self-prefixsuffix-products) | 🟨 Med | 🔥 High | 🟡 Med | [✍️](01-arrays-hashing/04-product-except-self-prefix-suffix-products/QUESTION.md) |
+| [Array - Cyclic Sort](#array---cyclic-sort) | 🟨 Med | 🟧 Med | 🔴 High | [✍️](01-arrays-hashing/05-array-cyclic-sort/QUESTION.md) |
+| [In-place Rotation](#in-place-rotation) | 🟨 Med | 🟧 Med | 🟡 Med | [✍️](01-arrays-hashing/06-in-place-rotation/QUESTION.md) |
+| [Merge Sorted Array (In-place from End)](#merge-sorted-array-in-place-from-end) | 🟩 Easy | 🟧 Med | 🟡 Med | [✍️](01-arrays-hashing/07-merge-sorted-array-in-place-from-end/QUESTION.md) |
+| [Plus One (Handling Carry)](#plus-one-handling-carry) | 🟩 Easy | 🟧 Med | 🟢 Low | [✍️](01-arrays-hashing/08-plus-one-handling-carry/QUESTION.md) |
+| [Set Matrix Zeroes (In-place Marking)](#set-matrix-zeroes-in-place-marking) | 🟨 Med | 🟧 Med | 🔴 High | [✍️](01-arrays-hashing/09-set-matrix-zeroes-in-place-marking/QUESTION.md) |
+| [Spiral Traversal](#spiral-traversal) | 🟨 Med | 🟦 Low | 🔴 High | [✍️](01-arrays-hashing/10-spiral-traversal/QUESTION.md) |
+| [Multiply Strings (Manual Simulation)](#multiply-strings-manual-simulation) | 🟨 Med | 🟦 Low | 🔴 High | [✍️](01-arrays-hashing/11-multiply-strings-manual-simulation/QUESTION.md) |
 
-**2. [Two Pointers](#two-pointers)**
+### 2. [Two Pointers](#two-pointers)
 
-- [Converging (Sorted Array Target Sum)](#converging-sorted-array-target-sum) · [✍️ solve](02-two-pointers/01-converging-sorted-array-target-sum/QUESTION.md)
-- [Fast & Slow (Cycle Detection)](#fast--slow-cycle-detection) · [✍️ solve](02-two-pointers/02-fast-slow-cycle-detection/QUESTION.md)
-- [Fixed Separation (Nth from End)](#fixed-separation-nth-from-end) · [✍️ solve](02-two-pointers/03-fixed-separation-nth-from-end/QUESTION.md)
-- [Expanding From Center (Palindromes)](#expanding-from-center-palindromes) · [✍️ solve](02-two-pointers/04-expanding-from-center-palindromes/QUESTION.md)
-- [In-place Array Modification](#in-place-array-modification) · [✍️ solve](02-two-pointers/05-in-place-array-modification/QUESTION.md)
-- [String Comparison with Backspaces](#string-comparison-with-backspaces) · [✍️ solve](02-two-pointers/06-string-comparison-with-backspaces/QUESTION.md)
-- [String Reversal](#string-reversal) · [✍️ solve](02-two-pointers/07-string-reversal/QUESTION.md)
+| Subpattern | Difficulty | Asked | Forget-risk | Solve |
+|---|---|---|---|---|
+| [Converging (Sorted Array Target Sum)](#converging-sorted-array-target-sum) | 🟩 Easy | 🔥 High | 🟢 Low | [✍️](02-two-pointers/01-converging-sorted-array-target-sum/QUESTION.md) |
+| [Fast & Slow (Cycle Detection)](#fast--slow-cycle-detection) | 🟨 Med | 🔥 High | 🟡 Med | [✍️](02-two-pointers/02-fast-slow-cycle-detection/QUESTION.md) |
+| [Fixed Separation (Nth from End)](#fixed-separation-nth-from-end) | 🟩 Easy | 🔥 High | 🟢 Low | [✍️](02-two-pointers/03-fixed-separation-nth-from-end/QUESTION.md) |
+| [Expanding From Center (Palindromes)](#expanding-from-center-palindromes) | 🟨 Med | 🔥 High | 🟡 Med | [✍️](02-two-pointers/04-expanding-from-center-palindromes/QUESTION.md) |
+| [In-place Array Modification](#in-place-array-modification) | 🟩 Easy | 🔥 High | 🟢 Low | [✍️](02-two-pointers/05-in-place-array-modification/QUESTION.md) |
+| [String Comparison with Backspaces](#string-comparison-with-backspaces) | 🟨 Med | 🟧 Med | 🟡 Med | [✍️](02-two-pointers/06-string-comparison-with-backspaces/QUESTION.md) |
+| [String Reversal](#string-reversal) | 🟩 Easy | 🟧 Med | 🟢 Low | [✍️](02-two-pointers/07-string-reversal/QUESTION.md) |
 
-**3. [Sliding Window](#sliding-window)**
+### 3. [Sliding Window](#sliding-window)
 
-- [Fixed Size](#fixed-size) · [✍️ solve](03-sliding-window/01-fixed-size/QUESTION.md)
-- [Variable Size](#variable-size) · [✍️ solve](03-sliding-window/02-variable-size/QUESTION.md)
-- [Character Frequency Matching](#character-frequency-matching) · [✍️ solve](03-sliding-window/03-character-frequency-matching/QUESTION.md)
-- [Monotonic Queue for Max/Min](#monotonic-queue-for-maxmin) · [✍️ solve](03-sliding-window/04-monotonic-queue-for-max-min/QUESTION.md)
+| Subpattern | Difficulty | Asked | Forget-risk | Solve |
+|---|---|---|---|---|
+| [Fixed Size](#fixed-size) | 🟩 Easy | 🔥 High | 🟢 Low | [✍️](03-sliding-window/01-fixed-size/QUESTION.md) |
+| [Variable Size](#variable-size) | 🟨 Med | 🔥 High | 🟡 Med | [✍️](03-sliding-window/02-variable-size/QUESTION.md) |
+| [Character Frequency Matching](#character-frequency-matching) | 🟨 Med | 🔥 High | 🟡 Med | [✍️](03-sliding-window/03-character-frequency-matching/QUESTION.md) |
+| [Monotonic Queue for Max/Min](#monotonic-queue-for-maxmin) | 🟥 Hard | 🟧 Med | 🔴 High | [✍️](03-sliding-window/04-monotonic-queue-for-max-min/QUESTION.md) |
 
-**4. [Binary Search](#binary-search)**
+### 4. [Binary Search](#binary-search)
 
-- [On Sorted Array/List](#on-sorted-arraylist) · [✍️ solve](04-binary-search/01-on-sorted-array-list/QUESTION.md)
-- [Find First/Last Occurrence](#find-firstlast-occurrence) · [✍️ solve](04-binary-search/02-find-first-last-occurrence/QUESTION.md)
-- [On Answer / Condition Function](#on-answer--condition-function) · [✍️ solve](04-binary-search/03-on-answer-condition-function/QUESTION.md)
-- [Find Min/Max in Rotated Sorted Array](#find-minmax-in-rotated-sorted-array) · [✍️ solve](04-binary-search/04-find-min-max-in-rotated-sorted-array/QUESTION.md)
-- [Median and Kth of Two Sorted Arrays](#median-and-kth-of-two-sorted-arrays) · [✍️ solve](04-binary-search/05-median-and-kth-of-two-sorted-arrays/QUESTION.md)
+| Subpattern | Difficulty | Asked | Forget-risk | Solve |
+|---|---|---|---|---|
+| [On Sorted Array/List](#on-sorted-arraylist) | 🟩 Easy | 🔥 High | 🟢 Low | [✍️](04-binary-search/01-on-sorted-array-list/QUESTION.md) |
+| [Find First/Last Occurrence](#find-firstlast-occurrence) | 🟨 Med | 🔥 High | 🟡 Med | [✍️](04-binary-search/02-find-first-last-occurrence/QUESTION.md) |
+| [On Answer / Condition Function](#on-answer--condition-function) | 🟥 Hard | 🔥 High | 🔴 High | [✍️](04-binary-search/03-on-answer-condition-function/QUESTION.md) |
+| [Find Min/Max in Rotated Sorted Array](#find-minmax-in-rotated-sorted-array) | 🟨 Med | 🔥 High | 🔴 High | [✍️](04-binary-search/04-find-min-max-in-rotated-sorted-array/QUESTION.md) |
+| [Median and Kth of Two Sorted Arrays](#median-and-kth-of-two-sorted-arrays) | 🟥 Hard | 🟧 Med | 🔴 High | [✍️](04-binary-search/05-median-and-kth-of-two-sorted-arrays/QUESTION.md) |
 
-**5. [Stack](#stack)**
+### 5. [Stack](#stack)
 
-- [Valid Parentheses](#valid-parentheses) · [✍️ solve](05-stack/01-valid-parentheses/QUESTION.md)
-- [Monotonic Stack](#monotonic-stack) · [✍️ solve](05-stack/02-monotonic-stack/QUESTION.md)
-- [Min Stack Design](#min-stack-design) · [✍️ solve](05-stack/03-min-stack-design/QUESTION.md)
-- [Expression Evaluation (RPN/Infix)](#expression-evaluation-rpninfix) · [✍️ solve](05-stack/04-expression-evaluation-rpn-infix/QUESTION.md)
-- [Largest Rectangle in Histogram](#largest-rectangle-in-histogram) · [✍️ solve](05-stack/05-largest-rectangle-in-histogram/QUESTION.md)
-- [Simulation/Backtracking Helper](#simulationbacktracking-helper) · [✍️ solve](05-stack/06-simulation-backtracking-helper/QUESTION.md)
+| Subpattern | Difficulty | Asked | Forget-risk | Solve |
+|---|---|---|---|---|
+| [Valid Parentheses](#valid-parentheses) | 🟩 Easy | 🔥 High | 🟢 Low | [✍️](05-stack/01-valid-parentheses/QUESTION.md) |
+| [Monotonic Stack](#monotonic-stack) | 🟥 Hard | 🔥 High | 🔴 High | [✍️](05-stack/02-monotonic-stack/QUESTION.md) |
+| [Min Stack Design](#min-stack-design) | 🟨 Med | 🟧 Med | 🟡 Med | [✍️](05-stack/03-min-stack-design/QUESTION.md) |
+| [Expression Evaluation (RPN/Infix)](#expression-evaluation-rpninfix) | 🟨 Med | 🟧 Med | 🟡 Med | [✍️](05-stack/04-expression-evaluation-rpn-infix/QUESTION.md) |
+| [Largest Rectangle in Histogram](#largest-rectangle-in-histogram) | 🟥 Hard | 🟧 Med | 🔴 High | [✍️](05-stack/05-largest-rectangle-in-histogram/QUESTION.md) |
+| [Simulation/Backtracking Helper](#simulationbacktracking-helper) | 🟨 Med | 🟦 Low | 🟡 Med | [✍️](05-stack/06-simulation-backtracking-helper/QUESTION.md) |
 
-**6. [Linked List](#linked-list)**
+### 6. [Linked List](#linked-list)
 
-- [In-place Reversal](#in-place-reversal) · [✍️ solve](06-linked-list/01-in-place-reversal/QUESTION.md)
-- [Merging Two Sorted Lists](#merging-two-sorted-lists) · [✍️ solve](06-linked-list/02-merging-two-sorted-lists/QUESTION.md)
-- [Addition of Numbers](#addition-of-numbers) · [✍️ solve](06-linked-list/03-addition-of-numbers/QUESTION.md)
-- [Reordering/Partitioning](#reorderingpartitioning) · [✍️ solve](06-linked-list/04-reordering-partitioning/QUESTION.md)
+| Subpattern | Difficulty | Asked | Forget-risk | Solve |
+|---|---|---|---|---|
+| [In-place Reversal](#in-place-reversal) | 🟩 Easy | 🔥 High | 🟡 Med | [✍️](06-linked-list/01-in-place-reversal/QUESTION.md) |
+| [Merging Two Sorted Lists](#merging-two-sorted-lists) | 🟩 Easy | 🔥 High | 🟢 Low | [✍️](06-linked-list/02-merging-two-sorted-lists/QUESTION.md) |
+| [Addition of Numbers](#addition-of-numbers) | 🟨 Med | 🟧 Med | 🟢 Low | [✍️](06-linked-list/03-addition-of-numbers/QUESTION.md) |
+| [Reordering/Partitioning](#reorderingpartitioning) | 🟨 Med | 🟧 Med | 🟡 Med | [✍️](06-linked-list/04-reordering-partitioning/QUESTION.md) |
 
-**7. [Tree Traversal (DFS and BFS)](#tree-traversal-dfs-and-bfs)**
+### 7. [Tree Traversal (DFS and BFS)](#tree-traversal-dfs-and-bfs)
 
-- [Level Order Traversal (BFS)](#level-order-traversal-bfs) · [✍️ solve](07-trees/01-level-order-traversal-bfs/QUESTION.md)
-- [DFS Overview (Pre/In/Post)](#dfs-overview-preinpost) · [✍️ solve](07-trees/02-dfs-overview-pre-in-post/QUESTION.md)
-- [Recursive Preorder](#recursive-preorder) · [✍️ solve](07-trees/03-recursive-preorder/QUESTION.md)
-- [Recursive Inorder](#recursive-inorder) · [✍️ solve](07-trees/04-recursive-inorder/QUESTION.md)
-- [Recursive Postorder](#recursive-postorder) · [✍️ solve](07-trees/05-recursive-postorder/QUESTION.md)
-- [Lowest Common Ancestor (LCA)](#lowest-common-ancestor-lca) · [✍️ solve](07-trees/06-lowest-common-ancestor-lca/QUESTION.md)
-- [Serialization and Deserialization](#serialization-and-deserialization) · [✍️ solve](07-trees/07-serialization-and-deserialization/QUESTION.md)
+| Subpattern | Difficulty | Asked | Forget-risk | Solve |
+|---|---|---|---|---|
+| [Level Order Traversal (BFS)](#level-order-traversal-bfs) | 🟩 Easy | 🔥 High | 🟢 Low | [✍️](07-trees/01-level-order-traversal-bfs/QUESTION.md) |
+| [DFS Overview (Pre/In/Post)](#dfs-overview-preinpost) | 🟩 Easy | 🔥 High | 🟢 Low | [✍️](07-trees/02-dfs-overview-pre-in-post/QUESTION.md) |
+| [Recursive Preorder](#recursive-preorder) | 🟩 Easy | 🟧 Med | 🟢 Low | [✍️](07-trees/03-recursive-preorder/QUESTION.md) |
+| [Recursive Inorder](#recursive-inorder) | 🟩 Easy | 🟧 Med | 🟢 Low | [✍️](07-trees/04-recursive-inorder/QUESTION.md) |
+| [Recursive Postorder](#recursive-postorder) | 🟩 Easy | 🟧 Med | 🟢 Low | [✍️](07-trees/05-recursive-postorder/QUESTION.md) |
+| [Lowest Common Ancestor (LCA)](#lowest-common-ancestor-lca) | 🟨 Med | 🔥 High | 🟡 Med | [✍️](07-trees/06-lowest-common-ancestor-lca/QUESTION.md) |
+| [Serialization and Deserialization](#serialization-and-deserialization) | 🟥 Hard | 🟧 Med | 🔴 High | [✍️](07-trees/07-serialization-and-deserialization/QUESTION.md) |
 
-**8. [Heap (Priority Queue)](#heap-priority-queue)**
+### 8. [Heap (Priority Queue)](#heap-priority-queue)
 
-- [Top K Elements (Selection/Frequency)](#top-k-elements-selectionfrequency) · [✍️ solve](08-heap/01-top-k-elements-selection-frequency/QUESTION.md)
-- [K-way Merge](#k-way-merge) · [✍️ solve](08-heap/02-k-way-merge/QUESTION.md)
-- [Two Heaps for Median](#two-heaps-for-median) · [✍️ solve](08-heap/03-two-heaps-for-median/QUESTION.md)
-- [Scheduling / Minimum Cost (Greedy + PQ)](#scheduling--minimum-cost-greedy--pq) · [✍️ solve](08-heap/04-scheduling-minimum-cost-greedy-pq/QUESTION.md)
+| Subpattern | Difficulty | Asked | Forget-risk | Solve |
+|---|---|---|---|---|
+| [Top K Elements (Selection/Frequency)](#top-k-elements-selectionfrequency) | 🟨 Med | 🔥 High | 🟡 Med | [✍️](08-heap/01-top-k-elements-selection-frequency/QUESTION.md) |
+| [K-way Merge](#k-way-merge) | 🟨 Med | 🟧 Med | 🟡 Med | [✍️](08-heap/02-k-way-merge/QUESTION.md) |
+| [Two Heaps for Median](#two-heaps-for-median) | 🟥 Hard | 🟧 Med | 🔴 High | [✍️](08-heap/03-two-heaps-for-median/QUESTION.md) |
+| [Scheduling / Minimum Cost (Greedy + PQ)](#scheduling--minimum-cost-greedy--pq) | 🟨 Med | 🟧 Med | 🟡 Med | [✍️](08-heap/04-scheduling-minimum-cost-greedy-pq/QUESTION.md) |
 
-**9. [Graph Traversal (DFS and BFS)](#graph-traversal-dfs-and-bfs)**
+### 9. [Graph Traversal (DFS and BFS)](#graph-traversal-dfs-and-bfs)
 
-- [DFS/BFS Connected Components](#dfsbfs-connected-components) · [✍️ solve](09-graphs/01-dfs-bfs-connected-components/QUESTION.md)
-- [Kahn Topological Sort](#kahn-topological-sort) · [✍️ solve](09-graphs/02-kahn-topological-sort/QUESTION.md)
-- [DFS Cycle Detection (Directed)](#dfs-cycle-detection-directed) · [✍️ solve](09-graphs/03-dfs-cycle-detection-directed/QUESTION.md)
-- [Union-Find (Disjoint Set Union)](#union-find-disjoint-set-union) · [✍️ solve](09-graphs/04-union-find-disjoint-set-union/QUESTION.md)
-- [Dijkstra Algorithm](#dijkstra-algorithm) · [✍️ solve](09-graphs/05-dijkstra-algorithm/QUESTION.md)
-- [Shortest Path (BFS/Bellman-Ford)](#shortest-path-bfsbellman-ford) · [✍️ solve](09-graphs/06-shortest-path-bfs-bellman-ford/QUESTION.md)
-- [Deep Copy / Cloning](#deep-copy--cloning) · [✍️ solve](09-graphs/07-deep-copy-cloning/QUESTION.md)
+| Subpattern | Difficulty | Asked | Forget-risk | Solve |
+|---|---|---|---|---|
+| [DFS/BFS Connected Components](#dfsbfs-connected-components) | 🟨 Med | 🔥 High | 🟢 Low | [✍️](09-graphs/01-dfs-bfs-connected-components/QUESTION.md) |
+| [Kahn Topological Sort](#kahn-topological-sort) | 🟨 Med | 🔥 High | 🟡 Med | [✍️](09-graphs/02-kahn-topological-sort/QUESTION.md) |
+| [DFS Cycle Detection (Directed)](#dfs-cycle-detection-directed) | 🟨 Med | 🔥 High | 🔴 High | [✍️](09-graphs/03-dfs-cycle-detection-directed/QUESTION.md) |
+| [Union-Find (Disjoint Set Union)](#union-find-disjoint-set-union) | 🟨 Med | 🟧 Med | 🔴 High | [✍️](09-graphs/04-union-find-disjoint-set-union/QUESTION.md) |
+| [Dijkstra Algorithm](#dijkstra-algorithm) | 🟥 Hard | 🟧 Med | 🔴 High | [✍️](09-graphs/05-dijkstra-algorithm/QUESTION.md) |
+| [Shortest Path (BFS/Bellman-Ford)](#shortest-path-bfsbellman-ford) | 🟨 Med | 🟧 Med | 🟡 Med | [✍️](09-graphs/06-shortest-path-bfs-bellman-ford/QUESTION.md) |
+| [Deep Copy / Cloning](#deep-copy--cloning) | 🟨 Med | 🟧 Med | 🟡 Med | [✍️](09-graphs/07-deep-copy-cloning/QUESTION.md) |
 
-**10. [Backtracking](#backtracking)**
+### 10. [Backtracking](#backtracking)
 
-- [Subsets (Include/Exclude)](#subsets-includeexclude) · [✍️ solve](10-backtracking/01-subsets-include-exclude/QUESTION.md)
-- [Permutations](#permutations) · [✍️ solve](10-backtracking/02-permutations/QUESTION.md)
-- [Combination Sum](#combination-sum) · [✍️ solve](10-backtracking/03-combination-sum/QUESTION.md)
-- [Parentheses Generation](#parentheses-generation) · [✍️ solve](10-backtracking/04-parentheses-generation/QUESTION.md)
-- [Palindrome Partitioning](#palindrome-partitioning) · [✍️ solve](10-backtracking/05-palindrome-partitioning/QUESTION.md)
-- [Word Search / Path in Grid](#word-search--path-in-grid) · [✍️ solve](10-backtracking/06-word-search-path-in-grid/QUESTION.md)
-- [N-Queens](#n-queens) · [✍️ solve](10-backtracking/07-n-queens/QUESTION.md)
+| Subpattern | Difficulty | Asked | Forget-risk | Solve |
+|---|---|---|---|---|
+| [Subsets (Include/Exclude)](#subsets-includeexclude) | 🟨 Med | 🔥 High | 🟡 Med | [✍️](10-backtracking/01-subsets-include-exclude/QUESTION.md) |
+| [Permutations](#permutations) | 🟨 Med | 🔥 High | 🟡 Med | [✍️](10-backtracking/02-permutations/QUESTION.md) |
+| [Combination Sum](#combination-sum) | 🟨 Med | 🔥 High | 🟡 Med | [✍️](10-backtracking/03-combination-sum/QUESTION.md) |
+| [Parentheses Generation](#parentheses-generation) | 🟨 Med | 🟧 Med | 🟡 Med | [✍️](10-backtracking/04-parentheses-generation/QUESTION.md) |
+| [Palindrome Partitioning](#palindrome-partitioning) | 🟨 Med | 🟧 Med | 🔴 High | [✍️](10-backtracking/05-palindrome-partitioning/QUESTION.md) |
+| [Word Search / Path in Grid](#word-search--path-in-grid) | 🟨 Med | 🟧 Med | 🟡 Med | [✍️](10-backtracking/06-word-search-path-in-grid/QUESTION.md) |
+| [N-Queens](#n-queens) | 🟥 Hard | 🟦 Low | 🔴 High | [✍️](10-backtracking/07-n-queens/QUESTION.md) |
 
-**11. [Dynamic Programming](#dynamic-programming)**
+### 11. [Dynamic Programming](#dynamic-programming)
 
-- [1D Fibonacci Style](#1d-fibonacci-style) · [✍️ solve](11-dynamic-programming/01-1d-fibonacci-style/QUESTION.md)
-- [1D Kadane Algorithm](#1d-kadane-algorithm) · [✍️ solve](11-dynamic-programming/02-1d-kadane-algorithm/QUESTION.md)
-- [1D Coin Change / Unbounded Knapsack](#1d-coin-change--unbounded-knapsack) · [✍️ solve](11-dynamic-programming/03-1d-coin-change-unbounded-knapsack/QUESTION.md)
-- [1D 0/1 Knapsack](#1d-01-knapsack) · [✍️ solve](11-dynamic-programming/04-1d-0-1-knapsack/QUESTION.md)
-- [1D Word Break](#1d-word-break) · [✍️ solve](11-dynamic-programming/05-1d-word-break/QUESTION.md)
-- [2D Longest Common Subsequence](#2d-longest-common-subsequence) · [✍️ solve](11-dynamic-programming/06-2d-longest-common-subsequence/QUESTION.md)
-- [2D Unique Paths on Grid](#2d-unique-paths-on-grid) · [✍️ solve](11-dynamic-programming/07-2d-unique-paths-on-grid/QUESTION.md)
-- [2D Edit Distance](#2d-edit-distance) · [✍️ solve](11-dynamic-programming/08-2d-edit-distance/QUESTION.md)
-- [Longest Increasing Subsequence (LIS)](#longest-increasing-subsequence-lis) · [✍️ solve](11-dynamic-programming/09-longest-increasing-subsequence-lis/QUESTION.md)
-- [Catalan Numbers](#catalan-numbers) · [✍️ solve](11-dynamic-programming/10-catalan-numbers/QUESTION.md)
-- [Interval DP](#interval-dp) · [✍️ solve](11-dynamic-programming/11-interval-dp/QUESTION.md)
+| Subpattern | Difficulty | Asked | Forget-risk | Solve |
+|---|---|---|---|---|
+| [1D Fibonacci Style](#1d-fibonacci-style) | 🟩 Easy | 🔥 High | 🟢 Low | [✍️](11-dynamic-programming/01-1d-fibonacci-style/QUESTION.md) |
+| [1D Kadane Algorithm](#1d-kadane-algorithm) | 🟩 Easy | 🔥 High | 🟡 Med | [✍️](11-dynamic-programming/02-1d-kadane-algorithm/QUESTION.md) |
+| [1D Coin Change / Unbounded Knapsack](#1d-coin-change--unbounded-knapsack) | 🟨 Med | 🔥 High | 🟡 Med | [✍️](11-dynamic-programming/03-1d-coin-change-unbounded-knapsack/QUESTION.md) |
+| [1D 0/1 Knapsack](#1d-01-knapsack) | 🟨 Med | 🔥 High | 🔴 High | [✍️](11-dynamic-programming/04-1d-0-1-knapsack/QUESTION.md) |
+| [1D Word Break](#1d-word-break) | 🟨 Med | 🟧 Med | 🟡 Med | [✍️](11-dynamic-programming/05-1d-word-break/QUESTION.md) |
+| [2D Longest Common Subsequence](#2d-longest-common-subsequence) | 🟨 Med | 🔥 High | 🟡 Med | [✍️](11-dynamic-programming/06-2d-longest-common-subsequence/QUESTION.md) |
+| [2D Unique Paths on Grid](#2d-unique-paths-on-grid) | 🟩 Easy | 🔥 High | 🟢 Low | [✍️](11-dynamic-programming/07-2d-unique-paths-on-grid/QUESTION.md) |
+| [2D Edit Distance](#2d-edit-distance) | 🟥 Hard | 🟧 Med | 🔴 High | [✍️](11-dynamic-programming/08-2d-edit-distance/QUESTION.md) |
+| [Longest Increasing Subsequence (LIS)](#longest-increasing-subsequence-lis) | 🟨 Med | 🟧 Med | 🔴 High | [✍️](11-dynamic-programming/09-longest-increasing-subsequence-lis/QUESTION.md) |
+| [Catalan Numbers](#catalan-numbers) | 🟨 Med | 🟦 Low | 🔴 High | [✍️](11-dynamic-programming/10-catalan-numbers/QUESTION.md) |
+| [Interval DP](#interval-dp) | 🟥 Hard | 🟦 Low | 🔴 High | [✍️](11-dynamic-programming/11-interval-dp/QUESTION.md) |
 
-**12. [Greedy](#greedy)**
+### 12. [Greedy](#greedy)
 
-- [Interval Merging/Scheduling](#interval-mergingscheduling) · [✍️ solve](12-greedy/01-interval-merging-scheduling/QUESTION.md)
-- [Buy/Sell Stock](#buysell-stock) · [✍️ solve](12-greedy/02-buy-sell-stock/QUESTION.md)
-- [Jump Game](#jump-game) · [✍️ solve](12-greedy/03-jump-game/QUESTION.md)
-- [Gas Station Circuit](#gas-station-circuit) · [✍️ solve](12-greedy/04-gas-station-circuit/QUESTION.md)
-- [Task Scheduling (Frequency)](#task-scheduling-frequency) · [✍️ solve](12-greedy/05-task-scheduling-frequency/QUESTION.md)
+| Subpattern | Difficulty | Asked | Forget-risk | Solve |
+|---|---|---|---|---|
+| [Interval Merging/Scheduling](#interval-mergingscheduling) | 🟨 Med | 🔥 High | 🟡 Med | [✍️](12-greedy/01-interval-merging-scheduling/QUESTION.md) |
+| [Buy/Sell Stock](#buysell-stock) | 🟩 Easy | 🔥 High | 🟢 Low | [✍️](12-greedy/02-buy-sell-stock/QUESTION.md) |
+| [Jump Game](#jump-game) | 🟨 Med | 🟧 Med | 🟡 Med | [✍️](12-greedy/03-jump-game/QUESTION.md) |
+| [Gas Station Circuit](#gas-station-circuit) | 🟨 Med | 🟧 Med | 🔴 High | [✍️](12-greedy/04-gas-station-circuit/QUESTION.md) |
+| [Task Scheduling (Frequency)](#task-scheduling-frequency) | 🟨 Med | 🟧 Med | 🔴 High | [✍️](12-greedy/05-task-scheduling-frequency/QUESTION.md) |
 
-**13. [String Manipulation](#string-manipulation)**
+### 13. [String Manipulation](#string-manipulation)
 
-- [Anagram Check (Frequency Count/Sort)](#anagram-check-frequency-countsort) · [✍️ solve](13-strings/01-anagram-check-frequency-count-sort/QUESTION.md)
-- [Palindrome Check (Two Pointers / Reverse)](#palindrome-check-two-pointers--reverse) · [✍️ solve](13-strings/02-palindrome-check-two-pointers-reverse/QUESTION.md)
-- [Roman to Integer](#roman-to-integer) · [✍️ solve](13-strings/03-roman-to-integer/QUESTION.md)
-- [Integer and Roman Conversion](#integer-and-roman-conversion) · [✍️ solve](13-strings/04-integer-and-roman-conversion/QUESTION.md)
-- [Repeated Substring Pattern Detection](#repeated-substring-pattern-detection) · [✍️ solve](13-strings/05-repeated-substring-pattern-detection/QUESTION.md)
-- [Naive/KMP/Rabin-Karp (overview)](#naivekmprabin-karp-overview) · [✍️ solve](13-strings/06-naive-kmp-rabin-karp-overview/QUESTION.md)
+| Subpattern | Difficulty | Asked | Forget-risk | Solve |
+|---|---|---|---|---|
+| [Anagram Check (Frequency Count/Sort)](#anagram-check-frequency-countsort) | 🟩 Easy | 🔥 High | 🟢 Low | [✍️](13-strings/01-anagram-check-frequency-count-sort/QUESTION.md) |
+| [Palindrome Check (Two Pointers / Reverse)](#palindrome-check-two-pointers--reverse) | 🟩 Easy | 🔥 High | 🟢 Low | [✍️](13-strings/02-palindrome-check-two-pointers-reverse/QUESTION.md) |
+| [Roman to Integer](#roman-to-integer) | 🟩 Easy | 🟧 Med | 🟢 Low | [✍️](13-strings/03-roman-to-integer/QUESTION.md) |
+| [Integer and Roman Conversion](#integer-and-roman-conversion) | 🟩 Easy | 🟧 Med | 🟡 Med | [✍️](13-strings/04-integer-and-roman-conversion/QUESTION.md) |
+| [Repeated Substring Pattern Detection](#repeated-substring-pattern-detection) | 🟨 Med | 🟦 Low | 🔴 High | [✍️](13-strings/05-repeated-substring-pattern-detection/QUESTION.md) |
+| [Naive/KMP/Rabin-Karp (overview)](#naivekmprabin-karp-overview) | 🟥 Hard | 🟦 Low | 🔴 High | [✍️](13-strings/06-naive-kmp-rabin-karp-overview/QUESTION.md) |
 
-**14. [Bit Manipulation](#bit-manipulation)**
+### 14. [Bit Manipulation](#bit-manipulation)
 
-- [XOR (Single/Missing)](#xor-singlemissing) · [✍️ solve](14-bit-manipulation/01-xor-single-missing/QUESTION.md)
-- [Bitwise AND (Hamming Weight)](#bitwise-and-hamming-weight) · [✍️ solve](14-bit-manipulation/02-bitwise-and-hamming-weight/QUESTION.md)
-- [Power of Two/Four](#power-of-twofour) · [✍️ solve](14-bit-manipulation/03-power-of-two-four/QUESTION.md)
-- [Bitwise DP (Counting Bits Optimization)](#bitwise-dp-counting-bits-optimization) · [✍️ solve](14-bit-manipulation/04-bitwise-dp-counting-bits-optimization/QUESTION.md)
+| Subpattern | Difficulty | Asked | Forget-risk | Solve |
+|---|---|---|---|---|
+| [XOR (Single/Missing)](#xor-singlemissing) | 🟩 Easy | 🔥 High | 🟡 Med | [✍️](14-bit-manipulation/01-xor-single-missing/QUESTION.md) |
+| [Bitwise AND (Hamming Weight)](#bitwise-and-hamming-weight) | 🟩 Easy | 🟧 Med | 🟢 Low | [✍️](14-bit-manipulation/02-bitwise-and-hamming-weight/QUESTION.md) |
+| [Power of Two/Four](#power-of-twofour) | 🟩 Easy | 🟧 Med | 🟡 Med | [✍️](14-bit-manipulation/03-power-of-two-four/QUESTION.md) |
+| [Bitwise DP (Counting Bits Optimization)](#bitwise-dp-counting-bits-optimization) | 🟨 Med | 🟦 Low | 🟡 Med | [✍️](14-bit-manipulation/04-bitwise-dp-counting-bits-optimization/QUESTION.md) |
 
-**15. [Segment Tree and Fenwick Tree](#segment-tree-and-fenwick-tree)**
+### 15. [Segment Tree and Fenwick Tree](#segment-tree-and-fenwick-tree)
 
-- [Fenwick Tree (BIT) - Prefix Queries / Inversions](#fenwick-tree-bit---prefix-queries--inversions) · [✍️ solve](15-segment-fenwick-tree/01-fenwick-tree-bit-prefix-queries-inversions/QUESTION.md)
-- [Segment Tree - Range Sum with Point Update](#segment-tree---range-sum-with-point-update) · [✍️ solve](15-segment-fenwick-tree/02-segment-tree-range-sum-with-point-update/QUESTION.md)
+| Subpattern | Difficulty | Asked | Forget-risk | Solve |
+|---|---|---|---|---|
+| [Fenwick Tree (BIT) - Prefix Queries / Inversions](#fenwick-tree-bit---prefix-queries--inversions) | 🟥 Hard | 🟦 Low | 🔴 High | [✍️](15-segment-fenwick-tree/01-fenwick-tree-bit-prefix-queries-inversions/QUESTION.md) |
+| [Segment Tree - Range Sum with Point Update](#segment-tree---range-sum-with-point-update) | 🟥 Hard | 🟦 Low | 🔴 High | [✍️](15-segment-fenwick-tree/02-segment-tree-range-sum-with-point-update/QUESTION.md) |
 
 ---
 
 ## Arrays & Hashing (Array/Matrix Manipulation)
 
 ### Hashing - Frequency Map / Counting
+
+[🔝 Back to index](#index)
 
 - **🔍 Recognize:** "count occurrences", "most/least frequent", "anagram", "appears exactly k times", "duplicate within group", "can rearrange into". You need to know *how many* of each value/char exist.
 - **📊 Visual:**
@@ -195,6 +231,8 @@ for (char c : s.toCharArray()) count[c - 'a']++;
 
 ### Hashing - Previously Seen / Existence Check
 
+[🔝 Back to index](#index)
+
 - **🔍 Recognize:** "has duplicate", "two numbers that sum to target", "complement", "first repeating", "contains nearby duplicate". You need O(1) "have I seen X before?" lookups.
 - **📊 Visual:**
 ```
@@ -219,6 +257,8 @@ for (int x : nums) {
 - **💡 Remember-it tip:** "Check before you store." Drill: *Contains Duplicate*, *Longest Consecutive Sequence* (use a Set, only start counting at sequence heads where `x-1` is absent).
 
 ### Prefix Sum - Subarray Sum / Range Query
+
+[🔝 Back to index](#index)
 
 - **🔍 Recognize:** "sum of subarray", "range sum query (immutable)", "subarray summing to k", "continuous subarray", "equal number of 0s and 1s". Repeated range-sum questions over a static array.
 - **📊 Visual:**
@@ -253,6 +293,8 @@ for (int x : nums) {
 - **💡 Remember-it tip:** "Difference of two prefixes = a range." Seed the map with `{0:1}`. Drill: *Range Sum Query - Immutable*, *Contiguous Array* (map 0→-1).
 
 ### Product Except Self (Prefix/Suffix Products)
+
+[🔝 Back to index](#index)
 
 - **🔍 Recognize:** "product of all elements except self", "without using division", "O(n) and no division". The output at `i` depends on everything *but* `i`.
 - **📊 Visual:**
@@ -289,6 +331,8 @@ for (int i = n - 1; i >= 0; i--) {
 
 ### Array - Cyclic Sort
 
+[🔝 Back to index](#index)
+
 - **🔍 Recognize:** Numbers are in a known bounded range, typically `1..n` or `0..n-1`. "Find the missing number", "find the duplicate", "find all disappeared numbers", "first missing positive". Value ⇄ index correspondence.
 - **📊 Visual:**
 ```
@@ -319,6 +363,8 @@ while (i < nums.length) {
 - **💡 Remember-it tip:** "Value `v` goes home to index `v-1`." Compare against `nums[correct]`, not `i`, to dodge infinite swap loops on duplicates. Drill: *Missing Number*, *Find the Duplicate Number*.
 
 ### In-place Rotation
+
+[🔝 Back to index](#index)
 
 - **🔍 Recognize:** "rotate array by k steps", "rotate in place", "O(1) extra space", "rotate image/matrix 90°". Shifting elements cyclically without an auxiliary array.
 - **📊 Visual:**
@@ -351,6 +397,8 @@ void reverse(int[] a, int l, int r) {
 
 ### Merge Sorted Array (In-place from End)
 
+[🔝 Back to index](#index)
+
 - **🔍 Recognize:** "merge two sorted arrays", "nums1 has enough trailing space (m+n)", "do it in-place / O(1) extra". Two sorted inputs, result must live in the first array.
 - **📊 Visual:**
 ```
@@ -379,6 +427,8 @@ while (p2 >= 0) {                       // nums2 left to place
 - **💡 Remember-it tip:** "Fill from the back, biggest first." You only need `while (p2 >= 0)` — if nums1's elements remain, they're already positioned. Drill: *Merge Intervals*, *Merge k Sorted Lists*.
 
 ### Plus One (Handling Carry)
+
+[🔝 Back to index](#index)
 
 - **🔍 Recognize:** "array of digits represents a number", "add one", "increment large number stored as digits", carry propagation, "all nines" edge case.
 - **📊 Visual:**
@@ -410,6 +460,8 @@ public int[] plusOne(int[] d) {
 - **💡 Remember-it tip:** "Less than 9 → bump and bail; only all-9s grow the array." Drill: *Add Binary*, *Add Strings*.
 
 ### Set Matrix Zeroes (In-place Marking)
+
+[🔝 Back to index](#index)
 
 - **🔍 Recognize:** "if an element is 0, set its entire row and column to 0", "do it in place", "O(1) extra space" on a matrix. You must mark without a separate visited grid.
 - **📊 Visual:**
@@ -455,6 +507,8 @@ for (int i = R - 1; i >= 0; i--) {                        // apply bottom-up
 
 ### Spiral Traversal
 
+[🔝 Back to index](#index)
+
 - **🔍 Recognize:** "return elements in spiral order", "traverse matrix in a spiral", "generate spiral matrix". Layer-by-layer boundary walk of a 2D grid.
 - **📊 Visual:**
 ```
@@ -489,6 +543,8 @@ while (top <= bottom && left <= right) {
 - **💡 Remember-it tip:** "Top→, Right↓, Bottom←, Left↑, then shrink." The two guards matter only for non-square / single-line leftovers. Drill: *Spiral Matrix II* (fill 1..n² in spiral order).
 
 ### Multiply Strings (Manual Simulation)
+
+[🔝 Back to index](#index)
 
 - **🔍 Recognize:** "multiply two numbers given as strings", "numbers too big for int/long", "no built-in BigInteger", grade-school multiplication, digit-by-digit.
 - **📊 Visual:**
@@ -537,6 +593,8 @@ public String multiply(String a, String b) {
 ## Two Pointers
 
 ### Converging (Sorted Array Target Sum)
+
+[🔝 Back to index](#index)
 - **🔍 Recognize:** sorted array (or sortable), "find a pair/triplet that sums to target", "two numbers add up to X", monotonic search space where moving an end predictably increases/decreases a value.
 - **📊 Visual (MOST IMPORTANT):**
 ```
@@ -578,6 +636,8 @@ int[] twoSum(int[] a, int target) {
 - **💡 Remember-it tip:** "Sorted + pair-sum = pinch from both sides." Drill: *3Sum (LC 15)*, *Container With Most Water (LC 11)*.
 
 ### Fast & Slow (Cycle Detection)
+
+[🔝 Back to index](#index)
 - **🔍 Recognize:** linked list "does it have a cycle?", "find the cycle start", "find the middle node", "happy number", anything where a tortoise/hare meeting matters or you can't store visited nodes.
 - **📊 Visual (MOST IMPORTANT):**
 ```
@@ -614,6 +674,8 @@ boolean hasCycle(ListNode head) {
 - **💡 Remember-it tip:** "Tortoise & hare on a circular track always meet." Drill: *Middle of the Linked List (LC 876)*, *Happy Number (LC 202)*.
 
 ### Fixed Separation (Nth from End)
+
+[🔝 Back to index](#index)
 - **🔍 Recognize:** "Nth node from the end", "remove the Nth-from-last", single-pass requirement, can't (or don't want to) compute length first.
 - **📊 Visual (MOST IMPORTANT):**
 ```
@@ -651,6 +713,8 @@ ListNode removeNthFromEnd(ListNode head, int n) {
 - **💡 Remember-it tip:** "Fixed gap = a ruler you slide to the wall." Use a dummy node so deleting the head is not a special case. Drill: *Middle of the Linked List (LC 876)*, *Swapping Nodes in a Linked List (LC 1721)*.
 
 ### Expanding From Center (Palindromes)
+
+[🔝 Back to index](#index)
 - **🔍 Recognize:** "longest palindromic substring", "count palindromic substrings", symmetry around a center, checking mirror characters outward.
 - **📊 Visual (MOST IMPORTANT):**
 ```
@@ -694,6 +758,8 @@ int expand(String s, int L, int R) {
 - **💡 Remember-it tip:** "Pick a mirror, grow outward." Remember odd AND even centers. Drill: *Palindromic Substrings (LC 647)*, *Valid Palindrome (LC 125)*.
 
 ### In-place Array Modification
+
+[🔝 Back to index](#index)
 - **🔍 Recognize:** "do it in O(1) extra space", "modify the array in place", "remove duplicates / remove element / move zeroes", a *write* pointer trailing a *read* pointer.
 - **📊 Visual (MOST IMPORTANT):**
 ```
@@ -726,6 +792,8 @@ void moveZeroes(int[] nums) {
 - **💡 Remember-it tip:** "Write pointer collects the keepers." Drill: *Remove Element (LC 27)*, *Remove Duplicates from Sorted Array (LC 26)*.
 
 ### String Comparison with Backspaces
+
+[🔝 Back to index](#index)
 - **🔍 Recognize:** "backspace" character (`#`) meaning delete, "do the strings type out equal?", "compare two streams with deletions", ideally in O(1) space ⇒ scan from the right.
 - **📊 Visual (MOST IMPORTANT):**
 ```
@@ -771,6 +839,8 @@ int nextValid(String x, int k) {
 - **💡 Remember-it tip:** "Read backwards so deletes look forwards." A stack works too but costs space. Drill: *Backspace String Compare (LC 844)*, *Crawler Log Folder (LC 1598)*.
 
 ### String Reversal
+
+[🔝 Back to index](#index)
 - **🔍 Recognize:** "reverse the string/char array in place", "reverse vowels", "reverse words", swap symmetric positions, O(1) extra space on a `char[]`.
 - **📊 Visual (MOST IMPORTANT):**
 ```
@@ -806,6 +876,8 @@ void reverseString(char[] s) {
 ## Sliding Window
 
 ### Fixed Size
+
+[🔝 Back to index](#index)
 - **🔍 Recognize:** Phrases like "subarray/substring **of size k**", "every **window of length k**", "max/min/average of **all contiguous blocks of k** elements". The window width never changes.
 - **📊 Visual (MOST IMPORTANT):**
 ```
@@ -839,6 +911,8 @@ int maxSumFixed(int[] nums, int k) {
 - **💡 Remember-it tip:** "Add the new, drop the old." Window is a **conveyor belt** of fixed length. Drill: *Maximum Average Subarray I*, *Number of Sub-arrays of Size K and Avg ≥ Threshold*.
 
 ### Variable Size
+
+[🔝 Back to index](#index)
 - **🔍 Recognize:** "**longest/shortest** subarray/substring such that <condition>", "smallest window whose sum ≥ target", "at most / exactly K of something". Window grows and shrinks based on a constraint.
 - **📊 Visual (MOST IMPORTANT):**
 ```
@@ -884,6 +958,8 @@ int minLenAtLeastTarget(int[] nums, int target) {
 - **💡 Remember-it tip:** "**Right feeds, left starves.**" For *longest* problems shrink only while **invalid**; for *shortest* shrink while **valid**. Drill: *Longest Substring Without Repeating Characters*, *Minimum Size Subarray Sum*.
 
 ### Character Frequency Matching
+
+[🔝 Back to index](#index)
 - **🔍 Recognize:** "**anagram**", "**permutation** in string", "contains **all characters of** T", "substring with **at most/exactly K distinct**". You're matching counts of characters, not a numeric sum.
 - **📊 Visual (MOST IMPORTANT):**
 ```
@@ -925,6 +1001,8 @@ List<Integer> findAnagrams(String s, String p) {
 - **💡 Remember-it tip:** "**Counts must match, not order.**" Use a frequency array + a `matched` counter to avoid re-scanning. Drill: *Permutation in String*, *Minimum Window Substring*.
 
 ### Monotonic Queue for Max/Min
+
+[🔝 Back to index](#index)
 - **🔍 Recognize:** "**maximum/minimum of each sliding window**", "window where **max - min ≤ limit**", needing the extreme of a moving window in O(1). A plain heap is O(n log n); a monotonic deque gets O(n).
 - **📊 Visual (MOST IMPORTANT):**
 ```
@@ -974,6 +1052,8 @@ Binary search repeatedly halves a search space using a yes/no test on the midpoi
 
 ### On Sorted Array/List
 
+[🔝 Back to index](#index)
+
 - **🔍 Recognize:** "sorted array", "find target", "O(log n) required", "search in...". The data is already sorted (or you can sort it) and you need an exact match or insertion point.
 
 - **📊 Visual (MOST IMPORTANT):**
@@ -1018,6 +1098,8 @@ int search(int[] a, int target) {
 ---
 
 ### Find First/Last Occurrence
+
+[🔝 Back to index](#index)
 
 - **🔍 Recognize:** "first/last position", "count occurrences of target", "leftmost/rightmost index", duplicates allowed in a sorted array. A plain match isn't enough — you must keep searching after finding.
 
@@ -1064,6 +1146,8 @@ int findBound(int[] a, int target, boolean first) {
 ---
 
 ### On Answer / Condition Function
+
+[🔝 Back to index](#index)
 
 - **🔍 Recognize:** "minimum/maximum X such that...", "smallest capacity/speed/distance that works", answer lies in a numeric range (not array indices), and there's a monotonic feasibility check `canDo(x)`: if `x` works, every larger (or smaller) value works too.
 
@@ -1113,6 +1197,8 @@ int minFeasible(int lo, int hi) {          // search smallest x with feasible(x)
 
 ### Find Min/Max in Rotated Sorted Array
 
+[🔝 Back to index](#index)
+
 - **🔍 Recognize:** "rotated sorted array", "find minimum", "search in rotated array", "no duplicates, originally ascending". The array is sorted then rotated at an unknown pivot; one half is always still sorted.
 
 - **📊 Visual (MOST IMPORTANT):**
@@ -1156,6 +1242,8 @@ int findMin(int[] a) {
 ---
 
 ### Median and Kth of Two Sorted Arrays
+
+[🔝 Back to index](#index)
 
 - **🔍 Recognize:** "median of two sorted arrays", "kth smallest in two sorted arrays", strict `O(log(m+n))` requirement. You must combine two sorted arrays' order statistics without merging them.
 
@@ -1223,6 +1311,8 @@ double findMedianSortedArrays(int[] A, int[] B) {
 ## Stack
 
 ### Valid Parentheses
+
+[🔝 Back to index](#index)
 - **🔍 Recognize:** "matching/balanced brackets", multiple bracket types `() [] {}`, "valid/well-formed", "every open has a matching close in correct order", nesting must be respected. Any time *most-recent-open must close first* (LIFO), think stack.
 - **📊 Visual (MOST IMPORTANT):**
 ```
@@ -1264,6 +1354,8 @@ boolean isValid(String s) {
 ---
 
 ### Monotonic Stack
+
+[🔝 Back to index](#index)
 - **🔍 Recognize:** "next greater/smaller element", "previous greater/smaller", "warmer temperature", "span", "how many days until…", or you need the *nearest* element to the left/right that beats the current one. Answer per index in O(n).
 - **📊 Visual (MOST IMPORTANT):**
 ```
@@ -1307,6 +1399,8 @@ int[] nextGreater(int[] a) {
 ---
 
 ### Min Stack Design
+
+[🔝 Back to index](#index)
 - **🔍 Recognize:** "design a stack", "push/pop/top **and** retrieve the minimum in O(1)", any data-structure-design prompt asking for an auxiliary constant-time aggregate (min/max) alongside normal stack ops.
 - **📊 Visual (MOST IMPORTANT):**
 ```
@@ -1344,6 +1438,8 @@ class MinStack {
 ---
 
 ### Expression Evaluation (RPN / Infix)
+
+[🔝 Back to index](#index)
 - **🔍 Recognize:** "evaluate expression", "Reverse Polish Notation / postfix", "basic calculator", operators `+ - * /`, parentheses, operator precedence. Numbers wait on a stack; operators consume operands.
 - **📊 Visual (MOST IMPORTANT):**
 ```
@@ -1389,6 +1485,8 @@ int evalRPN(String[] tokens) {
 ---
 
 ### Largest Rectangle in Histogram
+
+[🔝 Back to index](#index)
 - **🔍 Recognize:** "largest rectangle", "maximal area" under bars/heights, "max area in a histogram", or a 2D variant ("maximal rectangle" of 1s row-by-row). Each bar's reach is bounded by the nearest *shorter* bar on each side.
 - **📊 Visual (MOST IMPORTANT):**
 ```
@@ -1444,6 +1542,8 @@ int largestRectangleArea(int[] h) {
 ---
 
 ### Simulation / Backtracking Helper
+
+[🔝 Back to index](#index)
 - **🔍 Recognize:** "process and undo", "collapse adjacent pairs", "asteroid collision", "remove k to make smallest", "decode nested string `3[a2[c]]`", "build result while folding from the left". A stack acts as the *partial result you can pop back* (push state, undo on a trigger).
 - **📊 Visual (MOST IMPORTANT):**
 ```
@@ -1497,6 +1597,8 @@ A linked list is just nodes wired by `next` pointers. Almost every interview pro
 ---
 
 ### In-place Reversal
+
+[🔝 Back to index](#index)
 - **🔍 Recognize:** "reverse the list / sublist", "reverse in groups of k", "reverse between positions m and n", "swap nodes in pairs", or any ask to flip direction using **O(1) extra space** (no array/stack copy).
 
 - **📊 Visual (MOST IMPORTANT):** reverse `1 -> 2 -> 3 -> null`. Three pointers `prev`, `cur`, `nxt` walk forward; each step flips one arrow backward.
@@ -1543,6 +1645,8 @@ ListNode reverse(ListNode head) {
 ---
 
 ### Merging Two Sorted Lists
+
+[🔝 Back to index](#index)
 - **🔍 Recognize:** "merge two sorted lists", "merge k sorted lists", "combine sorted sequences", "sort a list" (merge sort step). Inputs are already sorted and you must keep output sorted.
 
 - **📊 Visual (MOST IMPORTANT):** merge `A: 1 -> 4` and `B: 2 -> 3`. A `dummy` node anchors the head; `tail` always points at the last stitched node and grabs the smaller front.
@@ -1593,6 +1697,8 @@ ListNode merge(ListNode a, ListNode b) {
 ---
 
 ### Addition of Numbers
+
+[🔝 Back to index](#index)
 - **🔍 Recognize:** "add two numbers represented by linked lists", "each node holds one digit", "sum digit by digit", mentions of **carry**. Digits may be stored forward or reversed.
 
 - **📊 Visual (MOST IMPORTANT):** add `342 + 465` stored reversed as `A: 2 -> 4 -> 3` and `B: 5 -> 6 -> 4`. Walk both, summing with a running `carry`.
@@ -1640,6 +1746,8 @@ ListNode addTwoNumbers(ListNode a, ListNode b) {
 ---
 
 ### Reordering/Partitioning
+
+[🔝 Back to index](#index)
 - **🔍 Recognize:** "reorder list" (`L0 -> Ln -> L1 -> Ln-1 ...`), "partition around value x", "group odd/even positions", "rearrange so smaller-than-x come first" while **preserving relative order** and using O(1) space.
 
 - **📊 Visual (MOST IMPORTANT):** partition `1 -> 4 -> 3 -> 2 -> 5` around `x = 3`. Build two chains — `less` (`< x`) and `ge` (`>= x`) — then splice `less -> ge`.
@@ -1696,6 +1804,8 @@ ListNode partition(ListNode head, int x) {
 
 ### Level Order Traversal (BFS)
 
+[🔝 Back to index](#index)
+
 - **🔍 Recognize:** Phrases like "level by level", "each level", "row of the tree", "left-to-right per depth", "zigzag", "right side view", "minimum depth", "connect nodes at same level". Anything that groups nodes by **depth** screams BFS with a queue.
 
 - **📊 Visual (MOST IMPORTANT):**
@@ -1749,6 +1859,8 @@ List<List<Integer>> levelOrder(TreeNode root) {
 
 ### DFS Overview (Pre/In/Post)
 
+[🔝 Back to index](#index)
+
 - **🔍 Recognize:** "Explore a path to the bottom before backtracking", needing **root vs. children ordering**, problems mentioning sorted order of a BST (inorder), copying/serializing top-down (preorder), or deleting/freeing/aggregating from children up (postorder).
 
 - **📊 Visual (MOST IMPORTANT):**
@@ -1794,6 +1906,8 @@ void dfs(TreeNode node, List<Integer> out) {
 
 ### Recursive Preorder
 
+[🔝 Back to index](#index)
+
 - **🔍 Recognize:** "Process the node first, then descend", copying/cloning a tree, building a prefix/path from root downward, serializing in a top-down way, "root, left, right".
 
 - **📊 Visual (MOST IMPORTANT):**
@@ -1831,6 +1945,8 @@ void preorder(TreeNode node, List<Integer> out) {
 ---
 
 ### Recursive Inorder
+
+[🔝 Back to index](#index)
 
 - **🔍 Recognize:** Anything involving a **BST in sorted order**, "kth smallest/largest", validating a BST, finding successor/predecessor, "left, root, right". Inorder of a BST = ascending sequence.
 
@@ -1874,6 +1990,8 @@ void inorder(TreeNode node, List<Integer> out) {
 
 ### Recursive Postorder
 
+[🔝 Back to index](#index)
+
 - **🔍 Recognize:** "Children before parent", computing a value that **depends on subtree results** (height, diameter, sum, "is balanced"), deleting/freeing nodes bottom-up, "left, right, root". Whenever a node's answer needs its kids' answers first.
 
 - **📊 Visual (MOST IMPORTANT):**
@@ -1914,6 +2032,8 @@ int height(TreeNode node) {            // classic postorder aggregation
 ---
 
 ### Lowest Common Ancestor (LCA)
+
+[🔝 Back to index](#index)
 
 - **🔍 Recognize:** "Lowest/deepest common ancestor", "nearest shared parent of two nodes", "where do two paths from root merge", distance between two nodes (via LCA). For a **BST**, exploit ordering; for a general tree, use postorder.
 
@@ -1978,6 +2098,8 @@ TreeNode lcaBST(TreeNode root, TreeNode p, TreeNode q) {
 
 ### Serialization and Deserialization
 
+[🔝 Back to index](#index)
+
 - **🔍 Recognize:** "Encode a tree to a string and rebuild it", "serialize/deserialize", persisting/transmitting a tree, "design a codec". Preorder + explicit null markers is the go-to.
 
 - **📊 Visual (MOST IMPORTANT):**
@@ -2039,6 +2161,8 @@ TreeNode build() {
 ## Heap (Priority Queue)
 
 ### Top K Elements (Selection/Frequency)
+
+[🔝 Back to index](#index)
 - **🔍 Recognize:** "top K", "K largest/smallest", "K most frequent", "K closest", "Kth largest". You need a *partial* ordering of the best K — not a full sort. Streaming data where you can't hold everything sorted.
 - **📊 Visual (MOST IMPORTANT):**
 ```
@@ -2086,6 +2210,8 @@ for (var e : freq.entrySet()) {
 ---
 
 ### K-way Merge
+
+[🔝 Back to index](#index)
 - **🔍 Recognize:** Merging "K sorted lists/arrays/streams", "smallest range covering K lists", matrix with sorted rows/columns, "Kth smallest in sorted matrix". You repeatedly need the *global minimum* across several already-sorted sequences.
 - **📊 Visual (MOST IMPORTANT):**
 ```
@@ -2135,6 +2261,8 @@ ListNode mergeKLists(ListNode[] lists) {
 ---
 
 ### Two Heaps for Median
+
+[🔝 Back to index](#index)
 - **🔍 Recognize:** "median of a data stream", "median of sliding window", needing the *middle* element(s) as numbers arrive, or any "balance the lower half vs upper half" requirement. Continuous insert + query-median.
 - **📊 Visual (MOST IMPORTANT):**
 ```
@@ -2184,6 +2312,8 @@ double findMedian() {
 ---
 
 ### Scheduling / Minimum Cost (Greedy + PQ)
+
+[🔝 Back to index](#index)
 - **🔍 Recognize:** "minimum cost to…", "maximum number of …", "schedule tasks/meetings", "merge stones/ropes", overlapping intervals needing the *earliest-freeing* resource, "process the cheapest/most-urgent next". Greedy choice = always grab the current best, and a PQ surfaces it in O(log n).
 - **📊 Visual (MOST IMPORTANT):**
 ```
@@ -2226,6 +2356,8 @@ int minMeetingRooms(int[][] intervals) {
 ## Graph Traversal (DFS and BFS)
 
 ### DFS/BFS Connected Components
+
+[🔝 Back to index](#index)
 - **🔍 Recognize:** "number of islands", "number of provinces/friend circles", "connected groups", "count regions", undirected graph or grid where you must group reachable nodes. Signal: count how many separate clusters exist, or size of each cluster.
 - **📊 Visual (MOST IMPORTANT):**
 ```
@@ -2278,6 +2410,8 @@ int numComponents(char[][] g) {
 - **💡 Remember-it tip:** "Outer loop *finds* a new island, inner search *sinks* it." Drill: *Number of Provinces (LC 547)*, *Max Area of Island (LC 695)*.
 
 ### Kahn Topological Sort
+
+[🔝 Back to index](#index)
 - **🔍 Recognize:** "course schedule / prerequisites", "build order", "task ordering with dependencies", "is it possible to finish", any DAG where you must linearize so every edge points forward. BFS-flavored topo sort detects cycles too.
 - **📊 Visual (MOST IMPORTANT):**
 ```
@@ -2324,6 +2458,8 @@ int[] topoOrder(int n, int[][] edges) {        // edge {u,v} = u before v
 - **💡 Remember-it tip:** "Indegree 0 means *ready to go*; count popped vs V to smell a cycle." Drill: *Course Schedule (LC 207)*, *Alien Dictionary (LC 269)*.
 
 ### DFS Cycle Detection (Directed)
+
+[🔝 Back to index](#index)
 - **🔍 Recognize:** "detect a cycle in a directed graph", "can the schedule deadlock?", "is this a valid DAG?", dependency resolution where a back-edge means contradiction. Prefer this when you also want the recursion-stack insight (vs Kahn's counting).
 - **📊 Visual (MOST IMPORTANT):**
 ```
@@ -2369,6 +2505,8 @@ boolean dfs(int u) {
 - **💡 Remember-it tip:** "GRAY on the path = trap; only WHITE→GRAY→BLACK is clean." Drill: *Course Schedule (LC 207)*, *Find Eventual Safe States (LC 802)*.
 
 ### Union-Find (Disjoint Set Union)
+
+[🔝 Back to index](#index)
 - **🔍 Recognize:** "are these two connected?", "number of connected components" with incremental edges, "redundant connection", "accounts merge", "detect cycle in undirected graph", dynamic connectivity / grouping queries. Signal: union pairs, then ask membership.
 - **📊 Visual (MOST IMPORTANT):**
 ```
@@ -2427,6 +2565,8 @@ class DSU {
 - **💡 Remember-it tip:** "*Union* glues roots, *find* names your family; same name = same group." Drill: *Redundant Connection (LC 684)*, *Accounts Merge (LC 721)*.
 
 ### Dijkstra Algorithm
+
+[🔝 Back to index](#index)
 - **🔍 Recognize:** "shortest path" with **non-negative weighted** edges, "minimum cost / time to reach", "cheapest route", "network delay time", single-source shortest path on a positively weighted graph. No negatives → Dijkstra.
 - **📊 Visual (MOST IMPORTANT):**
 ```
@@ -2478,6 +2618,8 @@ int[] dijkstra(int n, List<int[]>[] adj, int src) {  // adj[u] = list of {v, w}
 - **💡 Remember-it tip:** "Closest-first, settle-once; a popped node is *done forever*. Negatives break it." Drill: *Cheapest Flights Within K Stops (LC 787)*, *Path With Minimum Effort (LC 1631)*.
 
 ### Shortest Path (BFS / Bellman-Ford)
+
+[🔝 Back to index](#index)
 - **🔍 Recognize:** **BFS** when edges are *unweighted* (or all weight 1) → fewest-steps / minimum-moves / shortest path in a grid/maze. **Bellman-Ford** when edges can be *negative*, or you need "at most K edges/stops", or to *detect negative cycles*.
 - **📊 Visual (MOST IMPORTANT):**
 ```
@@ -2541,6 +2683,8 @@ int[] bellmanFord(int n, int[][] edges, int src) { // edges: {u,v,w}
 - **💡 Remember-it tip:** "Unweighted? BFS rings. Negatives or 'K stops'? Bellman-Ford passes." Drill: *Word Ladder (LC 127, BFS)*, *Cheapest Flights Within K Stops (LC 787, Bellman-Ford)*.
 
 ### Deep Copy / Cloning
+
+[🔝 Back to index](#index)
 - **🔍 Recognize:** "clone a graph", "deep copy a linked list with random pointers", "copy a connected structure" where naively following pointers would loop forever or duplicate nodes. Signal: must preserve structure *without* sharing references to originals.
 - **📊 Visual (MOST IMPORTANT):**
 ```
@@ -2604,6 +2748,8 @@ void dfs(state):
 
 ### Subsets (Include/Exclude)
 
+[🔝 Back to index](#index)
+
 - **🔍 Recognize:** "all subsets", "power set", "all possible combinations of any length", no ordering constraint, result count looks like 2^n.
 - **📊 Visual (MOST IMPORTANT):**
 
@@ -2642,6 +2788,8 @@ void dfs(int[] nums, int start, List<Integer> path, List<List<Integer>> res) {
 ---
 
 ### Permutations
+
+[🔝 Back to index](#index)
 
 - **🔍 Recognize:** "all permutations", "all orderings/arrangements", order **matters**, result count looks like n!, every element used exactly once.
 - **📊 Visual (MOST IMPORTANT):**
@@ -2682,6 +2830,8 @@ void dfs(int[] nums, boolean[] used, List<Integer> path, List<List<Integer>> res
 ---
 
 ### Combination Sum
+
+[🔝 Back to index](#index)
 
 - **🔍 Recognize:** "combinations that sum to target", "pick numbers that add up to T", candidates may be reused (or not), count not bounded by simple n!.
 - **📊 Visual (MOST IMPORTANT):**
@@ -2724,6 +2874,8 @@ void dfs(int[] cand, int start, int rem, List<Integer> path, List<List<Integer>>
 
 ### Parentheses Generation
 
+[🔝 Back to index](#index)
+
 - **🔍 Recognize:** "generate all valid parentheses", "well-formed brackets", `n` pairs, balance/validity constraint on the path.
 - **📊 Visual (MOST IMPORTANT):**
 
@@ -2762,6 +2914,8 @@ void dfs(int open, int close, int n, StringBuilder sb, List<String> res) {
 ---
 
 ### Palindrome Partitioning
+
+[🔝 Back to index](#index)
 
 - **🔍 Recognize:** "partition string so every piece is a palindrome", "all ways to cut a string into valid substrings", cut-point decisions over a string.
 - **📊 Visual (MOST IMPORTANT):**
@@ -2810,6 +2964,8 @@ boolean isPal(String t){ int i=0,j=t.length()-1; while(i<j) if(t.charAt(i++)!=t.
 
 ### Word Search / Path in Grid
 
+[🔝 Back to index](#index)
+
 - **🔍 Recognize:** "does the word exist in the grid", "path through a matrix", move in 4 (or 8) directions, can't reuse a visited cell, "connected sequence".
 - **📊 Visual (MOST IMPORTANT):**
 
@@ -2849,6 +3005,8 @@ boolean dfs(char[][] b, String w, int k, int r, int c) {
 ---
 
 ### N-Queens
+
+[🔝 Back to index](#index)
 
 - **🔍 Recognize:** "place N queens so none attack each other", "place items on a board with conflict constraints", one item per row/column, diagonal constraints.
 - **📊 Visual (MOST IMPORTANT):**
@@ -2900,6 +3058,8 @@ DP is "smart recursion": find the recurrence (how a bigger answer is built from 
 
 ### 1D Fibonacci Style
 
+[🔝 Back to index](#index)
+
 - **🔍 Recognize:** "ways to reach step n", "you can take 1 or 2 (or k) steps", answer for `n` depends only on the previous one or two states. Linear chain of states, each built from a fixed number of predecessors.
 - **📊 Visual (climbing stairs, n=5; ways[i] = ways[i-1] + ways[i-2]):**
 
@@ -2941,6 +3101,8 @@ int climbStairs(int n) {
 
 ### 1D Kadane Algorithm
 
+[🔝 Back to index](#index)
+
 - **🔍 Recognize:** "maximum sum contiguous subarray", "best subarray/substring ending here", array with negatives, you must keep a *contiguous* run. The phrase "subarray" (not subsequence) + "maximum" is the tell.
 - **📊 Visual (array = [-2, 1, -3, 4, -1, 2, 1, -5, 4]):**
 
@@ -2979,6 +3141,8 @@ int maxSubArray(int[] nums) {
 ---
 
 ### 1D Coin Change / Unbounded Knapsack
+
+[🔝 Back to index](#index)
 
 - **🔍 Recognize:** "minimum coins / fewest items", "infinite supply" / "use each item as many times as you want", "number of ways to make amount". Reuse-allowed item selection toward a target.
 - **📊 Visual (coins = [1,2,5], target = 11; dp[a] = min coins for amount a):**
@@ -3019,6 +3183,8 @@ int coinChange(int[] coins, int amount) {
 
 ### 1D 0/1 Knapsack
 
+[🔝 Back to index](#index)
+
 - **🔍 Recognize:** "each item used at most once", "pick a subset to maximize value within capacity W", "can a subset sum to target". Bounded selection — every item is a yes/no.
 - **📊 Visual (weights=[1,3,4], values=[15,20,30], W=4; rows add items, cols are capacity):**
 
@@ -3057,6 +3223,8 @@ int knapsack(int[] wt, int[] val, int W) {
 ---
 
 ### 1D Word Break
+
+[🔝 Back to index](#index)
 
 - **🔍 Recognize:** "can the string be segmented into dictionary words", "split into valid words", break a sequence at positions where each piece is valid. Boolean reachability over string indices.
 - **📊 Visual (s = "leetcode", dict = {leet, code}; dp[i] = can split s[0..i)):**
@@ -3101,6 +3269,8 @@ boolean wordBreak(String s, List<String> dict) {
 
 ### 2D Longest Common Subsequence
 
+[🔝 Back to index](#index)
+
 - **🔍 Recognize:** "longest common subsequence", "edit/diff two strings", "delete chars to make equal", subsequence (not substring — gaps allowed) shared by two sequences.
 - **📊 Visual (text1="ABCBDAB", shortened to "ACE" vs "ABCDE"; match => diagonal+1, else max of up/left):**
 
@@ -3141,6 +3311,8 @@ int lcs(String a, String b) {
 
 ### 2D Unique Paths on Grid
 
+[🔝 Back to index](#index)
+
 - **🔍 Recognize:** "robot moving right/down on a grid", "count paths from top-left to bottom-right", "minimum path sum", grid traversal where each cell reached from above or left.
 - **📊 Visual (3×3 grid; paths[i][j] = paths[i-1][j] + paths[i][j-1]):**
 
@@ -3180,6 +3352,8 @@ int uniquePaths(int m, int n) {
 ---
 
 ### 2D Edit Distance
+
+[🔝 Back to index](#index)
 
 - **🔍 Recognize:** "minimum operations to convert word1 into word2", "insert/delete/replace", "Levenshtein distance", spell-check / fuzzy-match style transforms between two strings.
 - **📊 Visual (word1="horse" → "ros", trimmed to "ho" → "r"; dp[i][j] = min edits):**
@@ -3226,6 +3400,8 @@ int editDistance(String a, String b) {
 ---
 
 ### Longest Increasing Subsequence (LIS)
+
+[🔝 Back to index](#index)
 
 - **🔍 Recognize:** "longest strictly increasing subsequence", "longest chain", subsequence with an ordering constraint (each next element bigger). Often disguised: envelopes, box stacking, patience sorting.
 - **📊 Visual (nums = [10, 9, 2, 5, 3, 7]; two views):**
@@ -3275,6 +3451,8 @@ int lengthOfLIS(int[] nums) {
 
 ### Catalan Numbers
 
+[🔝 Back to index](#index)
+
 - **🔍 Recognize:** "number of unique BSTs", "valid parentheses combinations", "ways to triangulate a polygon", "distinct full binary trees". Counting structures that split into a left part and a right part around a chosen root/pivot.
 - **📊 Visual (Cₙ = Σ Cᵢ·Cₙ₋₁₋ᵢ; "pick each element as root, multiply left × right subtrees"):**
 
@@ -3319,6 +3497,8 @@ int numTrees(int n) {                 // n-th Catalan number
 ---
 
 ### Interval DP
+
+[🔝 Back to index](#index)
 
 - **🔍 Recognize:** "merge / burst / remove over a range and combine costs", "best way to combine the whole interval", answer for `[i..j]` depends on splitting at some `k` inside it. Process by **increasing interval length**.
 - **📊 Visual (Matrix Chain / Burst Balloons shape; dp[i][j] = best over range, try every split k):**
@@ -3377,6 +3557,8 @@ Greedy works when a **locally optimal choice provably leads to a global optimum*
 ---
 
 ### Interval Merging/Scheduling
+
+[🔝 Back to index](#index)
 - **🔍 Recognize:** "intervals," "[start, end]," "merge overlapping," "minimum meeting rooms," "remove overlapping intervals," "maximum non-overlapping." Signal = a list of pairs where you reason about overlap. **Sort first** (by start to merge, by end to schedule the most non-overlapping).
 - **📊 Visual (MOST IMPORTANT):**
 ```
@@ -3420,6 +3602,8 @@ int[][] merge(int[][] iv) {
 ---
 
 ### Buy/Sell Stock
+
+[🔝 Back to index](#index)
 - **🔍 Recognize:** "prices array," "maximize profit," "buy before you sell," "one transaction" (single pass min-tracking) vs. "as many transactions as you like" (sum the climbs). One day = one price index.
 - **📊 Visual (MOST IMPORTANT):**
 ```
@@ -3462,6 +3646,8 @@ int maxProfitII(int[] p) {
 ---
 
 ### Jump Game
+
+[🔝 Back to index](#index)
 - **🔍 Recognize:** "array of jump lengths," "can you reach the last index," "minimum jumps to reach end." Each cell tells you the *max* you can advance. Greedy on **farthest reachable**.
 - **📊 Visual (MOST IMPORTANT):**
 ```
@@ -3508,6 +3694,8 @@ int jump(int[] nums) {
 ---
 
 ### Gas Station Circuit
+
+[🔝 Back to index](#index)
 - **🔍 Recognize:** "circular route," "gas[]" and "cost[]," "start at which station to complete the loop," "travel around once." Circular tank that must never go negative.
 - **📊 Visual (MOST IMPORTANT):**
 ```
@@ -3549,6 +3737,8 @@ int canCompleteCircuit(int[] gas, int[] cost) {
 ---
 
 ### Task Scheduling (Frequency)
+
+[🔝 Back to index](#index)
 - **🔍 Recognize:** "tasks with cooldown `n`," "same task must be `n` apart," "rearrange / least intervals / idle time," "CPU/scheduler." Driven by the **most frequent** element creating mandatory gaps.
 - **📊 Visual (MOST IMPORTANT):**
 ```
@@ -3590,6 +3780,8 @@ int leastInterval(char[] tasks, int n) {
 ## String Manipulation
 
 ### Anagram Check (Frequency Count/Sort)
+
+[🔝 Back to index](#index)
 - **🔍 Recognize:** "are these two strings anagrams", "rearrangement of letters", "same characters same counts", "group anagrams together". Order doesn't matter, only the multiset of characters.
 - **📊 Visual (MOST IMPORTANT):**
 ```
@@ -3631,6 +3823,8 @@ boolean isAnagram(String s, String t) {
 - **💡 Remember-it tip:** "++ then -- → zeros." The count array is a tally that should perfectly cancel out. Drill: *Find All Anagrams in a String* (LC 438, sliding window), *Group Anagrams* (LC 49).
 
 ### Palindrome Check (Two Pointers / Reverse)
+
+[🔝 Back to index](#index)
 - **🔍 Recognize:** "reads the same forwards and backwards", "valid palindrome", "ignore non-alphanumeric / case", "palindrome after removing one char". Symmetry around a center.
 - **📊 Visual (MOST IMPORTANT):**
 ```
@@ -3677,6 +3871,8 @@ boolean isPalindrome(String s) {
 - **💡 Remember-it tip:** "Pincers closing inward." Each step compares a mirror pair. Drill: *Valid Palindrome II* (LC 680), *Palindrome Linked List* (LC 234), *Longest Palindromic Substring* (LC 5, expand-around-center).
 
 ### Roman to Integer
+
+[🔝 Back to index](#index)
 - **🔍 Recognize:** "convert Roman numeral to integer", symbols `I V X L C D M`, subtractive pairs like `IV`, `IX`, `XL`. Input is a valid Roman string.
 - **📊 Visual (MOST IMPORTANT):**
 ```
@@ -3717,6 +3913,8 @@ int romanToInt(String s) {
 - **💡 Remember-it tip:** "Smaller-before-bigger = minus." Look right: if I'm worth less than my neighbor, I'm a discount. Drill: *Integer to Roman* (LC 12, the inverse below).
 
 ### Integer and Roman Conversion
+
+[🔝 Back to index](#index)
 - **🔍 Recognize:** "convert integer to Roman numeral", "build a Roman string from a number", range 1–3999. The greedy inverse of Roman-to-Integer.
 - **📊 Visual (MOST IMPORTANT):**
 ```
@@ -3756,6 +3954,8 @@ String intToRoman(int num) {
 - **💡 Remember-it tip:** "Biggest coin first." Like making change with fixed Roman 'coins' that include 900/400/90/40/9/4. Drill: *Roman to Integer* (LC 13, the inverse above).
 
 ### Repeated Substring Pattern Detection
+
+[🔝 Back to index](#index)
 - **🔍 Recognize:** "can the string be built by repeating a substring", "is it periodic", "made of copies of a smaller block". Looking for a repeating unit/period.
 - **📊 Visual (MOST IMPORTANT):**
 ```
@@ -3792,6 +3992,8 @@ boolean repeatedSubstringPattern(String s) {
 - **💡 Remember-it tip:** "Double, trim the seams, find yourself." The pattern only survives the trim if it tiles perfectly. Drill: *Repeated String Match* (LC 686), *Implement strStr()* (LC 28).
 
 ### Naive / KMP / Rabin-Karp (overview)
+
+[🔝 Back to index](#index)
 - **🔍 Recognize:** "find a pattern in text", "indexOf / strStr", "first occurrence of needle in haystack", "count occurrences of a substring". Classic substring search.
 - **📊 Visual (MOST IMPORTANT):**
 ```
@@ -3843,6 +4045,8 @@ int strStr(String t, String p) {
 ## Bit Manipulation
 
 ### XOR (Single/Missing)
+
+[🔝 Back to index](#index)
 - **🔍 Recognize:** "every element appears twice except one", "find the single number", "one missing number in 0..n", "find the duplicate using O(1) space", pairs that cancel, no extra memory allowed.
 - **📊 Visual (MOST IMPORTANT):**
 ```
@@ -3882,6 +4086,8 @@ int missingNumber(int[] nums) {
 - **💡 Remember-it tip:** "Twins cancel, the loner lives." XOR is its own inverse. Drill: *Single Number II* (LC 137, count bits mod 3), *Single Number III* (LC 260, split by a set bit).
 
 ### Bitwise AND (Hamming Weight)
+
+[🔝 Back to index](#index)
 - **🔍 Recognize:** "count the number of 1 bits", "Hamming weight", "count set bits", "number of bits to flip to convert a to b" (Hamming distance = popcount of a^b), population count.
 - **📊 Visual (MOST IMPORTANT):**
 ```
@@ -3925,6 +4131,8 @@ int hammingDistance(int a, int b) {
 - **💡 Remember-it tip:** "`n & (n-1)` snips off the rightmost 1." Drill: *Hamming Distance* (LC 461), *Total Hamming Distance* (LC 477, count per-column bits).
 
 ### Power of Two/Four
+
+[🔝 Back to index](#index)
 - **🔍 Recognize:** "is n a power of two", "power of four", "single bit set", checking if a number is exactly 2^k or 4^k, validating sizes that must be powers of two.
 - **📊 Visual (MOST IMPORTANT):**
 ```
@@ -3958,6 +4166,8 @@ boolean isPowerOfFour(int n) {
 - **💡 Remember-it tip:** "One bit = power of two; even slot = power of four." The mask `0x55555555` is `0101…` (even positions). Drill: *Power of Four* (LC 342), *Power of Three* (LC 326, the non-bit oddball — use it to remember bases that AREN'T 2^k can't use this trick).
 
 ### Bitwise DP (Counting Bits Optimization)
+
+[🔝 Back to index](#index)
 - **🔍 Recognize:** "count bits for every number from 0 to n", "return an array of popcounts", building a result that depends on already-computed smaller cases, "do it in O(n) instead of O(n log n)".
 - **📊 Visual (MOST IMPORTANT):**
 ```
@@ -4000,6 +4210,8 @@ int[] countBits(int n) {
 ## Segment Tree and Fenwick Tree
 
 ### Fenwick Tree (BIT) - Prefix Queries / Inversions
+
+[🔝 Back to index](#index)
 
 - **🔍 Recognize:** "prefix sum **with updates**", "point update + range sum query", "count of smaller elements to the right", "**number of inversions**", "count elements in a range as you stream them". Signal: a plain prefix-sum array would be O(1) query but O(n) update — you need *both* update and query to be fast. Values/indices fit in a bounded range (or can be coordinate-compressed).
 
@@ -4063,6 +4275,8 @@ class BIT {
 - **💡 Remember-it tip:** "**Update climbs, query descends**" — and the magic spell is `i & (-i)` (lowbit). Picture the coverage bars: powers of two stack widest. Drill: *Range Sum Query - Mutable* (LC 307), *Reverse Pairs* (LC 493).
 
 ### Segment Tree - Range Sum with Point Update
+
+[🔝 Back to index](#index)
 
 - **🔍 Recognize:** "**range sum/min/max** AND **point updates**", "query arbitrary `[l, r]` repeatedly while values change", any associative range aggregate (sum, min, max, gcd) where a BIT is awkward (min/max can't be done by a plain BIT). Signal: you need flexible range queries that a prefix array can't refresh cheaply.
 
