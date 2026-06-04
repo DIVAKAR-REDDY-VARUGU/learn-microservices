@@ -552,4 +552,284 @@ Targets: **class · method · parameter · property** (there is no "file-level";
 
 ---
 
+---
+
+# 🎤 Interview Prep — Wells Fargo (Java / J2EE Microservices)
+
+> Interview: **Wed 3 Jun 2026, 3:00 PM with Jalal.** Role: Software Engineer — 2+ yrs Java/J2EE, microservice architecture, scripting + dev + testing + DevOps exposure, **secure web apps**.
+> Format below = **🎯 Concept** (understand it) → **🗣️ Say this** (the crisp 30–60s answer to speak out loud). Spring Boot is covered elsewhere; this is *everything else*.
+
+---
+
+## Part A — Core Java & Concurrency ☕
+
+### A1 — OOP: the 4 pillars
+🎯 Encapsulation (hide state behind methods), Inheritance (reuse via `extends`), Polymorphism (one interface, many forms — overriding/overloading), Abstraction (expose *what*, hide *how*).
+🗣️ *"The four pillars are encapsulation, inheritance, polymorphism and abstraction. In practice: I keep fields private and expose behaviour through methods (encapsulation), program to interfaces so I can swap implementations (abstraction + polymorphism), and use inheritance sparingly — I prefer composition over inheritance because deep hierarchies get rigid."*
+
+### A2 — Abstract class vs Interface
+🎯 Interface = a contract; since Java 8 it can have `default`/`static` methods; a class can implement many. Abstract class = partial implementation + state; single inheritance.
+🗣️ *"Use an interface when you're defining a capability that unrelated classes can have — and you can implement many. Use an abstract class when classes share common state and code. Rule of thumb: interface for 'can-do', abstract class for 'is-a' with shared implementation. Java 8 blurred it with default methods, but interfaces still can't hold instance state."*
+
+### A3 — `==` vs `.equals()`, and the equals/hashCode contract
+🎯 `==` compares references (or primitive values); `.equals()` compares logical equality. If you override `equals`, you **must** override `hashCode` — equal objects must return equal hashcodes, or they break in `HashMap`/`HashSet`.
+🗣️ *"`==` checks if two references point to the same object; `.equals()` checks logical equality. The key gotcha: if I override equals I must override hashCode too, because hash-based collections first bucket by hashCode then confirm with equals — if they're inconsistent, lookups silently fail."*
+
+### A4 — String immutability, pool, StringBuilder
+🎯 `String` is immutable (thread-safe, cacheable, safe as map keys). The string pool interns literals. Concatenation in loops creates garbage → use `StringBuilder` (not thread-safe, fast) or `StringBuffer` (synchronized).
+🗣️ *"Strings are immutable, which makes them thread-safe and lets the JVM pool literals. The downside is concatenation in a loop creates a new object each time, so for heavy building I use StringBuilder — or StringBuffer if it must be thread-safe."*
+
+### A5 — Collections framework
+🎯 Know the map:
+- `ArrayList` (array-backed, fast random access, slow mid-insert) vs `LinkedList` (fast insert/delete, slow access).
+- `HashMap` (O(1), unordered, allows one null key) vs `LinkedHashMap` (insertion order) vs `TreeMap` (sorted, O(log n)).
+- `HashSet`/`TreeSet`. `HashMap` internals: array of buckets; a bucket's collision chain **converts to a red-black tree only when it has 8+ nodes AND the table capacity ≥ 64** (`MIN_TREEIFY_CAPACITY`); below capacity 64 it **resizes instead of treeifying** (Java 8+).
+- **Fail-fast** iterators throw `ConcurrentModificationException` if the collection mutates during iteration.
+🗣️ *"I pick by access pattern: ArrayList for read-heavy indexed access, LinkedList for frequent insert/delete at ends. HashMap for O(1) keyed lookup — internally it's a bucket array, collisions chain and turn into a balanced tree past a threshold in Java 8. If I need ordering I use LinkedHashMap or TreeMap. And for concurrent access I never synchronize a HashMap manually — I use ConcurrentHashMap."*
+
+### A6 — Checked vs unchecked exceptions, try-with-resources
+🎯 Checked = compiler-enforced (`IOException`) — recoverable. Unchecked = `RuntimeException` (`NullPointer`, `IllegalArgument`) — programming bugs. `finally` always runs; **try-with-resources** auto-closes `AutoCloseable`.
+🗣️ *"Checked exceptions are for recoverable conditions the caller should handle, like IO. Unchecked are programming errors — I don't catch NullPointer, I fix it. I use try-with-resources for anything Closeable so connections and streams close even on exceptions, which is cleaner than a finally block."*
+
+### A7 — `final` / `finally` / `finalize`
+🗣️ *"`final` makes a variable constant, a method un-overridable, or a class un-extendable. `finally` is the block that always runs after try/catch. `finalize` was a GC hook before cleanup — it's deprecated, I'd never use it; I use try-with-resources or Cleaner instead."*
+
+### A8 — Java 8 functional features
+🎯 Lambdas, functional interfaces (`Function`, `Predicate`, `Consumer`, `Supplier`), the **Stream API** (`map`/`filter`/`reduce`/`collect`), `Optional` (avoids null), method references.
+🗣️ *"Java 8 brought lambdas and the Stream API, so I can express data pipelines declaratively — filter, map, collect — instead of manual loops. Streams can also go parallel with one call. And Optional lets me model 'maybe a value' explicitly instead of returning null and risking NPEs. One caveat: streams are single-use and parallel isn't always faster, so I benchmark."*
+
+### A9 — JVM memory model & GC
+🎯 **Heap** (objects, shared, GC'd — Young/Eden+Survivor + Old gen) vs **Stack** (per-thread, frames, primitives & references). Metaspace = class metadata. GC reclaims unreachable objects; modern collectors: G1 (default), ZGC (low-pause). `OutOfMemoryError` vs `StackOverflowError`.
+🗣️ *"Each thread has its own stack for frames and local variables; objects live on the shared heap, which is split into young and old generations. Most objects die young, so the young-gen GC is cheap; survivors get promoted to old gen. The GC — G1 by default now — frees unreachable objects, so I don't free memory manually, but I can still leak by holding references, like an ever-growing static collection."*
+
+### A10 — Concurrency (their stated focus 🔴)
+🎯 Must-knows:
+- **Thread vs Runnable** — implement `Runnable` (favour composition); thread lifecycle: New→Runnable→Running→Blocked/Waiting→Terminated.
+- **`synchronized`** — mutual exclusion on a monitor; **`volatile`** — visibility only (no atomicity).
+- **`ExecutorService` / thread pools** — don't `new Thread()` per task; reuse a pool.
+- **`CompletableFuture`** — async composition without blocking.
+- **`ConcurrentHashMap`**, **atomic classes** (`AtomicInteger` — CAS, lock-free), **`ThreadLocal`** (per-thread state).
+- **Deadlock** (4 conditions: mutual exclusion, hold-and-wait, no preemption, circular wait) → avoid by consistent lock ordering.
+- **`wait/notify`**, race conditions, `Callable` (returns a value vs `Runnable`).
+🗣️ *"For concurrency I lean on `java.util.concurrent` rather than raw threads. I use an ExecutorService thread pool instead of creating threads per task, ConcurrentHashMap instead of a synchronized map, and atomic classes like AtomicInteger for lock-free counters using compare-and-swap. `synchronized` gives mutual exclusion; `volatile` only guarantees visibility, not atomicity — so `volatile count++` is still a race. For async flows I compose CompletableFutures. Deadlock I prevent by always acquiring locks in the same order."*
+
+**🐞 Classic trap:** *"Is `volatile` enough for a counter?"* → **No** — `volatile` guarantees visibility but `count++` is read-modify-write (3 ops), not atomic. Use `AtomicInteger` or `synchronized`.
+
+---
+
+## 🧪 OOP Trick-Question Bank (machine-verified — 2 independent tracers agreed on every output)
+
+> Predict the output before reading the answer. These are the ones interviewers actually use to separate "knows syntax" from "knows the JVM."
+
+**T1 — 3-way overload resolution.** `go(long)`, `go(Integer)`, `go(int...)` all defined; call `go(5)` with `int i=5`. → **`long (widening)`**. Phases: **widening → boxing → varargs**, stops at first match. Widening `int→long` wins; never reaches boxing or varargs.
+
+**T2 — `f(null)` ambiguous.** `f(String)` and `f(StringBuilder)` both defined; `f(null)`. → **Compile error: reference is ambiguous.** "Most specific" needs a subtype relationship; String & StringBuilder are unrelated siblings. (`f(String)` vs `f(Object)` *would* pick String — only because String ⊂ Object.) Fix: `f((String) null)`.
+
+**T3 — `@Override` on a static.** Subclass writes `@Override static String tag(){...}`. → **Compile error: "static methods cannot be annotated with @Override."** Statics are *hidden*, not overridden. (Remove `@Override` → compiles, and an unqualified `tag()` inside an inherited instance method binds to the *declaring* class statically — prints the base version.)
+
+**T4 — "Class wins" rule.** `class Q extends Base implements Greet`, where `Base` has concrete `hi()` and `Greet` has `default hi()`. → **prints `class`.** A superclass concrete method *always* beats an interface default — no diamond error. (Interface-vs-interface defaults *would* error until you override.)
+
+**T5 — `final` parameter.** `static x(final StringBuilder sb){ sb.append("-WF"); sb = new StringBuilder("X"); }`. → **Compile error: "final parameter sb may not be assigned"** (the reassignment). `.append()` is fine — `final` freezes the *binding*, not the object. (Without the reassignment: mutation is visible to the caller — references are passed by value, aliasing still bites.)
+
+**T6 — Interface static method via instance.** Interface has `static hello()` + `private static prefix()` (Java 9+) + `default greet()` calling `hello()`. `g.greet()` and `Greeter.hello()` print fine, but `g.hello()` → **hard compile error** (unlike classes, you can't call an interface static via an instance — must qualify `Greeter.hello()`).
+
+**T7 — `this()` + `super()` together.** Constructor writes `super(); this(10);`. → **Compile error: "call to this must be first statement."** A constructor gets *exactly one* explicit `this()`/`super()`, and it must be first. (Swap order → "call to super must be first" — still fails.)
+
+**T8 — Mutate a key after `put()`.** `Key` has correct `equals`+`hashCode` on `id`; `map.put(k,"found")`; then `k.id=99`. All of `map.get(k)`, `map.get(new Key(99))`, `map.get(new Key(1))`, `map.containsKey(k)` → **`null/null/null/false`.** Entry sits in bucket for hash=1 but the live key now hashes to 99 → permanently orphaned. **Hash keys must be immutable** in their equals/hashCode fields. (This is why `String`/`Integer` are immutable.)
+
+**T9 — Fragile base class.** `CountingHashSet extends HashSet`, overrides `add` (++) *and* `addAll` (+= size, then `super.addAll`). `addAll(List.of("a","b","c"))` → **`6`, not 3.** `HashSet.addAll` internally calls `add`, which dynamic-dispatches to your override → double-count. *Effective Java* Item 18: **favour composition (forwarding wrapper) over inheritance.**
+
+---
+
+## 📦 Collections Framework — reference + machine-verified trick bank
+
+**Hierarchy:** `Iterable → Collection → {List, Set, Queue}`; **`Map` is NOT a Collection** (deals in pairs).
+
+| Type | Backing | Order | get | add | null | Thread-safe |
+|---|---|---|---|---|---|---|
+| **ArrayList** | array | insertion | O(1) | O(1)* tail | ✅ | ❌ |
+| **LinkedList** | doubly-linked (also Deque) | insertion | O(n) | O(1) ends | ✅ | ❌ |
+| **HashSet / HashMap** | bucket array | none | O(1) | O(1) | ✅ 1 null key | ❌ |
+| **LinkedHashMap** | buckets + linked list | insertion/access | O(1) | O(1) | ✅ | ❌ |
+| **TreeSet / TreeMap** | red-black tree | sorted | O(log n) | O(log n) | ❌ key (NPE) | ❌ |
+| **ConcurrentHashMap** | buckets + CAS/bucket-lock | none | O(1) | O(1) | ❌ | ✅ |
+| **PriorityQueue** | binary heap | heap (poll order) | — | O(log n) | ❌ | ❌ |
+| **ArrayDeque** | resizable array | insertion | — | O(1) ends | ❌ | ✅ use for stack/queue |
+
+**Key internals (interview gold):**
+- **HashMap resize:** default cap 16, load factor 0.75 → threshold 12. Check is `if (++size > threshold) resize()` *after* insert → the **13th** put doubles capacity to 32, not the 12th.
+- **Treeify:** needs **8+ nodes in a bucket AND table capacity ≥ 64**; below 64 it resizes instead.
+- **LinkedHashMap** with `accessOrder=true` + `removeEldestEntry()` → instant **LRU cache**.
+- **ConcurrentHashMap** beats `Collections.synchronizedMap` (whole-map lock) and legacy `Hashtable`.
+
+**🧪 Verified trick questions (predict the output):**
+
+1. **for-each remove escapes CME.** `["a","b","c"]`, remove `"b"` in a for-each → **`[a, c]`, NO exception.** `hasNext()` is `cursor != size` (no modCount check); removing the **penultimate** element ends the loop before `next()` re-checks. Same code on `["a","b","c","d"]` → **throws `ConcurrentModificationException`.** ⇒ *fail-fast is best-effort; never mutate while iterating — use `Iterator.remove()` or `removeIf()`.*
+2. **`it.remove()` after `list.remove()` still throws CME** — from `Itr.remove()` itself. Use ONE mechanism only.
+3. **Index remove in a counting loop skips elements.** `for(i...) if(even) list.remove(i)` on `[1,2,4,3]` → leaves `4` (shift moves it into the slot you just passed). Iterate backwards or `removeIf`.
+4. **`TreeSet.add(null)` throws NPE even on an empty set** (natural ordering calls `compareTo`). Fix: `new TreeSet<>(Comparator.nullsFirst(naturalOrder()))`.
+5. **Comparator inconsistent with equals breaks the Set contract.** Length-only comparator: `add("dog")` after `"cat"` is dropped (both len 3); `contains("fox")` → **true**; `remove("rat")` removes `"cat"`. Sorted collections define identity by `compareTo()==0`, not `equals()`.
+6. **Null policy differs across "thread-safe" maps:** `ConcurrentHashMap` → no null key/value (NPE); `Collections.synchronizedMap(new HashMap<>())` → **allows** null key & values (keeps HashMap's policy); `Hashtable` → no null key/value.
+7. **`Arrays.asList(1,2,3)`** → fixed-size: `set()` ✅, `add()` → `UnsupportedOperationException`. **`List.of(...)`** → fully immutable (`set()` throws too). **`Collections.unmodifiableList(src)`** → live *view*: editing `src` shows through; only edits *via the wrapper* throw. Snapshot = `List.copyOf(src)`.
+
+---
+
+## 🛠️ Collections — operations cheat (coding-round mechanics)
+
+### 1. `list.remove(...)` — by index or by value? ⚠️
+There is **no no-arg `remove()`** on `ArrayList`. Two overloads; the **argument type** decides:
+```java
+List<Integer> list = new ArrayList<>(List.of(10, 20, 30));
+list.remove(1);                    // remove(int index) → removes INDEX 1 → [10, 30]
+list.remove(Integer.valueOf(20));  // remove(Object)    → removes VALUE 20 → [10, 30]
+```
+> For a `List<Integer>`, `list.remove(2)` removes **index 2**, not the value 2. To delete a value, wrap it: `Integer.valueOf(2)`. (No ambiguity for `List<String>`.)
+
+### 2. Using `ArrayList` as a stack / deque
+```java
+int lastIndex = list.size() - 1;   // last index (−1 if empty → guard!)
+
+// PUSH
+list.add(value);                   // append at END   → O(1) amortized ✅
+list.add(0, value);                // push at FRONT   → O(n) (shifts all)
+list.add(list.size(), value);      // also appends (index == size is allowed)
+
+// PEEK
+list.get(0);                       // first
+list.get(list.size() - 1);         // last
+
+// DELETE
+list.remove(list.size() - 1);      // delete LAST → O(1) (returns removed element)
+list.remove(0);                    // delete FIRST → O(n)
+```
+> ⚠️ To append, use `add(value)` or `add(size(), value)` — **not** `add(size()-1, value)` (that inserts *before* the last). Guard empty lists: `size()-1 == -1` → `IndexOutOfBoundsException`.
+> 💡 Need fast push/pop at **both ends**? Use **`ArrayDeque`** (`addFirst/addLast/pollFirst/pollLast/peekFirst/peekLast`, all **O(1)**).
+
+### 3. Conversions
+```java
+// List <-> TreeSet
+TreeSet<Integer> ts = new TreeSet<>(list);      // List → TreeSet (sorts + dedups)
+List<Integer> back  = new ArrayList<>(ts);      // TreeSet → List (sorted order)
+
+// Object[] array <-> ArrayList
+List<Integer> l   = new ArrayList<>(Arrays.asList(arr));  // Integer[] → List (mutable)
+Integer[] arr2    = l.toArray(new Integer[0]);            // List → array
+
+// Object[] array <-> TreeSet
+TreeSet<Integer> t = new TreeSet<>(Arrays.asList(arr));   // Integer[] → TreeSet (sorted+dedup)
+Integer[] arr3     = t.toArray(new Integer[0]);           // TreeSet → array
+```
+> ⚠️ **Primitive `int[]` gotcha:** `Arrays.asList(intArray)` makes a `List<int[]>` of size 1 — wrong! Use streams:
+```java
+List<Integer> li = Arrays.stream(prim).boxed().collect(Collectors.toList());            // int[] → List
+TreeSet<Integer> tt = Arrays.stream(prim).boxed().collect(Collectors.toCollection(TreeSet::new));
+int[] backArr = li.stream().mapToInt(Integer::intValue).toArray();                      // List → int[]
+```
+
+### 4. `HashMap` — add / get / delete / check key
+```java
+Map<String,Integer> map = new HashMap<>();
+map.put("a", 1);                       // ADD (or update if key exists)
+Integer v   = map.get("a");            // GET → value, or null if absent (no exception)
+int safe    = map.getOrDefault("z", 0);// GET with default → 0
+boolean has = map.containsKey("a");    // CHECK key exists → true
+map.remove("a");                       // DELETE → returns old value
+// idioms:
+map.putIfAbsent("a", 1);               // add only if absent
+map.merge("a", 1, Integer::sum);       // counting: a = (a ?? 0) + 1
+map.computeIfAbsent("k", x -> new ArrayList<>()).add(5);  // multimap pattern
+```
+> Prefer `containsKey` over `get` when a key may legitimately map to `null` (a `null` from `get` is ambiguous: absent vs present-but-null). Otherwise `getOrDefault` is the clean one-liner.
+
+---
+
+## Part B — Microservices Patterns 🧩
+
+### B1 — Monolith vs Microservices (lead with trade-offs, not hype)
+🗣️ *"A monolith is one deployable — simpler to build, test and deploy early, but it scales as a unit and a bug can take everything down. Microservices split by business capability, each with its own database and deploy cycle, so teams ship independently and scale hot paths alone. The cost is distributed-systems complexity: network failures, eventual consistency, harder debugging. So I don't start with microservices — I start with a well-modularised monolith and extract services when a clear boundary and scaling need appears."*
+
+### B2 — API Gateway
+🎯 Single entry point: routing, auth/JWT validation, rate limiting, SSL termination, aggregation. (Spring Cloud Gateway.)
+🗣️ *"The gateway is the one public front door. It routes to internal services, validates the JWT once so services don't each re-auth, and handles cross-cutting concerns like rate limiting and SSL termination. It stops clients from needing to know the internal topology."*
+
+### B3 — Service Discovery
+🎯 Services register with a registry (Eureka/Consul); callers look up live instances instead of hardcoding hosts. Client-side vs server-side discovery.
+🗣️ *"In a dynamic environment instances come and go and IPs change, so I don't hardcode addresses. Services register with a registry like Eureka, and a caller asks the registry for healthy instances — then a client-side load balancer picks one. Kubernetes does the same thing natively through its Service DNS."*
+
+### B4 — Circuit Breaker & resilience
+🎯 Prevents cascading failure. States: **Closed → Open → Half-Open**. (Resilience4j.) Plus retries, timeouts, bulkheads, fallbacks.
+🗣️ *"If a downstream service is failing, hammering it makes things worse and ties up my threads. A circuit breaker — I use Resilience4j — trips to Open after a failure threshold and fails fast with a fallback, then goes Half-Open to test recovery. I pair it with timeouts, bounded retries with backoff, and bulkheads to isolate thread pools so one slow dependency can't sink the whole service."*
+
+### B5 — Inter-service communication: sync vs async
+🎯 **Sync** = REST/gRPC (request-reply, temporal coupling). **Async** = messaging/Kafka (decoupled, resilient, eventual consistency).
+🗣️ *"Synchronous REST or gRPC is fine for a query where I need an answer now, but it couples availability — if the callee is down, I'm down. For anything that can be eventual, I prefer async messaging over Kafka: the producer fires an event and moves on, consumers process at their pace, and a slow consumer doesn't block the producer. gRPC I reach for when I need fast, typed, high-volume internal calls."*
+
+### B6 — Database per service & the consistency problem
+🎯 Each service owns its DB (no shared tables → loose coupling). But you lose cross-service ACID transactions → **eventual consistency**.
+🗣️ *"Each service owns its own database so no one reaches into another's tables — that's what keeps them independently deployable. The trade-off is you can't do a single ACID transaction across services, so I design for eventual consistency and use the Saga pattern for multi-service workflows."*
+
+### B7 — Saga pattern (distributed transactions) 🔴
+🎯 Sequence of local transactions; each step publishes an event triggering the next. On failure, run **compensating transactions** to undo. Two styles: **Choreography** (services react to events, no central brain) vs **Orchestration** (a central orchestrator directs steps).
+🗣️ *"Since I can't span a transaction across services, a Saga breaks it into local transactions, one per service, chained by events. If a later step fails, I run compensating actions to undo the earlier ones — like cancelling a reservation instead of rolling back. Choreography means each service listens and reacts, which is decoupled but hard to trace; orchestration uses a central coordinator, which is easier to reason about and monitor. I pick orchestration when the flow is complex."*
+
+### B8 — CQRS & Event Sourcing (know the gist)
+🗣️ *"CQRS separates the write model from the read model so each scales and is optimised independently — useful when reads vastly outnumber writes. Event sourcing stores the sequence of state-changing events as the source of truth instead of just the current state, so I get a full audit log and can rebuild state. They're powerful but add complexity, so I use them only where the domain justifies it — not by default."*
+
+### B9 — Distributed tracing & observability
+🎯 A request spans many services → correlation IDs + tracing (Sleuth/Micrometer + Zipkin/Jaeger). The three pillars: **logs, metrics, traces**.
+🗣️ *"In a distributed system one user action touches many services, so I propagate a correlation/trace ID across calls and use Zipkin or Jaeger to see the whole request path and where latency is. Observability is three pillars — centralised logs, metrics like Prometheus, and traces — so I can actually debug production."*
+
+### B10 — Idempotency (banking-relevant 💰)
+🗣️ *"For a bank, retries are inevitable, so non-query operations must be idempotent — processing the same request twice mustn't charge a customer twice. I enforce it with an idempotency key the client sends; the server records processed keys and returns the original result on a duplicate. It's the safety net that makes retries and at-least-once messaging safe."*
+
+---
+
+## Part C — DevOps, Testing & Security 🔧
+
+### C1 — CI/CD pipeline
+🎯 CI = automatically build + test every commit. CD = automated release. Pipeline: commit → build → unit tests → static analysis (SonarQube) → package → deploy to staging → integration tests → deploy to prod. Tools: Jenkins, GitLab CI, GitHub Actions.
+🗣️ *"CI means every push triggers a build and the full test suite, so integration problems surface in minutes, not at release. CD extends that to automated deployment through environments. A typical Jenkins pipeline for me: build, unit tests, Sonar quality gate, build a Docker image, deploy to staging, run integration tests, then promote to prod — ideally with blue-green or canary so rollback is instant."*
+
+### C2 — Docker (image vs container, layers)
+🎯 **Image** = read-only blueprint (layered). **Container** = running instance. Dockerfile builds layers (cached). **Multi-stage builds** keep the final image small. (Already in your Glossary — reuse it.)
+🗣️ *"An image is an immutable, layered blueprint; a container is a running instance of it — one image, many containers. Layers are cached, so I order my Dockerfile to put rarely-changing steps first. For Java I use a multi-stage build: build the jar in a Maven stage, then copy just the jar into a slim JRE image, so the shipped image is small and has less attack surface."*
+
+### C3 — Kubernetes (the why + core objects)
+🎯 Container orchestration: self-healing, scaling, rolling updates, service discovery. Objects: **Pod** (smallest unit, 1+ containers), **Deployment** (declarative replicas + rolling updates), **Service** (stable network endpoint + load balancing), **ConfigMap/Secret**, **Ingress**.
+🗣️ *"Once you have many containers you need something to schedule, heal and scale them — that's Kubernetes. I describe the desired state declaratively: a Deployment says 'run 3 replicas of this image', and K8s keeps it true, restarting crashed pods and doing rolling updates with zero downtime. A Service gives a stable address and load-balances across pods, and ConfigMaps/Secrets externalise config so the same image runs in every environment."*
+
+### C4 — Git workflow
+🗣️ *"I work on feature branches off main, keep commits small and meaningful, open a pull request for review and CI, and merge once it's green and approved. I rebase to keep history clean and use trunk-based or GitFlow depending on the team. I resolve merge conflicts by understanding both sides, never blind-accepting."*
+
+### C5 — Testing: pyramid, JUnit, Mockito, TDD
+🎯 **Test pyramid**: many fast unit tests, fewer integration, fewest E2E. **JUnit 5** (`@Test`, `@BeforeEach`, `@ParameterizedTest`), **Mockito** (`mock`, `when().thenReturn()`, `verify()`) to isolate the unit. **TDD** = red→green→refactor.
+🗣️ *"I follow the test pyramid — lots of fast unit tests, fewer integration tests, very few end-to-end, because E2E is slow and brittle. Unit tests use JUnit 5 with Mockito to stub collaborators so I'm testing one class in isolation. For integration I spin up real dependencies — often Testcontainers for a real Postgres. I practise TDD where the design is unclear: write a failing test, make it pass, refactor. Good tests are also living documentation."*
+
+### C6 — Security: OAuth2 + JWT 🔴 (JD stresses "secure web apps")
+🎯 **AuthN** (who you are) vs **AuthZ** (what you can do). **JWT** = signed token with 3 parts (header.payload.signature), base64; stateless — server verifies the signature, no session lookup. **OAuth2** = delegated authorization (access token + refresh token); OpenID Connect adds identity.
+🗣️ *"Authentication is proving who you are; authorization is what you're allowed to do. I keep services stateless with JWTs: on login the auth service issues a signed token, the client sends it as a Bearer header, and each service verifies the signature locally — no shared session store, which scales horizontally. The token carries claims like roles for authorization. I keep tokens short-lived with refresh tokens, always over HTTPS, and never put secrets in the payload since it's only signed, not encrypted. OAuth2 is the framework for delegated access — issuing and scoping those tokens."*
+
+### C7 — Secure coding (OWASP essentials)
+🎯 **SQL injection** → parameterised queries / prepared statements (never string-concat SQL). **XSS** → output encoding. **CSRF** → tokens. Plus: validate all input, least privilege, encrypt in transit (TLS) and at rest, no secrets in code (use a vault), dependency scanning.
+🗣️ *"For a bank security is non-negotiable. The basics I always apply: parameterised queries to kill SQL injection, output encoding against XSS, validate and never trust input, principle of least privilege on every service and DB account, TLS in transit and encryption at rest, secrets in a vault not in code, and dependency scanning in the pipeline to catch vulnerable libraries. I think in terms of the OWASP Top 10."*
+
+---
+
+## 🔑 Day-of cheat lines (memorise these openers)
+- **Why microservices?** → *"Independent deploy + scale per capability — at the cost of distributed-systems complexity, so I extract them from a monolith only when justified."*
+- **volatile vs synchronized** → *"volatile = visibility; synchronized = visibility + atomicity."*
+- **Saga** → *"Local transactions chained by events, with compensating actions to undo on failure."*
+- **JWT** → *"Stateless, signed, self-contained — each service verifies locally."*
+- **Circuit breaker** → *"Fail fast when a dependency is sick; Closed→Open→Half-Open."*
+- **equals/hashCode** → *"Override both together or hash collections break."*
+- **Idempotency** → *"Same request twice = same effect once — essential for safe retries in payments."*
+
+## 🗣️ STAR stories to prep (behavioural — they will ask)
+Pick 2–3 real ones from your work and frame each as **Situation → Task → Action → Result**:
+1. A production bug / incident you debugged (shows ownership).
+2. A performance or design improvement you drove (shows the "service quality & availability" line in the JD).
+3. A time you disagreed technically and resolved it (shows collaboration with product owners — also in the JD).
+
+---
+
 _Journal started during Module 0. Pushed periodically by me (DIVAKAR-REDDY-VARUGU)._

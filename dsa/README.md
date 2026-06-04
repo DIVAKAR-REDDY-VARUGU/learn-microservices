@@ -25,6 +25,10 @@ Every subpattern has: **🔍 Recognize · 📊 Visual trace · 🧠 Idea + templ
 
 _📖 subpattern link = learn in this file · ✍️ = open the practice folder._
 
+**📌 [Java Reference — Arrays · Strings · Collections (every method + example)](REFERENCE.md#cheat)** — CRUD · methods · loops · gotchas.
+
+**🌳 [Trees & Algorithms — Reference](REFERENCE.md#trees-algos)** — taxonomy · heap · traversals · paradigms · sorting & searching/graph/string algos (with code).
+
 
 ### 1. [Arrays & Hashing (Array/Matrix Manipulation)](#arrays--hashing-arraymatrix-manipulation)
 
