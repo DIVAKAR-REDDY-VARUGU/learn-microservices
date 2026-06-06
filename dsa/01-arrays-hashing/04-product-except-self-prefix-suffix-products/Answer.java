@@ -6,13 +6,22 @@ import java.util.*;
 public class Answer {
 
     public int[] productExceptSelf(int[] nums) {
-        // TODO: implement your solution
-        throw new UnsupportedOperationException("TODO");
+        int len=nums.length;
+        int []result=new int[len];
+        result[0]=nums[0];
+        for(int i=1;i<len;i++)result[i]=result[i-1]*nums[i];
+        
+        int right=1;
+        for(int i=len-1;i>0;i--){
+            result[i]=right*result[i-1];
+            right*=nums[i];
+        }
+        result[0]=right;
+        return result;   
     }
 
     public static void main(String[] args) {
-        // TODO: test with the examples in QUESTION.md
-        // e.g.  System.out.println(new Answer()....);
+        System.out.println(Arrays.toString(new Answer().productExceptSelf(new int[]{2,4,1,3,2})));
     }
 }
 
