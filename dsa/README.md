@@ -408,6 +408,93 @@ for (int x : nums) {
 - **⏱️ Complexity:** Time O(n) build / O(1) per range query; Space O(n).
 - **💡 Remember-it tip:** "Difference of two prefixes = a range." Seed the map with `{0:1}`. Drill: *Range Sum Query - Immutable*, *Contiguous Array* (map 0→-1).
 
+#### 📚 Deep dive — worked examples
+
+**Two halves of this pattern:** ① the *array* trick (range sums) and ② the *hashmap* trick (count subarrays == k).
+
+**① Foundation — range sum = difference of two prefixes.** `prefix[i]` = sum of the first `i` elements (length `n+1`, `prefix[0] = 0`).
+```
+nums   =   [ 2,  4,  1,  3,  5 ]      (indices 0..4)
+prefix = [0, 2,  6,  7, 10, 15 ]      (prefix[i] = prefix[i-1] + nums[i-1])
+
+sum(i..j) = prefix[j+1] − prefix[i]
+sum(1..3) = prefix[4] − prefix[1] = 10 − 2 = 8     (= 4+1+3 ; the leading 2 cancels)
+```
+→ O(n) build, then **every range-sum query is O(1)** (that's *Range Sum Query – Immutable*).
+
+**② Count subarrays summing to k — the hashmap trick.** A subarray `(i..j)` sums to `k` ⟺ `prefix[j+1] − prefix[i] = k` ⟺ `prefix[i] = currentSum − k`. So at each step ask: *"have I seen the prefix `sum − k` before, and how many times?"*
+```java
+Map<Integer,Integer> seen = new HashMap<>();
+seen.put(0, 1);                          // seed: the empty prefix (sum 0, once)
+int sum = 0, res = 0;
+for (int x : nums) {
+    sum += x;                            // running prefix sum
+    res += seen.getOrDefault(sum - k, 0); // how many earlier prefixes == sum-k
+    seen.merge(sum, 1, Integer::sum);     // record this prefix
+}
+```
+
+**Worked trace** — `nums = [3,-4,1,4,1,-5,2,-6,2,7,-3,8,1]`, `k = 6` (each step also does `seen.merge(sum,1)`):
+
+| step | x | sum | need = sum−6 | seen[need] | res | found subarray |
+|---|---|---|---|---|---|---|
+| init | – | 0 | – | – | 0 | seen={0:1} |
+| 1 | 3 | 3 | −3 | 0 | 0 | |
+| 2 | −4 | −1 | −7 | 0 | 0 | |
+| 3 | 1 | 0 | −6 | 0 | 0 | |
+| 4 | 4 | 4 | −2 | 0 | 0 | |
+| 5 | 1 | 5 | −1 | 1 | 1 | ✅ [2..4] = 1+4+1 |
+| 6 | −5 | 0 | −6 | 0 | 1 | |
+| 7 | 2 | 2 | −4 | 0 | 1 | |
+| 8 | −6 | −4 | −10 | 0 | 1 | |
+| 9 | 2 | −2 | −8 | 0 | 1 | |
+| 10 | 7 | 5 | −1 | 1 | 2 | ✅ [2..9] |
+| 11 | −3 | 2 | −4 | 1 | 3 | ✅ [8..10] = 2+7−3 |
+| 12 | 8 | 10 | 4 | 1 | 4 | ✅ [4..11] |
+| 13 | 1 | 11 | 5 | **2** | **6** | ✅ [5..12] **and** [10..12] |
+
+Final `res = 6`. Notice step 13: `seen[5] = 2`, so we add **2** at once (two earlier prefixes qualify).
+
+**❓ Why store a COUNT (not just a Set)?** A prefix sum can repeat, and **each repeat is a distinct subarray start**. `nums=[1,-1,1,-1], k=0`:
+```
+seen={0:1} sum=0 res=0
+x=1  sum=1 need=1 seen[1]=0  res=0  seen={0:1,1:1}
+x=-1 sum=0 need=0 seen[0]=1  res=1  seen={0:2,1:1}
+x=1  sum=1 need=1 seen[1]=1  res=2  seen={0:2,1:2}
+x=-1 sum=0 need=0 seen[0]=2  res=4  ← +2 at once!   answer 4: [0,1],[1,2],[2,3],[0,3]
+```
+A Set would count `0` once → answer 3 ❌ (misses one). Count = number of distinct starting points.
+
+**❓ Why seed `{0:1}`?** The `0` is the **empty prefix** — it lets subarrays that **start at index 0** be counted. `nums=[2,4], k=6`:
+```
+with {0:1}:  x=2 sum=2 need=-4 ✗ ; x=4 sum=6 need=0 seen[0]=1 → res=1 ✅ ([0..1]=6)
+without   :  x=4 sum=6 need=0 seen[0]=absent → res=0 ❌ (whole-array subarray missed)
+```
+
+**❓ What if it asks for START/END indices (not the count)?** Store the **index** (or a list of indices) instead of a count; the empty prefix sits at **index −1** (seed `{0:-1}`), and a match at stored index `i` means subarray **`[i+1 .. j]`**.
+```java
+// ALL (start,end) pairs:
+Map<Integer,List<Integer>> seen = new HashMap<>();
+seen.computeIfAbsent(0, x -> new ArrayList<>()).add(-1);   // empty prefix at index -1
+int sum = 0; List<int[]> result = new ArrayList<>();
+for (int j = 0; j < nums.length; j++) {
+    sum += nums[j];
+    List<Integer> starts = seen.get(sum - k);
+    if (starts != null) for (int i : starts) result.add(new int[]{i + 1, j});  // [i+1 .. j]
+    seen.computeIfAbsent(sum, x -> new ArrayList<>()).add(j);
+}
+```
+```
+nums=[1,2,3], k=3:
+ seen={0:[-1]}
+ j=1 sum=3 need=0 seen[0]=[-1] → [0..1]=1+2=3 ✅
+ j=2 sum=6 need=3 seen[3]=[1]  → [2..2]=3     ✅
+ result = {[0,1], [2,2]}
+```
+Variants: **one** subarray → store the *first* index (`putIfAbsent`) and return on match; **longest** subarray → store first index, maximize `j − i`.
+
+**🔑 Map value depends on the question:** `"how many"` → **count**, seed `{0:1}` · `"which indices"` → **index/list**, seed `{0:-1}`, subarray `[i+1..j]` · `"longest"` → **first index** only. Same prefix-sum skeleton — only the map's value changes.
+
 ### Product Except Self (Prefix/Suffix Products)
 
 [🔝 Back to index](#index)
