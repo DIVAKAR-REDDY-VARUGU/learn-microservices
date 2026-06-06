@@ -6,25 +6,21 @@ import java.util.*;
 public class Answer {
     public int[] topKFrequent(int[] nums, int k) {
 
-        HashMap<Integer, Integer> hash = new HashMap<>();
-        for (Integer i : nums) {
-            if (hash.containsKey(i)) {
-                hash.merge(i, 1, Integer::sum);
-            } else {
-                hash.put(i, 1);
-            }
+        LinkedHashMap<Integer,Integer> keyCountMap=new LinkedHashMap<>((int)(nums.length/0.75)+1);
+
+        for(int val:nums)keyCountMap.merge(Integer.valueOf(val),1,(a,b)->a+b );
+        
+        ArrayList<Map.Entry<Integer,Integer>> entries=new ArrayList<>(keyCountMap.entrySet());
+        entries.sort((b,a)->Integer.compare(a.getValue(),b.getValue()));
+
+        int [] result=new int[k];
+        int i=0;
+        for(Map.Entry<Integer,Integer> entry:entries){
+            if(i==k)break;
+            result[i++]=entry.getKey();
         }
-        // System.out.println("Size Of Hash is: "+hash.size());
-        int result[] = new int[k];
-        // System.out.println("Size Of result is: "+result.length);
-        int i = 0;
-        for (Integer key : hash.keySet()) {
-            // System.out.println("result["+i+"] = "+key);
-            result[i++] = key;
-            if (i == k)
-                break;
-        }
-        return result;
+
+       return result;
 
     }
 
