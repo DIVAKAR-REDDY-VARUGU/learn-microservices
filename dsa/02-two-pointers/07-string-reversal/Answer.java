@@ -15,3 +15,9 @@ public class Answer {
         // e.g.  System.out.println(new Answer()....);
     }
 }
+
+/* ===== Run the tests =====
+ *   In this folder:   javac Answer.java Test.java && java Test
+ *   From dsa/      :   bash run-tests.sh 02-two-pointers/07-string-reversal
+ *   -> Test.java runs many corner cases and prints [PASS]/[FAIL] + "Summary: X/Y passed"
+ * ========================= */

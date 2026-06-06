@@ -25,6 +25,8 @@ Every subpattern has: **🔍 Recognize · 📊 Visual trace · 🧠 Idea + templ
 
 _📖 subpattern link = learn in this file · ✍️ = open the practice folder._
 
+**🧪 Run a question's tests:** from `dsa/` → `bash run-tests.sh <category>/<subpattern>` (e.g. `bash run-tests.sh 01-arrays-hashing/02-hashing-previously-seen-existence-check`), or inside the folder → `javac Answer.java Test.java && java Test`. Each `Test.java` runs many **corner cases** against your `Answer` and prints `[PASS]`/`[FAIL]` per case + `Summary: X/Y passed`. (Unimplemented stubs fail gracefully — no crash.)
+
 **📌 [Java Reference — Arrays · Strings · Collections (every method + example)](REFERENCE.md#cheat)** — CRUD · methods · loops · gotchas.
 
 **🌳 [Trees & Algorithms — Reference](REFERENCE.md#trees-algos)** — taxonomy · heap · traversals · paradigms · sorting & searching/graph/string algos (with code).

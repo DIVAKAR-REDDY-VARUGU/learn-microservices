@@ -19,3 +19,9 @@ public class Answer {
         // e.g.  System.out.println(new Answer()....);
     }
 }
+
+/* ===== Run the tests =====
+ *   In this folder:   javac Answer.java Test.java && java Test
+ *   From dsa/      :   bash run-tests.sh 15-segment-fenwick-tree/02-segment-tree-range-sum-with-point-update
+ *   -> Test.java runs many corner cases and prints [PASS]/[FAIL] + "Summary: X/Y passed"
+ * ========================= */

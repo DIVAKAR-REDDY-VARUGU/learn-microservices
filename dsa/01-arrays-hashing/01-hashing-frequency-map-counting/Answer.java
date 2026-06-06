@@ -4,27 +4,7 @@
 import java.util.*;
 
 public class Answer {
-
-    public int[] topKFrequent2(int[] nums, int k) {
-
-        HashMap<Integer, Integer> hash = new HashMap<>();
-        for (int i : nums) hash.merge(Integer.valueOf(i), 1, Integer::sum);
-
-
-
-
-        int result[] = new int[k];
-        return result;
-    }
-
-
-    private void bucketSort(HashMap<Integer,Integer> hash,int result[]){
-        
-
-    }
-
-
-    public int[] topKFrequent1(int[] nums, int k) {
+    public int[] topKFrequent(int[] nums, int k) {
 
         HashMap<Integer, Integer> hash = new HashMap<>();
         for (Integer i : nums) {
@@ -49,6 +29,12 @@ public class Answer {
     }
 
     public static void main(String[] args) {
-        System.out.println(Arrays.toString(new Answer().topKFrequent2(new int[] { 4, 1, -1, 2, -1, 2, 3 }, 2))); // [-1, 2]
+        System.out.println(Arrays.toString(new Answer().topKFrequent(new int[] { 4, 1, -1, 2, -1, 2, 3 }, 2))); // [-1, 2]
     }
 }
+
+/* ===== Run the tests =====
+ *   In this folder:   javac Answer.java Test.java && java Test
+ *   From dsa/      :   bash run-tests.sh 01-arrays-hashing/01-hashing-frequency-map-counting
+ *   -> Test.java runs many corner cases and prints [PASS]/[FAIL] + "Summary: X/Y passed"
+ * ========================= */
