@@ -70,7 +70,7 @@ public class Test {
         check("negative target", new int[]{-1,-2,-3,-4}, -7);
         check("zeros", new int[]{0,0}, 0);
         check("answer at ends", new int[]{5,1,2,8}, 13);
-        check("large bounds", new int[]{1000000000,-1000000000,1}, 1);
+        check("large bounds (1e9 + -1e9 = 0)", new int[]{1000000000,-1000000000,1}, 0);
         check("complement appears later", new int[]{1,5,5,3}, 8);
         check("mix pos neg", new int[]{-10,7,19,15,9,3}, -7);
 
@@ -119,21 +119,16 @@ public class Test {
             // ensure no other pair sums to 42 (all others >= 100000)
             checkProp("large 10k pair at tail", big, target, 3000);
         }
-        // n=10^4 random in [-10^9,10^9] with a guaranteed implanted unique pair.
+        // n=10^4 with a guaranteed UNIQUE implanted pair (valid Two Sum: values & target in range).
         {
             Random rnd = new Random(42);
             int n = 10_000;
             int[] big = new int[n];
-            for (int i = 0; i < n; i++) big[i] = rnd.nextInt(2_000_000_000) - 1_000_000_000;
-            // implant pair summing to a far-out target unlikely to be hit by randoms
-            long T = 4_000_000_000L; // bigger than any natural random pair (max ~2e9)
-            // but values must fit int; use two near-max ints summing via long target
-            big[1234] = 1_999_999_999;
-            big[8765] = 2_000_000_001 > Integer.MAX_VALUE ? Integer.MAX_VALUE : 2_000_000_001;
-            // recompute a clean target from the implanted values to avoid overflow surprises
-            long tg = (long) big[1234] + (long) big[8765];
-            // ensure no random pair coincidentally equals tg: tg ~ 4.1e9 which exceeds max random pair (~2e9)
-            checkProp("large 10k implanted high-sum pair", big, (int) Math.max(Integer.MIN_VALUE, Math.min(Integer.MAX_VALUE, tg)) == tg ? (int) tg : 0, 3000);
+            for (int i = 0; i < n; i++) big[i] = rnd.nextInt(1_000_000);   // [0, 1e6) -> no natural pair near target
+            int target = 1_000_000_000;                                    // far above any natural pair (~2e6)
+            big[1234] = 400_000_000;
+            big[8765] = 600_000_000;                                       // 4e8 + 6e8 = 1e9 = target (unique pair)
+            checkProp("large 10k implanted unique pair", big, target, 3000);
         }
 
         System.out.println("Summary: " + pass + "/" + total + " passed");

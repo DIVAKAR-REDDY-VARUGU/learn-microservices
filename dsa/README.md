@@ -262,6 +262,116 @@ for (int x : nums) {
 - **⏱️ Complexity:** Time O(n), Space O(n).
 - **💡 Remember-it tip:** "Check before you store." Drill: *Contains Duplicate*, *Longest Consecutive Sequence* (use a Set, only start counting at sequence heads where `x-1` is absent).
 
+#### 📚 Deep dive — worked examples
+
+**Golden rule — "Check before you store":** for each element, *first* ask "is the thing I need already in my Set/Map?", *then* add the current element. If you store first, you'd always "find" the element you just inserted.
+
+**Set vs Map — pick by *what you need to remember*:**
+```
+just "have I seen this value?"   → Set  (existence only)     → Contains Duplicate
+need INFO about the seen value   → Map  (value→index/count)  → Two Sum, Nearby Duplicate
+```
+
+**① Contains Duplicate (Set)** — *does any value appear twice?*
+```java
+Set<Integer> seen = new HashSet<>();
+for (int x : nums) {
+    if (seen.contains(x)) return true;   // CHECK first
+    seen.add(x);                         // then STORE
+}
+return false;
+```
+```
+nums = [1, 2, 3, 1]
+x=1  seen 1? no  → add → {1}
+x=2  seen 2? no  → add → {1,2}
+x=3  seen 3? no  → add → {1,2,3}
+x=1  seen 1? YES → return true ✅
+```
+*Why check-first:* if you add first, every element "looks" duplicate (you just inserted it).
+
+**② Two Sum (Map: value → index)** — need the complement's *index*, so a Map.
+```java
+Map<Integer,Integer> seen = new HashMap<>();      // value → index
+for (int i = 0; i < nums.length; i++) {
+    int need = target - nums[i];
+    if (seen.containsKey(need)) return new int[]{ seen.get(need), i };
+    seen.put(nums[i], i);
+}
+```
+```
+nums = [2,7,11,15], target = 9
+i=0 x=2  need 7 → seen has 7? no  → put 2→0   seen={2:0}
+i=1 x=7  need 2 → seen has 2? YES at 0 → return [0,1] ✅
+```
+*Map, not Set,* because we must return the index of the complement. *Check-first* also stops us pairing an element with itself.
+
+**③ Contains Nearby Duplicate (Map: value → last index)** — equal values within distance `k`.
+```java
+Map<Integer,Integer> last = new HashMap<>();      // value → last index seen
+for (int i = 0; i < nums.length; i++) {
+    if (last.containsKey(nums[i]) && i - last.get(nums[i]) <= k) return true;
+    last.put(nums[i], i);
+}
+```
+```
+nums = [1,2,3,1], k = 3
+i=0 v=1 → {1:0}
+i=1 v=2 → {1:0,2:1}
+i=2 v=3 → {1:0,2:1,3:2}
+i=3 v=1 seen at 0 → |3-0|=3 ≤ 3 → true ✅
+```
+
+#### 🧩 Hard drill — Longest Consecutive Sequence (Set + "head" trick), O(n)
+
+*Longest run of consecutive ints (`n, n+1, n+2 …`), order doesn't matter — without sorting.*
+
+**The trap:** counting a streak from *every* number re-counts the same run:
+```
+run 1,2,3,4 counted from each → 4+3+2+1 = O(n²) 🐢
+```
+
+**The insight — only count from the HEAD of a run.** `x` is a head **iff `x-1` is NOT in the set**:
+```
+x-1 NOT in set → the run starts at x (HEAD) → count forward ✅
+x-1 IS  in set → x is inside a run          → SKIP ⏭️
+
+   1 → 2 → 3 → 4
+   ▲ head (0 absent) — count forward until it breaks
+   2,3,4 each have a left-neighbor in the set → skip
+```
+Each run is counted **exactly once** → each element touched ≤ 2× → **O(n)**.
+
+```java
+Set<Integer> set = new HashSet<>();
+for (int x : nums) set.add(x);
+
+int longest = 0;
+for (int x : set) {
+    if (!set.contains(x - 1)) {            // x is a HEAD (no left-neighbor)
+        int cur = x, length = 1;
+        while (set.contains(cur + 1)) {    // walk the run forward
+            cur++; length++;
+        }
+        longest = Math.max(longest, length);
+    }
+}
+return longest;
+```
+```
+nums=[100,4,200,1,3,2]   set={100,4,200,1,3,2}
+x=100: 99 in set? no  → HEAD → 100, 101? no → len 1
+x=4  : 3  in set? yes → SKIP
+x=200: 199? no        → HEAD → len 1
+x=1  : 0  in set? no  → HEAD → 1,2,3,4, 5? no → len 4 ✅
+x=3,2: predecessor in set → SKIP
+answer = 4
+```
+```
+WITHOUT head-check: count from every number → O(n²) 🐢
+WITH    head-check: count each run once      → O(n)  🚀
+```
+
 ### Prefix Sum - Subarray Sum / Range Query
 
 [🔝 Back to index](#index)
