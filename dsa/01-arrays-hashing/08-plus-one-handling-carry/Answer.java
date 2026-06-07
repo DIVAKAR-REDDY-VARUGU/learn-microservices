@@ -6,13 +6,20 @@ import java.util.*;
 public class Answer {
 
     public int[] plusOne(int[] digits) {
-        // TODO: implement your solution
-        throw new UnsupportedOperationException("TODO");
+        for(int i=digits.length-1;i>=0;i--){
+            if(digits[i]<9){
+                digits[i]++;
+                return digits;
+            }
+            digits[i]=0;
+        }
+        int[] res=new int[digits.length+1];
+        res[0]=1;
+        return res;
     }
 
     public static void main(String[] args) {
-        // TODO: test with the examples in QUESTION.md
-        // e.g.  System.out.println(new Answer()....);
+        System.out.println(Arrays.toString(new Answer().plusOne(new int[]{1, 2, 3})));
     }
 }
 
