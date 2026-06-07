@@ -6,13 +6,20 @@ import java.util.*;
 public class Answer {
 
     public void merge(int[] nums1, int m, int[] nums2, int n) {
-        // TODO: implement your solution
-        throw new UnsupportedOperationException("TODO");
+        int i= m+n-1;
+        m--;
+        n--;
+        while(n>=0){
+            nums1[i--]=(m>=0&&nums1[m]>=nums2[n]) ?nums1[m--]:nums2[n--];
+        }
     }
 
     public static void main(String[] args) {
-        // TODO: test with the examples in QUESTION.md
-        // e.g.  System.out.println(new Answer()....);
+        var answer = new Answer();
+        int[] nums1={1,2,3,0,0,0},nums2={2,5,6};
+        int m=3, n=3;
+        answer.merge(nums1, m, nums2, n);
+        System.out.println(Arrays.toString(nums1));  // [1,2,2,3,5,6]
     }
 }
 
