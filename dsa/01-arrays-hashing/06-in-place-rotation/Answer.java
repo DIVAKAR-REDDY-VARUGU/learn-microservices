@@ -4,15 +4,30 @@
 import java.util.*;
 
 public class Answer {
+    public static void swap(int[] arr, int i , int j){
+        int temp=arr[i];
+        arr[i]=arr[j];
+        arr[j]=temp;
+    }
+    public static void reverse(int[] arr,int start,int end){
+       while(start<end){
+        swap(arr,start++,end--);
+       }
+    }
+    public static void rotate(int[] nums, int k) {
+        int len=nums.length;
+        k%=len;
+        if(k==0)return;
+        reverse(nums,0,len-1);
+        reverse(nums,0,k-1);
+        reverse(nums,k,len-1);
 
-    public void rotate(int[] nums, int k) {
-        // TODO: implement your solution
-        throw new UnsupportedOperationException("TODO");
     }
 
     public static void main(String[] args) {
-        // TODO: test with the examples in QUESTION.md
-        // e.g.  System.out.println(new Answer()....);
+        int arr[]=new int[]{1,2,3,4,5,6,7};
+        rotate(arr, 3);
+        System.out.println(Arrays.toString(arr));
     }
 }
 
