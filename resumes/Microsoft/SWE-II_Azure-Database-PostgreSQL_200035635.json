@@ -1,0 +1,73 @@
+{
+  "name": "Divakar Reddy Varugu",
+  "contact": [
+    "divakarreddyvarugu@gmail.com",
+    "+91-7569009307",
+    "Hyderabad, India",
+    "github.com/DIVAKARREDDY-VARUGU"
+  ],
+  "summary": "Backend / distributed-systems engineer with 3+ years building and operating 12+ live production microservices (NestJS/TypeScript and Java/Spring Boot). Relational-database practitioner — schema design, indexing, and query/performance tuning on MySQL and MSSQL (Azure-hosted) — and hands-on with PostgreSQL, Kafka, gRPC/Protobuf, Redis, Temporal.io, and CQRS/event sourcing, secured with JWT and Azure AD (MSAL). Focused on Azure data-platform / database-services engineering; strong Java DSA fundamentals.",
+  "skills": [
+    {"category": "Languages", "items": "Java, TypeScript, JavaScript (Node.js), SQL"},
+    {"category": "Databases", "items": "MySQL, PostgreSQL, MSSQL Server, MongoDB, Redis — relational data modeling, indexing, query & performance tuning, SQL migrations, TypeORM, Spring Data JPA"},
+    {"category": "Distributed Systems", "items": "Microservices, Event-Driven Architecture, CQRS, Event Sourcing, Saga, Domain-Driven Design"},
+    {"category": "Messaging & Async", "items": "Apache Kafka, Redis pub/sub, Bull queues, Temporal.io, EventStore, KurrentDB"},
+    {"category": "APIs & Protocols", "items": "REST, gRPC, Protocol Buffers, WebSockets, OpenAPI/Swagger"},
+    {"category": "Backend Frameworks", "items": "NestJS, Node.js/Express, Java Spring Boot"},
+    {"category": "Cloud & DevOps", "items": "Microsoft Azure (Blob Storage, Azure AD/MSAL, Azure Database for MySQL), Docker, CI/CD, Git, GitHub"},
+    {"category": "Testing", "items": "Jest, Supertest, JUnit, Mockito, Postman"}
+  ],
+  "experience": [
+    {
+      "company": "Procurex Technologies Pvt. Ltd.",
+      "title": "Backend Developer",
+      "dates": "May 2024 – Present",
+      "location": "Hyderabad",
+      "bullets": [
+        "Build and operate 12+ live NestJS/TypeScript microservices (auth, gateway, CRM, order-billing, MDM, TMS, work-order, transaction) used by Urbanrise, MyHome Constructions, IRA Realty, and The Trilight.",
+        "Model relational schemas and tune indexes/queries on Azure-hosted MySQL (TypeORM), reasoning about query plans and read/write performance under high-volume transactional load.",
+        "Architect inter-service communication via gRPC/Protobuf (100+ contracts), Apache Kafka event streams, and Redis pub/sub; apply CQRS and event sourcing (EventStore/KurrentDB).",
+        "Orchestrate long-running, fault-tolerant workflows with Temporal.io; build idempotent async pipelines (Bull) with retry/back-off for reliable at-least-once processing.",
+        "Secure services with JWT, Passport strategies, Azure AD (MSAL) SSO, and Redis-backed rate limiting; integrate Azure Blob Storage for document handling.",
+        "Maintain reliability of live production services through SQL migrations and production-issue diagnosis and mitigation."
+      ]
+    },
+    {
+      "company": "Home Shiksha",
+      "title": "Backend Developer",
+      "dates": "Aug 2023 – May 2024",
+      "location": "Hyderabad",
+      "bullets": [
+        "Built REST APIs in Node.js/Express for a B2B learning platform serving 100,000+ users.",
+        "Designed MySQL data models tuned for fast aggregations and reliable persistence.",
+        "Implemented payment-gateway integration, JWT authentication, and role-based access control end-to-end."
+      ]
+    },
+    {
+      "company": "State Street Corporation",
+      "title": "Software Engineer Intern",
+      "dates": "Jan 2023 – Jul 2023",
+      "location": "",
+      "bullets": [
+        "Built Java and Spring Boot REST services on MSSQL Server for a Wall Street banking platform.",
+        "Implemented record-lifecycle modules (create, update, approve, audit) under regulatory-compliance constraints, with JUnit tests."
+      ]
+    }
+  ],
+  "projects": [
+    {
+      "name": "Procurex — B2B Construction-Procurement Platform",
+      "description": "Multi-tenant RFQ-to-payment system built as 12+ NestJS microservices (auth, gateway, CRM, order-billing, MDM, TMS, work-order, transaction, notification, document) on Azure-hosted MySQL (TypeORM). Inter-service communication via gRPC/Protobuf (100+ contracts), Apache Kafka event streams, and Redis; CQRS and event sourcing (EventStore/KurrentDB); Temporal.io workflow orchestration; JWT + Azure AD (MSAL) security; Azure Blob Storage. Live with Urbanrise, MyHome Constructions, IRA Realty, and The Trilight."
+    }
+  ],
+  "education": [
+    {"institution": "Presidency University", "detail": "B-Tech, Computer Science and Engineering | 2019–2023 | CGPA: 8.3"},
+    {"institution": "Sri Chaitanya Jr College", "detail": "Intermediate (MPC) | 2017–2019 | CGPA: 9.0"}
+  ],
+  "certifications": [
+    "AWS Cloud Practitioner Essentials — Amazon Web Services",
+    "Artificial Intelligence (AI) — IBM (Coursera)",
+    "HackerRank — Java, JavaScript, Problem Solving",
+    "Python Programming & Unix Shell — Presidency University"
+  ]
+}
