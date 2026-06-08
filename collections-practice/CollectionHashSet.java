@@ -21,6 +21,7 @@ public class CollectionHashSet {
         
         map.remove(9);
 
+        System.err.println(map.get(Integer.valueOf(5))); // to get value of key 5 => 11
         System.out.println(map);
 
         // only keys
