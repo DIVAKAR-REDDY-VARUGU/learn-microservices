@@ -4,24 +4,26 @@ public class Test {
     static int pass = 0;
     static int total = 0;
 
-    // Exact-match check: validates the returned 1-indexed pair equals the expected pair.
+    // Property-based check: accepts ANY valid 1-indexed increasing pair whose values sum to
+    // target (the `expected` arg is kept for readability but ignored, since several inputs are
+    // ambiguous or had miscalculated hardcoded expecteds). A 0-indexed answer still fails here
+    // because index 0 is out of the valid 1-based range.
     static void check(String name, int[] numbers, int target, int[] expected) {
         total++;
         try {
             int[] actual = new Answer().twoSum(clone(numbers), target);
-            if (actual != null && Arrays.equals(actual, expected)) {
+            String why = validatePair(numbers, target, actual);
+            if (why == null) {
                 System.out.println("\033[32m[PASS]\033[0m " + name);
                 pass++;
             } else {
                 System.out.println("\033[31m[FAIL]\033[0m " + name
                     + " | input numbers=" + brief(numbers) + ", target=" + target
-                    + " | expected=" + Arrays.toString(expected)
-                    + " | actual=" + Arrays.toString(actual));
+                    + " | " + why + " | actual=" + Arrays.toString(actual));
             }
         } catch (Throwable e) {
             System.out.println("\033[31m[FAIL]\033[0m " + name
                 + " | input numbers=" + brief(numbers) + ", target=" + target
-                + " | expected=" + Arrays.toString(expected)
                 + " | threw " + e.getClass().getSimpleName() + ": " + e.getMessage());
         }
     }
