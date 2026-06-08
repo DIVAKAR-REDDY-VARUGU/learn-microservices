@@ -6,10 +6,27 @@ import java.util.*;
 public class Answer {
 
     public ListNode removeNthFromEnd(ListNode head, int n) {
-        // TODO: implement your solution
-        throw new UnsupportedOperationException("TODO");
-    }
+        ListNode temp=new ListNode(0,head);
+        ListNode fast=temp;
+       
+        // push fast to n nodes
+        int i=0;
+        while (i<=n) {
+            fast=fast.next;
+            i++;            
+        }
 
+
+        ListNode cur=temp;
+        while (fast!=null) {
+            cur=cur.next;
+            fast=fast.next;
+        }
+        cur.next=cur.next.next;
+        return temp.next;   // instead of direct head , send by temp reference ;
+
+    }
+    
     public static void main(String[] args) {
         // TODO: test with the examples in QUESTION.md
         // e.g.  System.out.println(new Answer()....);
