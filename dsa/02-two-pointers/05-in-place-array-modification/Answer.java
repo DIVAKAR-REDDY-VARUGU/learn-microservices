@@ -4,15 +4,29 @@
 import java.util.*;
 
 public class Answer {
-
+    private void swap(int[] arr,int i ,int j){
+        int t=arr[i];
+        arr[i]=arr[j];
+        arr[j]=t;
+    }
     public int removeDuplicates(int[] nums) {
-        // TODO: implement your solution
-        throw new UnsupportedOperationException("TODO");
+        int i=0;
+        int j=0;
+        while (j<nums.length) {
+            if(nums[i]<nums[j]){
+                i++;
+                swap(nums,i,j);
+                j++;
+            }else{
+                j++;
+            }
+        }
+        return i+1;
+
     }
 
     public static void main(String[] args) {
-        // TODO: test with the examples in QUESTION.md
-        // e.g.  System.out.println(new Answer()....);
+        // System.out.println(new Answer()....);
     }
 }
 
