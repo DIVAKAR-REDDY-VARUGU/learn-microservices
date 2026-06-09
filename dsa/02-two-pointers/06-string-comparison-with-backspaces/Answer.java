@@ -9,23 +9,17 @@ public class Answer {
         if(s.equals(t)||(s.length()==0&&t.length()==0))return true;
         int i=s.length()-1;
         int j=t.length()-1;
-        while (i>=0&&j>=0) {
+        while (i>=0 || j>=0) {
             i=nextValidIndex(s,i);
             j=nextValidIndex(t,j);
-            if(i<0&&j<0)return true;
+            if(i<0 && j<0)return true;
             if(i<0||j<0)return false;
             else if(s.charAt(i)==t.charAt(j)){
                 i--;
                 j--;
             }else return false;
         }
-        if(i<0&&j<0)return true;
-        
-        if(i>=0)i=nextValidIndex(s,i);
-        else j=nextValidIndex(t,j);
-        if(i==j)return true;
-        
-        return false;
+        return true;
     }
     public int nextValidIndex(String s,int i){
         int skip=0;
