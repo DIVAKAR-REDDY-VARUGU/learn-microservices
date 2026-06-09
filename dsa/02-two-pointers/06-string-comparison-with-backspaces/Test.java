@@ -90,7 +90,7 @@ public class Test {
         check("both fully cleared different lengths", "abc###", "x#", true);
 
         // Corner: backspace at start does nothing
-        check("leading backspace ignored", "#a#b#c", "c", false);
+        check("leading backspace ignored", "#a#b#c", "c", true); // "#a#b#c" -> "c" == "c"
         check("leading backspace then chars", "#abc", "abc", true);
 
         // Corner: trailing backspace removes last typed char

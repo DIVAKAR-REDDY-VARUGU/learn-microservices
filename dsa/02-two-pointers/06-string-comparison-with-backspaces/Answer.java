@@ -6,13 +6,43 @@ import java.util.*;
 public class Answer {
 
     public boolean backspaceCompare(String s, String t) {
-        // TODO: implement your solution
-        throw new UnsupportedOperationException("TODO");
+        if(s.equals(t)||(s.length()==0&&t.length()==0))return true;
+        int i=s.length()-1;
+        int j=t.length()-1;
+        while (i>=0&&j>=0) {
+            i=nextValidIndex(s,i);
+            j=nextValidIndex(t,j);
+            if(i<0&&j<0)return true;
+            if(i<0||j<0)return false;
+            else if(s.charAt(i)==t.charAt(j)){
+                i--;
+                j--;
+            }else return false;
+        }
+        if(i<0&&j<0)return true;
+        
+        if(i>=0)i=nextValidIndex(s,i);
+        else j=nextValidIndex(t,j);
+        if(i==j)return true;
+        
+        return false;
+    }
+    public int nextValidIndex(String s,int i){
+        int skip=0;
+        while(i>=0){
+            if(s.charAt(i)=='#'){
+                skip++;
+                i--;
+            }else if(skip>0){
+                skip--;
+                i--;
+            }else break;
+        }
+        return i;
     }
 
     public static void main(String[] args) {
-        // TODO: test with the examples in QUESTION.md
-        // e.g.  System.out.println(new Answer()....);
+        System.out.println(new Answer().backspaceCompare("#abc","abc"));
     }
 }
 
