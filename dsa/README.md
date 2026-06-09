@@ -960,6 +960,80 @@ int expand(String s, int L, int R) {
 - **⏱️ Complexity:** Time O(n²); Space O(1).
 - **💡 Remember-it tip:** "Pick a mirror, grow outward." Remember odd AND even centers. Drill: *Palindromic Substrings (LC 647)*, *Valid Palindrome (LC 125)*.
 
+#### 📚 Deep dive — worked examples
+
+**The idea:** every palindrome is symmetric around a **center**. Instead of checking all substrings (O(n³)), stand at each center and **push two pointers outward** while `s[L]==s[R]`.
+
+**🔑 Odd AND even centers (the trap):** a center can sit **on a char** (odd length: `aba`) or **between two chars** (even length: `bb`). A length-`n` string has **`2n−1` centers** = `n` single-char + `n−1` between-char. Try **both** at every index, or you miss every even palindrome.
+```
+ s =  b   a   b   a   d        (n = 5)
+      ●   ●   ●   ●   ●        5 odd  centers (on a char)
+        ◦   ◦   ◦   ◦          4 even centers (between chars)   → total 2n−1 = 9
+```
+
+**The expand helper:**
+```java
+int expand(String s, int L, int R) {
+    while (L >= 0 && R < s.length() && s.charAt(L) == s.charAt(R)) { L--; R++; }
+    return R - L - 1;     // length once it stops (mismatch OR edge)
+}
+```
+*Why `R−L−1`?* When the loop stops, `L`/`R` each moved one step too far; the real palindrome is `[L+1 .. R-1]`, length `(R-1) − (L+1) + 1 = R − L − 1`.
+
+**① Odd — `expand("aba", 1, 1)`**
+```
+ L=R=1 'b' → L=0,R=2 : 'a'=='a' ✓ → L=-1,R=3 (edge) STOP
+ length = 3-(-1)-1 = 3  → "aba"
+```
+**② Even — `expand("cbbd", 1, 2)`**  (only even centers find this!)
+```
+ L=1,R=2 'b'=='b' ✓ → L=0,R=3 : 'c' vs 'd' ✗ STOP
+ length = 3-0-1 = 2  → "bb"
+```
+**③ Multiple palindromes — `"babad"`**
+```
+ i=1 'a': odd → 'b'=='b' → "bab" (len 3)  ★ best
+ i=2 'b': odd → 'a'=='a', then 'b' vs 'd' → "aba" (len 3, tie → keep first "bab")
+ → answer "bab"
+```
+**④ Even length-4 — `expand("abba", 1, 2)`**
+```
+ 'b'=='b' ✓ → 'a'=='a' ✓ → edge STOP → length 4 → "abba"
+```
+
+**Recover start/length from a center** (works for both parities via integer division):
+```java
+start = i - (len - 1) / 2;   // then s.substring(start, start + len)
+```
+```
+ "bab" len3 i1 → start=0     "bb" len2 i1 → start=1     "abba" len4 i1 → start=0
+```
+
+**🧩 Edge-capped showcase — `"aaaabbbbaaaabbbbaaaaabbbbaaaabbbb"`** (the odd `aaaaa` block centered at index 18 is the axis):
+```
+ expand odd from i=18:  aaaaa ✓ → bbbb↔bbbb ✓ → aaaa↔aaaa ✓ → bbbb↔bbbb ✓
+   r=14: L=4, R=32  'b'=='b' ✓   (R now at the RIGHT EDGE)
+   r=15: R=33 → OUT OF BOUNDS → STOP
+ length 29 → "bbbbaaaabbbbaaaaabbbbaaaabbbb"   (leading aaaa left out — no room to mirror it)
+```
+👉 It stopped on the **edge**, not a mismatch — that's the *other* way `expand` terminates.
+
+**Full solution:**
+```java
+public String longestPalindrome(String s) {
+    if (s == null || s.isEmpty()) return "";
+    int start = 0, maxLen = 1;                                       // a single char is a palindrome
+    for (int i = 0; i < s.length(); i++) {
+        int len = Math.max(expand(s, i, i), expand(s, i, i + 1));    // odd + even centers
+        if (len > maxLen) { maxLen = len; start = i - (len - 1) / 2; }
+    }
+    return s.substring(start, start + maxLen);
+}
+```
+**⏱️ O(n²) time, O(1) space.** Cousins: *Palindromic Substrings (LC 647)* — sum each expansion's palindrome count instead of tracking the longest; *Valid Palindrome (LC 125)* — two pointers from the ends inward.
+
+**⚠️ Don't eyeball symmetry:** a string can have a perfectly centered char and lots of `aba` motifs yet **not** be a palindrome — you must verify the mirror outward. (e.g. `abaaaba…z` *looks* symmetric, but its longest palindrome is only `7`.)
+
 ### In-place Array Modification
 
 [🔝 Back to index](#index)
