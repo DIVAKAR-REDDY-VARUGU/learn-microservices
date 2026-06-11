@@ -111,7 +111,7 @@ public class Test {
         check("large target one huge", 100, new int[]{10, 20, 100, 5}, 1);
 
         // Corner: shrinking matters (long prefix then big)
-        check("shrink from left", 8, new int[]{1, 2, 3, 4}, 2);
+        check("shrink from left", 8, new int[]{1, 2, 3, 4}, 3); // shortest >=8 is [2,3,4]=9 (len 3); no len-2 reaches 8
 
         // Corner: monotonic increasing
         check("increasing", 11, new int[]{1, 2, 3, 4, 5}, 3);

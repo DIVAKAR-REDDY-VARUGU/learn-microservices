@@ -6,13 +6,24 @@ import java.util.*;
 public class Answer {
 
     public int minSubArrayLen(int target, int[] nums) {
-        // TODO: implement your solution
-        throw new UnsupportedOperationException("TODO");
+       int len=Integer.MAX_VALUE;
+       int i=0;
+       int j=0;
+       int sum=0;
+       while(i<nums.length){
+
+            sum+=nums[i];
+            while(sum>=target){
+                len=Math.min(len,i-j+1);
+                sum-=nums[j++];
+            }
+            i++;
+       }
+       return len==Integer.MAX_VALUE?0:len;
     }
 
     public static void main(String[] args) {
-        // TODO: test with the examples in QUESTION.md
-        // e.g.  System.out.println(new Answer()....);
+        System.out.println(new Answer().minSubArrayLen(7,new int[]{2,3,1,2,4,5}));
     }
 }
 
