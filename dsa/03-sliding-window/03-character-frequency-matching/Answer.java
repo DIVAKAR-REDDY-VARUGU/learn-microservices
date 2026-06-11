@@ -6,13 +6,31 @@ import java.util.*;
 public class Answer {
 
     public List<Integer> findAnagrams(String s, String p) {
-        // TODO: implement your solution
-        throw new UnsupportedOperationException("TODO");
+
+        int[] pAlpCount=new int[26];
+        for(char c:p.toCharArray()){
+            pAlpCount[c-'a']++;
+        }
+        int[] tAlpCount=new int[26];
+        for(int i=0;i<p.length()&&i<s.length();i++){
+            tAlpCount[s.charAt(i)-'a']++;
+        }
+        
+        ArrayList<Integer> res=new ArrayList<>();
+        if(Arrays.equals(pAlpCount, tAlpCount))res.add(0);
+        
+        for(int i=p.length();i<s.length();i++){
+            tAlpCount[s.charAt(i)-'a']++;
+            tAlpCount[s.charAt(i-p.length())-'a']--;
+            
+            if(Arrays.equals(pAlpCount, tAlpCount))res.add(i-p.length()+1);
+
+        }
+        return res;
     }
 
     public static void main(String[] args) {
-        // TODO: test with the examples in QUESTION.md
-        // e.g.  System.out.println(new Answer()....);
+        System.out.println(new Answer().findAnagrams("ab","cd"));
     }
 }
 

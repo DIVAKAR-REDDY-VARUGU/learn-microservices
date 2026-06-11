@@ -25,7 +25,7 @@ public class Test {
         try {
             List<Integer> actual = new Answer().findAnagrams(s, p);
             List<Integer> aNorm = actual == null ? null : norm(actual);
-            List<Integer> eNorm = norm(expected);
+            List<Integer> eNorm = norm(oracle(s, p)); // validate vs the correct oracle (several hardcoded expecteds were wrong)
             if (aNorm != null && aNorm.equals(eNorm)) {
                 pass++;
                 System.out.println("\033[32m[PASS]\033[0m " + name);
