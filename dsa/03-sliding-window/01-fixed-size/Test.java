@@ -97,7 +97,7 @@ public class Test {
         check("all zeros", new int[]{0, 0, 0, 0}, 2, 0.0);
 
         // Corner: all negatives, window of 2
-        check("all negatives k=2", new int[]{-1, -12, -5, -6, -50, -3}, 2, -4.0);
+        check("all negatives k=2", new int[]{-1, -12, -5, -6, -50, -3}, 2, -5.5); // best window [-5,-6] avg -5.5
 
         // Corner: max window at the very start
         check("max at start", new int[]{10, 10, 1, 1, 1}, 2, 10.0);

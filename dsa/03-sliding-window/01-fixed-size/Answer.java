@@ -6,8 +6,16 @@ import java.util.*;
 public class Answer {
 
     public double findMaxAverage(int[] nums, int k) {
-        // TODO: implement your solution
-        throw new UnsupportedOperationException("TODO");
+        int sum=0;
+        // first window
+        for(int i=0;i<k;i++)sum+=nums[i];
+        
+        int max=sum;
+       for(int i=k;i<nums.length;i++){
+            sum+=nums[i]-nums[i-k];
+            max=Math.max(max, sum);
+       }
+       return (double)max/(double)k;
     }
 
     public static void main(String[] args) {
