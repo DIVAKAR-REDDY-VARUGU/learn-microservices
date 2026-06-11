@@ -3,6 +3,8 @@
 A hands-on learning journal where I build microservices **twice — once in NestJS, once in Spring Boot** — to truly understand the patterns (not just one framework). The end goal is a small **polyglot system** that demonstrates the hard parts: gRPC, Kafka, Redis pub/sub, and the **Saga pattern** for transactions across services.
 
 > This README *is* the course. Every lesson is logged here: the concept, **my doubts**, the explanations, **my mistakes**, and the **optimized approaches** — so it doubles as my study notes and a portfolio of how I learned.
+>
+> 📂 **Interview prep:** [`interview-prep/`](interview-prep/) — [Wells Fargo R2](interview-prep/wells-fargo-round2.md) · [Kafka from zero](interview-prep/kafka-from-scratch.md) · [GraphQL from zero](interview-prep/graphql-from-zero.md) · [REST↔GraphQL flows](interview-prep/rest-vs-graphql-flows.md) · [WebSockets from zero](interview-prep/websockets-from-zero.md) · [Pixentech Senior Backend](interview-prep/pixentech-senior-backend.md)
 
 ---
 
