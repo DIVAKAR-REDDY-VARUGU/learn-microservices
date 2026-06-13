@@ -6,8 +6,16 @@ import java.util.*;
 public class Answer {
 
     public int findMin(int[] nums) {
-        // TODO: implement your solution
-        throw new UnsupportedOperationException("TODO");
+        int s=0,e=nums.length-1,mid;
+        while (s<e) {
+            mid=s+(e-s)/2;
+            if(nums[mid]>nums[e]){
+                s=mid+1;
+            }else{
+                e=mid;
+            }
+        }
+        return nums[s];
     }
 
     public static void main(String[] args) {
