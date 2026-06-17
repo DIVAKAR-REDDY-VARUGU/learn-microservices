@@ -6,13 +6,25 @@ import java.util.*;
 public class Answer {
 
     public boolean isValid(String s) {
-        // TODO: implement your solution
-        throw new UnsupportedOperationException("TODO");
+        HashMap<Character,Character> close=new HashMap<>();
+        close.put('(',')');
+        close.put('{','}');
+        close.put('[',']');
+
+        ArrayDeque<Character> stack=new ArrayDeque<>();
+        for(Character c:s.toCharArray()){
+            if(!close.containsKey(c)){
+                if(close.get(stack.pollLast())!=c)return false;
+            }else{
+                stack.add(c);
+            }
+        }
+        return stack.isEmpty();
+
     }
 
     public static void main(String[] args) {
-        // TODO: test with the examples in QUESTION.md
-        // e.g.  System.out.println(new Answer()....);
+        System.out.println(new Answer().isValid("(){}[]"));
     }
 }
 
