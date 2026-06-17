@@ -6,13 +6,22 @@ import java.util.*;
 public class Answer {
 
     public int[] dailyTemperatures(int[] temperatures) {
-        // TODO: implement your solution
-        throw new UnsupportedOperationException("TODO");
+        int[] arr=new int[temperatures.length];
+        ArrayDeque<Integer> stack=new ArrayDeque<>();
+        for(int i=0;i<temperatures.length;i++){
+            while(!stack.isEmpty()&&temperatures[i]>temperatures[stack.peekLast()]){
+                int j=stack.pollLast();
+                arr[j]=i-j;
+            }
+
+            stack.add(Integer.valueOf(i));
+
+        }
+        return arr;
     }
 
     public static void main(String[] args) {
-        // TODO: test with the examples in QUESTION.md
-        // e.g.  System.out.println(new Answer()....);
+        System.out.println(Arrays.toString(new Answer().dailyTemperatures(new int[]{73, 74, 75, 71, 69, 72, 76, 73})));
     }
 }
 
