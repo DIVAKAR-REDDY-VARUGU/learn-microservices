@@ -150,7 +150,9 @@ public class Test {
             int firstBad = -1;
             for (int t = 0; t < 500; t++) {
                 String[] toks = buildRandomRPN(rnd, 1 + rnd.nextInt(40));
-                int exp = oracle(toks);
+                int exp;
+                try { exp = oracle(toks); }
+                catch (ArithmeticException ae) { continue; } // skip /0 expressions (invalid per LC 150)
                 int act;
                 try { act = new Answer().evalRPN(toks.clone()); } catch (Throwable th) { act = exp + 1; }
                 if (act != exp) { allOk = false; firstBad = t; break; }
@@ -214,39 +216,42 @@ public class Test {
     // guaranteed to keep all intermediate results within int range by using small operands
     // and skipping division by zero. Returns a syntactically valid RPN token array.
     static String[] buildRandomRPN(Random rnd, int extraOps) {
-        // Start with one operand, then repeatedly either push an operand or apply an operator
-        // (only when at least 2 values are on the virtual stack). End with exactly one value.
+        // Simulate the ACTUAL stack values (same int arithmetic as the oracle) so we never emit a
+        // '/' whose divisor is 0 — this catches COMPUTED zeros (e.g. "5 5 -"), not just literal "0".
         List<String> toks = new ArrayList<>();
-        int stackSize = 0;
-        // first operand
-        toks.add(Integer.toString(rnd.nextInt(401) - 200)); // [-200,200]
-        stackSize = 1;
+        Deque<Integer> vals = new ArrayDeque<>();
+        int first = rnd.nextInt(401) - 200; // [-200,200]
+        toks.add(Integer.toString(first));
+        vals.push(first);
         for (int i = 0; i < extraOps; i++) {
-            boolean canOp = stackSize >= 2;
+            boolean canOp = vals.size() >= 2;
             boolean doOp = canOp && rnd.nextBoolean();
             if (doOp) {
+                int b = vals.pop();             // right operand (divisor for '/')
+                int a = vals.pop();             // left operand
                 int o = rnd.nextInt(4);
                 String op = (o == 0) ? "+" : (o == 1) ? "-" : (o == 2) ? "*" : "/";
-                if (op.equals("/")) {
-                    // ensure the right operand (last pushed value) is non-zero; if the
-                    // immediately preceding token is the literal "0", switch to '+'.
-                    String lastTok = toks.get(toks.size() - 1);
-                    boolean lastIsZeroLiteral = lastTok.equals("0");
-                    if (lastIsZeroLiteral) op = "+";
+                if (op.equals("/") && b == 0) op = "+"; // zero divisor (literal OR computed) → switch to '+'
+                int r;
+                switch (op) {
+                    case "+": r = a + b; break;
+                    case "-": r = a - b; break;
+                    case "*": r = a * b; break;
+                    default:  r = a / b; break;
                 }
                 toks.add(op);
-                stackSize -= 1; // two popped, one pushed
+                vals.push(r);
             } else {
                 int v = rnd.nextInt(401) - 200;
-                if (v == 0) v = 1; // avoid trailing zero operands that could feed a later '/'
                 toks.add(Integer.toString(v));
-                stackSize += 1;
+                vals.push(v);
             }
         }
         // collapse to a single value with additions (safe, no div-by-zero)
-        while (stackSize >= 2) {
+        while (vals.size() >= 2) {
+            int b = vals.pop(), a = vals.pop();
             toks.add("+");
-            stackSize -= 1;
+            vals.push(a + b);
         }
         return toks.toArray(new String[0]);
     }

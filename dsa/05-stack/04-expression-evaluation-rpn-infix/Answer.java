@@ -6,8 +6,37 @@ import java.util.*;
 public class Answer {
 
     public int evalRPN(String[] tokens) {
-        // TODO: implement your solution
-        throw new UnsupportedOperationException("TODO");
+        ArrayDeque<Integer> stack=new ArrayDeque<>();
+
+        for(String s:tokens){
+            calculateAndPush(stack, s);
+        }
+        return (int)stack.pop();
+
+    }
+    public void calculateAndPush(ArrayDeque stack,String op){
+        switch (op) {
+            case "+":
+            case "-":
+            case "*":
+            case "/":{
+                int b=(int)stack.pop();
+                int a=(int)stack.pop();
+                stack.push(
+                    Integer.valueOf(switch (op) {
+                        case "+" -> a+b;
+                        case "-" -> a-b;
+                        case "*" -> a*b;
+                        default -> a/b;
+                    })
+                );
+            }
+                
+                break;
+        
+            default:
+                stack.push(Integer.parseInt(op));
+        }
     }
 
     public static void main(String[] args) {
