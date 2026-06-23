@@ -6,8 +6,33 @@ import java.util.*;
 public class Answer {
 
     public String decodeString(String s) {
-        // TODO: implement your solution
-        throw new UnsupportedOperationException("TODO");
+        ArrayDeque<Integer> countStack=new ArrayDeque<>();
+        ArrayDeque<String> strStack=new ArrayDeque<>();
+
+        StringBuilder currentStr=new StringBuilder();
+        int currentCount=0;
+        for(char c:s.toCharArray()){
+            if(Character.isDigit(c)){
+                currentCount=currentCount*10 + (c-'0');
+            }
+            else if(c=='['){
+                countStack.add(Integer.valueOf(currentCount));
+                strStack.add(currentStr.toString());
+                currentCount=0;
+                currentStr=new StringBuilder();
+            }else if(c==']'){
+                int repeat=countStack.pollLast();
+                StringBuilder preStr=new StringBuilder(strStack.pollLast());
+                while (repeat!=0) {
+                    preStr.append(currentStr);
+                    repeat--;
+                }
+                currentStr=preStr;
+            }else{
+                currentStr.append(c);
+            }
+        }
+        return currentStr.toString();
     }
 
     public static void main(String[] args) {
