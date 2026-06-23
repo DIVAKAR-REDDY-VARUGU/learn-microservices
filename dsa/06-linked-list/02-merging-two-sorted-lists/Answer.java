@@ -6,8 +6,25 @@ import java.util.*;
 public class Answer {
 
     public ListNode mergeTwoLists(ListNode list1, ListNode list2) {
-        // TODO: implement your solution
-        throw new UnsupportedOperationException("TODO");
+        
+        ListNode head=new ListNode(0);
+        ListNode tail=head;
+
+
+        while (list1!=null&&list2!=null) {
+            if(list1.val<list2.val){
+                tail.next=list1;
+                tail=list1;
+                list1=list1.next;
+            }else{
+                tail.next=list2;
+                tail=list2;
+                list2=list2.next;
+            }
+        }
+        tail.next=(list1==null)?list2:list1;
+        return head.next;
+
     }
 
     public static void main(String[] args) {
