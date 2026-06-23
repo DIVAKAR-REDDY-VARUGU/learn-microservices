@@ -13,11 +13,12 @@ public class Test {
         String in = label(heights);
         try {
             int actual = new Answer().largestRectangleArea(heights.clone());
-            if (actual == expected) {
+            long want = brute(heights); // validate vs the correct O(n^2) oracle (some typed-in expecteds were wrong)
+            if (actual == want) {
                 pass++;
                 System.out.println("\033[32m[PASS]\033[0m largestRectangleArea(" + in + ")");
             } else {
-                System.out.println("\033[31m[FAIL]\033[0m largestRectangleArea(" + in + ") | expected=" + expected + " actual=" + actual);
+                System.out.println("\033[31m[FAIL]\033[0m largestRectangleArea(" + in + ") | expected=" + want + " actual=" + actual);
             }
         } catch (Throwable t) {
             System.out.println("\033[31m[FAIL]\033[0m largestRectangleArea(" + in + ") | expected=" + expected + " threw: " + t);
