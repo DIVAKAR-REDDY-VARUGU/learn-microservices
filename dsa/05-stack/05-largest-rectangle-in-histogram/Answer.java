@@ -11,10 +11,6 @@ public class Answer {
         ArrayDeque<Integer> stack=new ArrayDeque<>(heights.length);
         int area=0;
         for(int i=0;i<heights.length;i++){
-            if(stack.isEmpty()){
-                stack.add(Integer.valueOf(i));
-                continue;
-            }
             
             while(!stack.isEmpty()&&heights[i]<heights[stack.peekLast()]){
                 int height=heights[stack.pollLast()];
