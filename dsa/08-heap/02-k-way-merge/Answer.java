@@ -6,8 +6,23 @@ import java.util.*;
 public class Answer {
 
     public ListNode mergeKLists(ListNode[] lists) {
-        // TODO: implement your solution
-        throw new UnsupportedOperationException("TODO");
+        PriorityQueue<ListNode> pq=new PriorityQueue<>((a,b)->a.val-b.val);
+        for(var n:lists)if(n!=null)pq.offer(n);
+        
+        ListNode temp=new ListNode(0);
+        ListNode tail=temp;
+
+        while(pq.size()!=0){
+            ListNode minNode=pq.poll();
+            tail.next=minNode;
+            tail=minNode;
+            if(minNode.next!=null)pq.offer(minNode.next);
+        }
+
+        return temp.next;
+        
+
+
     }
 
     public static void main(String[] args) {
