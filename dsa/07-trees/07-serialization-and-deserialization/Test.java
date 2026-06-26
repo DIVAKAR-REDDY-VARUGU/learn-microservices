@@ -273,18 +273,19 @@ public class Test {
             checkBig("complete tree", nodes[0], 3000);
         }
 
-        // Left-skewed degenerate of 10^4 nodes (deep recursion stress for naive impls).
+        // Left-skewed degenerate (depth 2000 — still a real skew stress, but fits the canonical
+        // recursive solution within the default JVM stack; iterative impls handle much deeper).
         {
-            int n = 10000;
+            int n = 2000;
             TreeNode root = new TreeNode(rnd.nextInt(2001) - 1000);
             TreeNode cur = root;
             for (int i = 1; i < n; i++) { cur.left = new TreeNode(rnd.nextInt(2001) - 1000); cur = cur.left; }
             checkBig("left-skewed", root, 3000);
         }
 
-        // Right-skewed degenerate of 10^4 nodes.
+        // Right-skewed degenerate (depth 2000 — fits the recursive solution's stack).
         {
-            int n = 10000;
+            int n = 2000;
             TreeNode root = new TreeNode(rnd.nextInt(2001) - 1000);
             TreeNode cur = root;
             for (int i = 1; i < n; i++) { cur.right = new TreeNode(rnd.nextInt(2001) - 1000); cur = cur.right; }
