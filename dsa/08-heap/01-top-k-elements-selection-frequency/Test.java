@@ -66,15 +66,30 @@ public class Test {
         return top;
     }
 
+    // A returned set is a VALID top-k iff: exactly k distinct values, every returned value's
+    // frequency >= the boundary (k-th largest) frequency, and every value strictly ABOVE the
+    // boundary is included. Accepts any valid answer when the boundary frequency has ties.
+    static boolean isValidTopK(int[] nums, int k, int[] actual) {
+        if (actual == null || actual.length != k) return false;
+        Map<Integer,Integer> freq = new HashMap<>();
+        for (int v : nums) freq.merge(v, 1, Integer::sum);
+        Set<Integer> got = new HashSet<>();
+        for (int v : actual) got.add(v);
+        if (got.size() != k) return false;
+        List<Integer> freqs = new ArrayList<>(freq.values());
+        freqs.sort(Collections.reverseOrder());
+        int boundary = freqs.get(k - 1);
+        for (int v : got) { Integer f = freq.get(v); if (f == null || f < boundary) return false; }
+        for (Map.Entry<Integer,Integer> e : freq.entrySet())
+            if (e.getValue() > boundary && !got.contains(e.getKey())) return false;
+        return true;
+    }
+
     static void check(String label, int[] nums, int k, int[] expected) {
         total++;
         try {
             int[] actual = new Answer().topKFrequent(nums.clone(), k);
-            int[] e = expected.clone();
-            int[] a = actual == null ? null : actual.clone();
-            if (a != null) { Arrays.sort(a); }
-            Arrays.sort(e);
-            if (a != null && Arrays.equals(a, e)) {
+            if (isValidTopK(nums, k, actual)) {
                 pass++;
                 System.out.println("\033[32m[PASS]\033[0m " + label);
             } else {

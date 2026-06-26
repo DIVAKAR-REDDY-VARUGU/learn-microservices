@@ -6,8 +6,20 @@ import java.util.*;
 public class Answer {
 
     public int[] topKFrequent(int[] nums, int k) {
-        // TODO: implement your solution
-        throw new UnsupportedOperationException("TODO");
+       HashMap<Integer,Integer> numberCountMap=new HashMap<>();
+       for(int i:nums)numberCountMap.merge(Integer.valueOf(i), 1, (a,b)->a+b);
+
+       PriorityQueue<int[]> queueOfK=new PriorityQueue<>((a,b)->a[1]-b[1]);
+
+       for(var entry:numberCountMap.entrySet()){
+            queueOfK.add(new int[]{entry.getKey(),entry.getValue()});
+            if(queueOfK.size()>k)queueOfK.poll();
+       }
+       int[] res=new int[k];
+       while(queueOfK.size()>0){
+            res[--k]=queueOfK.poll()[0];
+       }
+       return res;
     }
 
     public static void main(String[] args) {
