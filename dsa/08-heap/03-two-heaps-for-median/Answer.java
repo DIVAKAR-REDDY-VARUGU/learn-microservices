@@ -6,13 +6,22 @@ import java.util.*;
 public class Answer {
 
     class MedianFinder {
-    public MedianFinder() {}
-    public void addNum(int num) {}
-    public double findMedian() {}
-} {
-        // TODO: implement your solution
-        throw new UnsupportedOperationException("TODO");
-    }
+        PriorityQueue<Integer> left_max_heap=new PriorityQueue<>((a,b)->b-a);
+        PriorityQueue<Integer> right_min_heap=new PriorityQueue<>();
+        
+        public MedianFinder() {}
+        
+        public void addNum(int num) {
+            left_max_heap.offer(Integer.valueOf(num));
+            right_min_heap.offer(left_max_heap.poll());
+            if(left_max_heap.size()<right_min_heap.size())left_max_heap.offer(right_min_heap.poll());
+        }
+        
+        public double findMedian() {
+            return (left_max_heap.size()>right_min_heap.size())?left_max_heap.peek():(left_max_heap.peek()+right_min_heap.peek())/2.0;
+        }
+    } 
+    
 
     public static void main(String[] args) {
         // TODO: test with the examples in QUESTION.md
