@@ -15,8 +15,8 @@ public class Test {
         check("single task, large n", "A", 100, 1);
         check("all same, n=1", "AAAA", 1, 7);          // A _ A _ A _ A
         check("all distinct", "ABCDEF", 2, 6);
-        check("two tasks alternating", "AABB", 2, 6);   // A B _ A B
-        check("dominant task forces idle", "AAAAB", 2, 11); // A B _ A _ _ A _ _ A
+        check("two tasks alternating", "AABB", 2, 5);   // A B _ A B  (5 intervals)
+        check("dominant task forces idle", "AAAAB", 2, 10); // A B _ A _ _ A _ _ A  (10 intervals)
         check("enough fillers, no idle", "AAABBBCCC", 2, 9);
         check("ties among tops", "AABBCC", 2, 6);       // perfect fill
         check("single repeated pair small gap", "AB", 0, 2);
@@ -32,7 +32,7 @@ public class Test {
         check("three-way tie at top, n=2", "AAABBBCCC", 2, 9);
         check("max gap with single repeated", "AAA", 100, 203); // A +100idle+ A +100idle+ A
         check("heavy duplicates one letter n=3", "AAAAA", 3, 17); // (5-1)*4 + 1
-        check("two tops plus fillers exactly fit", "AAABBBCC", 2, 9);
+        check("two tops plus fillers exactly fit", "AAABBBCC", 2, 8); // A B C A B C A B (8)
         check("frequent pair tight gap n=1", "AABB", 1, 4); // A B A B
         check("long run alternating, n=1", "ABABAB", 1, 6);
         check("dominant with idle, n=4", "AAAB", 4, 11); // A B _ _ _ A _ _ _ _ A

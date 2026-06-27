@@ -6,8 +6,33 @@ import java.util.*;
 public class Answer {
 
     public int leastInterval(char[] tasks, int n) {
-        // TODO: implement your solution
-        throw new UnsupportedOperationException("TODO");
+        HashMap<Character,Integer> taskCountMap=new HashMap<>();
+        for(Character c:tasks)taskCountMap.merge(c,1,(a,b)->a+b);
+
+        PriorityQueue<Integer> pq=new PriorityQueue<>((a,b)->b-a); // max heap
+        for(Integer count:taskCountMap.values())pq.offer(count);
+
+        int time=0;
+
+        while (pq.size()!=0) {
+            ArrayList<Integer> temp=new ArrayList<>();
+            int carry=n+1;
+            while(carry>0&&pq.size()>0){
+                Integer top=pq.poll();
+                if(top>1)temp.add(top-1);
+                carry--;
+                time++;
+            }
+            for(var i:temp){
+                pq.offer(i);
+            }
+            if(pq.size()>0)time+=carry;
+        }
+
+        return time;
+
+
+
     }
 
     public static void main(String[] args) {
