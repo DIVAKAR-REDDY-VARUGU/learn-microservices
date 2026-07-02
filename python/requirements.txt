@@ -1,0 +1,30 @@
+# ── Python full-stack toolkit (learn-microservices/python) ────────────────
+# Install into the venv:
+#   .\.venv\Scripts\python.exe -m pip install -r requirements.txt
+
+# Data toolkit
+numpy
+pandas
+matplotlib
+seaborn
+openpyxl                    # read/write .xlsx (Excel uploads)
+
+# Web framework (FastAPI + ASGI server)
+fastapi
+uvicorn[standard]
+pydantic
+python-multipart           # form / file uploads
+
+# Database
+sqlalchemy
+psycopg2-binary            # PostgreSQL driver
+alembic                    # migrations
+
+# Auth
+python-jose[cryptography]  # JWT encode/decode
+passlib[bcrypt]            # password hashing
+
+# Tooling / tests
+ruff                       # linter + formatter
+pytest
+httpx                      # test client / HTTP calls
