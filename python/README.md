@@ -62,3 +62,11 @@ _Append as we go — doubts, explanations, mistakes, optimized approaches._
 - **Find index:** `l.index(x)` **raises `ValueError`** if absent (not -1). Use `l.index(x) if x in l else -1`;
   for dicts, `d.get(k, -1)` (= `getOrDefault`). try/except is the "EAFP" alternative.
 - `{}` is an empty **dict**; empty **set** is `set()`. Slicing `l[start:stop:step]`; negative index `l[-1]`.
+
+### Day 1 — Lesson 3: Control Flow
+- No braces — **indentation defines blocks**; `:` opens them. `elif` (not "else if"). Booleans are words: `and`/`or`/`not`.
+- Iterate items directly: `for x in coll:`. `enumerate(coll)` → index+value. `zip(a,b)` walks in parallel and
+  **stops at the shortest** (extra elements silently dropped).
+- `range(stop)` / `range(start, stop, step)`. Truthiness: empty list/dict/str, `0`, `None` are falsy → `if not x:`.
+- **Ternary is an expression** → both branches must be VALUES: `label = "big" if a>10 else "small"`
+  (don't put a `print()`/side-effect in a branch; assign/use the result instead).

@@ -17,7 +17,9 @@ del l[0] #delete first element
 print(l)
 
 #  to find/search the index
-print(l.index(25)) 
+print(26 in l) 
+
+print('---------------------------------------------')
 
 
 
@@ -38,6 +40,7 @@ print(len(t))
 
 
 
+print('---------------------------------------------')
 # dictionary 
 
 d={}
@@ -50,9 +53,12 @@ print(d["age"])
 for k,v in d.items():
     print(k,v)
 
+print(d.get("Divakar",-1))
 
 
 
+
+print('---------------------------------------------')
 
 
 
@@ -69,3 +75,5 @@ s.add(25)
 
 print(s)
 
+
+print(26 in s)
