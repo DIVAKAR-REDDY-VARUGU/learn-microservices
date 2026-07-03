@@ -70,3 +70,12 @@ _Append as we go — doubts, explanations, mistakes, optimized approaches._
 - `range(stop)` / `range(start, stop, step)`. Truthiness: empty list/dict/str, `0`, `None` are falsy → `if not x:`.
 - **Ternary is an expression** → both branches must be VALUES: `label = "big" if a>10 else "small"`
   (don't put a `print()`/side-effect in a branch; assign/use the result instead).
+
+### Day 1 — Lesson 4: Functions
+- `def name(params):` + indented body; no `return` → returns `None`. **Multiple return = a tuple** → unpack it.
+- Defaults `def f(a, b=5):`; keyword args call by name (order-free). `*args`→**tuple**, `**kwargs`→**dict**;
+  `*list` / `**dict` unpack at the **call site**.
+- Type hints `def add(a: int, b: int) -> int:` (FastAPI/Pydantic use these later).
+- ⚠️ **Mutable default footgun:** `def f(x=[])` reuses ONE list across calls → use `x=None; if x is None: x=[]`.
+- ⚠️ **Don't shadow built-ins** (`max min list dict sum id type`) with variable names → later `TypeError: 'int' object is not callable`.
+- 📛 **PEP 8:** `snake_case` funcs/vars · `PascalCase` classes · `UPPER_CASE` constants (not Java/JS camelCase).
