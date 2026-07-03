@@ -1,50 +1,66 @@
-from fastapi import FastAPI
+import threading
+
+from fastapi import FastAPI,responses,HTTPException
 from pydantic import BaseModel
 
+lock = threading.Lock()
+
 '''
-
-creating task create DTO
-
+creating task create DTO and update Task DTO
 '''
 class TaskCreateDto(BaseModel):
-    id:int
     title:str
     isDone:bool
 
+class TaskPatchDto(BaseModel):
+    title:str|None=None
+    isDone:bool|None=None
+
+
+
+id=1
+def nextId():
+    global id
+    with lock:
+        id+=1
+        return id
+    
 tasks:list[dict]=[]
 
 
 app=FastAPI()
 
 
+
+
+def findTask(id:int):
+    for task in tasks:
+        if task["id"]==id:
+            return task
+    raise HTTPException(status_code=404,detail="Task Not Found")
+
+
+
+
+
+
+
+
+
+
+
 # GET / → returns a {"message": ...} dict.
 @app.get("/")
 def root():
-    return {"message":"go to http://127.0.0.1:8000/docs for docs"}
+    return responses.RedirectResponse(url="/docs")
 
-
-
-# GET /tasks/{task_id} with task_id: int → returns the id.
-@app.get("/tasks/{taskId}")
-def getTask(taskId:int):
-    filteredTask=list(filter(lambda task:task["id"]==taskId,tasks))
-    if len(filteredTask)==0:
-        return {"message":"task not found"}
-    return filteredTask[0]
-
-
-# GET /hello with a query param name: str = "world".
-@app.get("/hello")
-def hello(name:str="default str value"):
-    return f"greetings from {name}"
 
 
 @app.post("/create")
 def create(task:TaskCreateDto):
     task={
-        "id":task.id,
-        "title":task.title,
-        "isDone":task.isDone
+        "id":nextId(),
+        **task.model_dump()
     }
     tasks.append(task)
     return {"message":"task created successfully","task":task}
@@ -53,10 +69,37 @@ def create(task:TaskCreateDto):
 def getTasks():
     return tasks
 
+# GET /tasks/{task_id} with task_id: int → returns the id.
+@app.get("/tasks/{taskId}")
+def getTask(taskId:int):
+    return findTask(taskId)
+
+
+@app.put("/tasks/{taskId}")
+def updateTask(taskId:int,body:TaskCreateDto):
+    task=findTask(taskId)
+    task.update(body.model_dump())
+    return task
+
+@app.patch("/tasks/{taskId}")
+def patchTask(taskId:int,body:TaskPatchDto):
+    task=findTask(taskId)
+    task.update(body.model_dump(exclude_unset=True))
+    return task
+
+@app.delete("/tasks/{task_id}", status_code=204)
+def delete_task(task_id: int):
+    task = findTask(task_id)
+    tasks.remove(task)
+    return None                               
+
+
+
+
+
+
 
 # Run uvicorn main:app --reload, then open /, /docs, and /tasks/7 in your browser.
-
-
 
 
 

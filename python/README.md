@@ -119,3 +119,11 @@ _Append as we go — doubts, explanations, mistakes, optimized approaches._
 - FastAPI routing rule: a **simple-typed** param (int/str) = path/query; a **BaseModel** param = the JSON **body** (no `@Body()` decorator).
 - Design/REST notes: **server assigns `id`** (don't accept it from the client); use `POST /tasks` not `POST /create`
   (the HTTP verb already means "create"); for not-found `raise HTTPException(status_code=404)`, not a 200 + message.
+
+### Day 2 — Lesson 10: CRUD · status codes · HTTPException · PATCH
+- Full CRUD: `@app.post(..., status_code=201)`, `@app.put` (full replace), `@app.patch` (partial), `@app.delete(..., status_code=204)`.
+- Errors: `raise HTTPException(status_code=404, detail=...)` — **first arg is the int status**. Not-found → 404, never 200+message.
+- **PATCH partial-update recipe:** a DTO with all-optional fields + `body.model_dump(exclude_unset=True)` (apply only the keys the
+  client actually sent). PUT replaces the whole resource; PATCH touches only what changed.
+- ⚠️ Pydantic gotcha: `x: T | None` = **required** but nullable; `x: T | None = None` = **optional** (omittable). PATCH needs `= None`.
+- The field name must be **consistent** across create DTO + patch DTO + stored record, else `.update()` adds a stray key.
