@@ -105,3 +105,11 @@ _Append as we go — doubts, explanations, mistakes, optimized approaches._
   assigning `self.__radius` directly **bypasses** it.
 - `@dataclass` auto-generates **`__init__`, `__repr__`, `__eq__`** from annotated fields (NOT `__str__` — print falls back to `__repr__`).
   This is the foundation Pydantic (FastAPI models) builds on.
+
+### Day 2 — Lesson 8: FastAPI — first API
+- `@app.get("/")` = route + method (= Nest `@Get()`); return a dict/str → auto-JSON. Run `uvicorn main:app --reload`.
+- Path param: `@app.get("/tasks/{task_id}")` + `def f(task_id: int)` — name in path MUST match the param; `int`
+  auto-parses & validates (bad type → **422**). Query param = a default-valued arg `name: str = "world"` → `/hello?name=x`.
+- **Free interactive docs at `/docs`** (Swagger) + `/openapi.json` — generated from type hints, zero config.
+- ⚠️ **JS→Python trap:** dict keys are **evaluated expressions**, not implicit strings. `{task: {id: x}}` →
+  `NameError: name 'task' is not defined`. Quote them: `{"task": {"id": x}}`.
