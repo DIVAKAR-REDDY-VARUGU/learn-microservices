@@ -89,3 +89,10 @@ _Append as we go — doubts, explanations, mistakes, optimized approaches._
 - ⚠️ `print(gen)` shows `<generator object ...>` (its repr), **not** the values — a generator isn't a container.
   Consume it to see values: `list(gen)` / loop / `sum(gen)`. After one full pass it's empty.
 - See it: `sys.getsizeof([...])` grows with n; `sys.getsizeof((...))` stays ~constant.
+
+### Day 2 — Lesson 6: Classes & OOP
+- `class Name:`; `__init__(self, ...)` = constructor; `self` = Java's `this` but **explicit** (first param of every method). **No `new`** — just `Task("x")`.
+- ⚠️ **No method overloading** — two `def __init__` → the 2nd silently **overwrites** the 1st. For an "optional" arg use ONE constructor with a **default** (`done=False`), not two constructors.
+- 🪤 `(name, bases, dict)` is the **metaclass** signature — not a normal constructor. Model real fields (`title`, `done`).
+- Dunders: `__init__` construct · `__str__` print/str (like `toString`) · `__repr__` debug (lists/REPL) · `__eq__` (`==`) · `__len__`.
+- `!r` in an f-string calls `repr()` on the value (adds quotes to strings). Constructors shouldn't `print()` (side-effect).
