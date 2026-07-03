@@ -113,3 +113,9 @@ _Append as we go — doubts, explanations, mistakes, optimized approaches._
 - **Free interactive docs at `/docs`** (Swagger) + `/openapi.json` — generated from type hints, zero config.
 - ⚠️ **JS→Python trap:** dict keys are **evaluated expressions**, not implicit strings. `{task: {id: x}}` →
   `NameError: name 'task' is not defined`. Quote them: `{"task": {"id": x}}`.
+
+### Day 2 — Lesson 9: Pydantic models + POST
+- `class TaskIn(BaseModel)` = request DTO; validation is baked into the **type** (no `@IsString()` needed) → missing/bad field = **422**.
+- FastAPI routing rule: a **simple-typed** param (int/str) = path/query; a **BaseModel** param = the JSON **body** (no `@Body()` decorator).
+- Design/REST notes: **server assigns `id`** (don't accept it from the client); use `POST /tasks` not `POST /create`
+  (the HTTP verb already means "create"); for not-found `raise HTTPException(status_code=404)`, not a 200 + message.
