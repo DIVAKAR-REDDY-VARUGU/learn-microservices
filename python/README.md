@@ -79,3 +79,13 @@ _Append as we go — doubts, explanations, mistakes, optimized approaches._
 - ⚠️ **Mutable default footgun:** `def f(x=[])` reuses ONE list across calls → use `x=None; if x is None: x=[]`.
 - ⚠️ **Don't shadow built-ins** (`max min list dict sum id type`) with variable names → later `TypeError: 'int' object is not callable`.
 - 📛 **PEP 8:** `snake_case` funcs/vars · `PascalCase` classes · `UPPER_CASE` constants (not Java/JS camelCase).
+
+### Day 1 — Lesson 5: Comprehensions + Generators  ✅ Phase 1 complete
+- Shape: `[EXPRESSION for ITEM in ITERABLE if CONDITION]` = map+filter in one line.
+  `{k: v for ...}` dict comp · `{x for ...}` set comp.
+- **Generator `(...)` = LAZY:** computes one value at a time, **O(1) memory**, **single-pass** (consumed once),
+  no index / no `len()`. `[...]` is **eager** (whole list, O(n), reusable). Use a generator for stream-once
+  (`sum`/`max`/`any`/`for`) and huge/infinite data.
+- ⚠️ `print(gen)` shows `<generator object ...>` (its repr), **not** the values — a generator isn't a container.
+  Consume it to see values: `list(gen)` / loop / `sum(gen)`. After one full pass it's empty.
+- See it: `sys.getsizeof([...])` grows with n; `sys.getsizeof((...))` stays ~constant.
