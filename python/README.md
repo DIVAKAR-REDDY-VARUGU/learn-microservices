@@ -96,3 +96,12 @@ _Append as we go — doubts, explanations, mistakes, optimized approaches._
 - 🪤 `(name, bases, dict)` is the **metaclass** signature — not a normal constructor. Model real fields (`title`, `done`).
 - Dunders: `__init__` construct · `__str__` print/str (like `toString`) · `__repr__` debug (lists/REPL) · `__eq__` (`==`) · `__len__`.
 - `!r` in an f-string calls `repr()` on the value (adds quotes to strings). Constructors shouldn't `print()` (side-effect).
+
+### Day 2 — Lesson 7: Inheritance · @property · @dataclass  ✅ Phase 2 complete
+- Inheritance: `class Dog(Animal):`; call parent via `super().__init__(...)`; override = just redefine (no `@Override`).
+- No `private` keyword: `_x` = "internal" by convention, `__x` = **name-mangled** (stronger hide).
+- `@property` = getter accessed like a **field** (no `()`); `@x.setter` for writes + validation.
+  ⚠️ The constructor must assign **through** the property (`self.radius = r`) so setter validation runs on construction too —
+  assigning `self.__radius` directly **bypasses** it.
+- `@dataclass` auto-generates **`__init__`, `__repr__`, `__eq__`** from annotated fields (NOT `__str__` — print falls back to `__repr__`).
+  This is the foundation Pydantic (FastAPI models) builds on.
