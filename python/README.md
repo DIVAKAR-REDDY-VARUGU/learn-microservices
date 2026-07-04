@@ -127,3 +127,12 @@ _Append as we go — doubts, explanations, mistakes, optimized approaches._
   client actually sent). PUT replaces the whole resource; PATCH touches only what changed.
 - ⚠️ Pydantic gotcha: `x: T | None` = **required** but nullable; `x: T | None = None` = **optional** (omittable). PATCH needs `= None`.
 - The field name must be **consistent** across create DTO + patch DTO + stored record, else `.update()` adds a stray key.
+
+### Day 3 — Lesson 11: Depends() — DI, guards, interceptors, DB sessions  ✅ Phase 3 (FastAPI) complete
+- `Depends(fn)` = FastAPI's DI. A dependency is a function; its return value is **injected**. FastAPI **unifies**
+  Nest's Guard / Pipe / Interceptor / Provider into this ONE primitive: raises → guard, returns → provider, yields → interceptor/resource.
+- Guard = a `Depends` that `raise HTTPException(...)` (rejects before the handler). Its params show up as query params in `/docs`.
+- `yield` dependency = setup → `yield` → teardown (`finally`): the pattern for per-request **DB sessions** & timers (teardown runs after the response).
+- Middleware = `@app.middleware("http")` wraps EVERY request/response (outermost). Convention: `async def m(request, call_next)` —
+  don't name the param `next` (shadows the built-in).
+- Flow: middleware(in) → deps [guard → db → timer] → handler → deps teardown (reverse) → middleware(out).

@@ -1,7 +1,8 @@
 import threading
-
-from fastapi import FastAPI,responses,HTTPException
+import time
+from fastapi import FastAPI,responses,HTTPException,Depends
 from pydantic import BaseModel
+
 
 lock = threading.Lock()
 
@@ -31,6 +32,48 @@ tasks:list[dict]=[]
 app=FastAPI()
 
 
+#  Middleware 
+@app.middleware("http")
+async def loggingMiddleware(req,next):
+    print("entered middleware")
+    response=await next(req)
+    print("done with operation")
+    return response
+
+
+# Guard 
+def tokenValidation(token:str):
+    if(token!="secret"):
+        raise HTTPException(401, "Invalid token")
+    return {"user": "Divakar"}   #get from redis 
+
+
+
+# Interceptor 
+def timer():
+    start=time.time()
+
+    try:
+        yield
+    finally:
+        end = time.time()
+        print("Request took", end-start)
+
+
+# DB connection 
+def get_db():
+
+    print("Open DB")
+
+    db = "connection"
+
+    try:
+        yield db
+
+    finally:
+        print("Close DB")
+
+
 
 
 def findTask(id:int):
@@ -57,7 +100,12 @@ def root():
 
 
 @app.post("/create")
-def create(task:TaskCreateDto):
+def create(
+    task:TaskCreateDto,
+    user=Depends(tokenValidation),
+    db=Depends(get_db),
+    _: None = Depends(timer)
+    ):
     task={
         "id":nextId(),
         **task.model_dump()
@@ -65,9 +113,12 @@ def create(task:TaskCreateDto):
     tasks.append(task)
     return {"message":"task created successfully","task":task}
 
+def pagination(skip: int = 0, limit: int = 10):   # a dependency = a function
+    return {"skip": skip, "limit": limit}
+
 @app.get("/tasks")
-def getTasks():
-    return tasks
+def getTasks(page:dict=Depends(pagination)):
+    return tasks[page["skip"] : page["skip"] + page["limit"]]
 
 # GET /tasks/{task_id} with task_id: int → returns the id.
 @app.get("/tasks/{taskId}")
