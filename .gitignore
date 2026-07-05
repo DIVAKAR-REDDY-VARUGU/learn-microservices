@@ -50,3 +50,6 @@ __pycache__/
 .ruff_cache/
 .mypy_cache/
 *.egg-info/
+# local SQLite DB files
+*.db
+*.sqlite3

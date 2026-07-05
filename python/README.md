@@ -136,3 +136,11 @@ _Append as we go — doubts, explanations, mistakes, optimized approaches._
 - Middleware = `@app.middleware("http")` wraps EVERY request/response (outermost). Convention: `async def m(request, call_next)` —
   don't name the param `next` (shadows the built-in).
 - Flow: middleware(in) → deps [guard → db → timer] → handler → deps teardown (reverse) → middleware(out).
+
+### Day 4 — Lesson 12: SQLAlchemy — persistence  (Phase 4 start)
+- 3 files: `database.py` (engine + `SessionLocal` + `Base` + `get_db`), `models.py` (Task entity), `main.py` (app + `create_all` + DTOs).
+- `Base.metadata.create_all(bind=engine)` = create the **TABLES** from the models (≈ TypeORM `synchronize` / JPA `ddl-auto`) — schema, **not** rows.
+- Auto-increment **PRIMARY KEY** replaces the hand-rolled `nextId()`+`lock`. SQLite = a file (`tasks.db`) → data survives restarts.
+- Create: `db.add` → `db.commit` → `db.refresh` (reload DB-assigned id). Read all: `db.query(Model).all()`.
+- `from_attributes=True` (Pydantic response DTO) reads fields off the ORM object.
+- ⚠️ `from database import ...` is **folder-relative** — run uvicorn from the folder where `main.py`/`database.py`/`models.py` live together.
