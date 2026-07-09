@@ -20,7 +20,7 @@ public class Answer {
             // if(prefixSum_visitedCount_map.containsKey(need)){
             //     res+=prefixSum_visitedCount_map.get(need);
             // }
-            prefixSum_visitedCount_map.merge(sum, 1, (a,b)->a+b);
+            prefixSum_visitedCount_map.merge(sum, 1, (a,b)->a+b);  // if sum already exists, increment its count by 1, else add it with count 1
         }
         return res;
     }
